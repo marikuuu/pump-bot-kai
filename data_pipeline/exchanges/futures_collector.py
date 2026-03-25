@@ -27,7 +27,7 @@ class FuturesCollector:
         self.symbols = symbols or []
         self.exchange = getattr(ccxtpro, exchange_id)({
             'enableRateLimit': True,
-            'options': {'defaultType': 'swap'}
+            'options': {'defaultType': 'future'} # USDT-M Futures (fapi)
         })
         self.db = db_manager or DatabaseManager()
         self.logger = DataLogger(self.db)
@@ -48,7 +48,7 @@ class FuturesCollector:
             logging.info("Auto-Discovery mode: fetching tickers from Binance (30s timeout)...")
             try:
                 tickers = await asyncio.wait_for(
-                    self.exchange.fetch_tickers(), timeout=30
+                    self.exchange.fetch_tickers(params={'type': 'perpetual'}), timeout=30
                 )
                 candidates = []
                 for sym, t in tickers.items():

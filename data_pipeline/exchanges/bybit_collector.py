@@ -41,7 +41,7 @@ class BybitCollector:
         if os.getenv("CEX_SYMBOLS") == "AUTO":
             logging.info("Bybit Auto-Discovery: scanning for mid-low cap gems...")
             try:
-                tickers = await self.exchange.fetch_tickers()
+                tickers = await self.exchange.fetch_tickers(params={'category': 'linear'})
                 candidates = []
                 for sym, t in tickers.items():
                     qv = t.get('quoteVolume') or 0

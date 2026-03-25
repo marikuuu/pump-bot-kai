@@ -10,7 +10,7 @@ class BTCWatcher:
     Monitors BTC price for sudden crashes and sends Discord alerts.
     """
     def __init__(self, interval_sec: int = 60):
-        self.exchange = ccxt.binance({'options': {'defaultType': 'swap'}})
+        self.exchange = ccxt.binance({'options': {'defaultType': 'future'}})
         self.notifier = DiscordNotifier()
         self.history = pd.DataFrame(columns=['timestamp', 'price'])
         self.interval_sec = interval_sec
@@ -26,7 +26,7 @@ class BTCWatcher:
         logging.info("BTC Watcher started (Crash monitoring active).")
         while True:
             try:
-                ticker = await self.exchange.fetch_ticker('BTC/USDT:USDT')
+                ticker = await self.exchange.fetch_ticker('BTC/USDT:USDT', params={'type': 'perpetual'})
                 price = ticker['last']
                 now = datetime.now(timezone.utc)
                 

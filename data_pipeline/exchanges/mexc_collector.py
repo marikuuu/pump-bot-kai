@@ -46,7 +46,7 @@ class MexcCollector:
         if not self.symbols or self.symbols == ["AUTO"]:
             logging.info("MEXC Auto-Discovery: fetching all swap tickers...")
             try:
-                tickers = await self.exchange.fetch_tickers()
+                tickers = await self.exchange.fetch_tickers(params={'type': 'swap'})
                 candidates = []
                 for sym, t in tickers.items():
                     qv = t.get('quoteVolume') or 0
@@ -57,7 +57,7 @@ class MexcCollector:
                 
                 candidates.sort(key=lambda x: x[1], reverse=True)
                 # Pick top 50 mid-low cap gems
-                self.symbols = [s for s, _ in candidates[:50]]
+                self.symbols = [s for s, _ in candidates[:30]] # Reduced to 30 for stability
                 # Ensure user's requested symbols are included
                 u_targets = ["SIREN/USDT:USDT", "TRIA/USDT:USDT", "JCT/USDT:USDT", "LYN/USDT:USDT"]
                 for ut in u_targets:
