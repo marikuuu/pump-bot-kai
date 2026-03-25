@@ -104,7 +104,7 @@ class BybitCollector:
         rush_counts = buy_df.groupby('sec').size().reindex(range(0, 60), fill_value=0)
         std_rush = float(rush_counts.std())
 
-        price_change = (price_end - df['price'].iloc[0]) / df['price'].iloc[0]
+        price_change = (price_end - df['price'].iloc[0]) / (df['price'].iloc[0] + 1e-9)
         new_row = {'volume': vol, 'price_change': price_change}
         self.history[symbol] = pd.concat([self.history[symbol], pd.DataFrame([new_row])]).iloc[-120:]
 

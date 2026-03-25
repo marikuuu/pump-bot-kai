@@ -191,7 +191,7 @@ class FuturesCollector:
         oi_change = (current_oi - prev_oi) / (prev_oi + 1e-9)
 
         # === Update rolling history ===
-        price_change = (price_end - df['price'].iloc[0]) / df['price'].iloc[0]
+        price_change = (price_end - df['price'].iloc[0]) / (df['price'].iloc[0] + 1e-9)
         
         # Pre-accumulation (using 30-min window from history)
         hist_v = self.history[symbol]['volume'] if not self.history[symbol].empty else pd.Series()

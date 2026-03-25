@@ -163,7 +163,7 @@ class MexcCollector:
         price_impact = (prices.max() - prices.iloc[0]) / (prices.iloc[0] + 1e-9) if len(prices) >= 2 else 0.0
 
         # Update history
-        price_change = (price_end - df['price'].iloc[0]) / df['price'].iloc[0]
+        price_change = (price_end - df['price'].iloc[0]) / (df['price'].iloc[0] + 1e-9)
         new_row = {'volume': vol, 'price_change': price_change}
         self.history[symbol] = pd.concat([self.history[symbol], pd.DataFrame([new_row])]).iloc[-120:]
 

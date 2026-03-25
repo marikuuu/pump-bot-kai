@@ -46,15 +46,23 @@ class BitgetCollector:
                 
                 ticker_items = tickers.values() if isinstance(tickers, dict) else tickers
                 
+                # Exclude stock-based synthetic assets
+                stocks_to_exclude = ['NVDA', 'AAPL', 'TSLA', 'MSTR', 'MU', 'AMZN', 'GOOG', 'META', 'NFLX', 'MSFT', 'COIN', 'HOOD']
+                
                 for t in ticker_items:
                     sym = t.get('symbol', '')
+                    if not sym.endswith('/USDT:USDT'): continue
+                    
+                    base = sym.split('/')[0]
+                    if base in stocks_to_exclude: continue # Clean out non-crypto
+                    
                     qv = t.get('quoteVolume') or 0
-                    if 500_000 < qv < 20_000_000 and sym.endswith('/USDT:USDT'):
+                    if 500_000 < qv < 20_000_000:
                         candidates.append((sym, qv))
                 
                 candidates.sort(key=lambda x: x[1], reverse=True)
                 self.symbols = [s for s, _ in candidates[:50]]
-                logging.info(f"Bitget Discovery: {len(self.symbols)} symbols found.")
+                logging.info(f"Bitget Discovery: {len(self.symbols)} crypto symbols found.")
             except Exception as e:
                 logging.error(f"Bitget Discovery failed: {e}")
                 self.symbols = ["BTC/USDT:USDT"]
