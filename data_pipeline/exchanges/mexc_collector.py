@@ -52,11 +52,13 @@ class MexcCollector:
                         for c in contracts:
                             raw_sym = c.get('symbol', '')
                             if c.get('state') == 0 and raw_sym.endswith('_USDT'):
-                                # Use native symbol directly: BTC_USDT
-                                candidates.append(raw_sym)
+                                # Map BTC_USDT -> BTC/USDT (Internal Unified)
+                                base = raw_sym.replace('_USDT', '')
+                                unified_sym = f"{base}/USDT"
+                                candidates.append(unified_sym)
                         
                         self.symbols = candidates[:30]
-                        logging.info(f"Native MEXC Discovery Success: {len(self.symbols)} symbols.")
+                        logging.info(f"Native MEXC Discovery Success: {len(self.symbols)} symbols (Unified Format).")
             except Exception as e:
                 logging.error(f"Native MEXC Discovery FAILED: {e}")
 
@@ -101,8 +103,8 @@ class MexcCollector:
     async def watch_trades(self, symbol: str):
         import json
         import websockets
-        # MEXC Native: BTC_USDT
-        native_sym = symbol.replace('/USDT:USDT', '_USDT') if '/' in symbol else symbol
+        # Internal: BASE/USDT -> MEXC Native: BASE_USDT
+        native_sym = symbol.replace('/', '_') if '/' in symbol else symbol
         ws_url = "wss://contract.mexc.com/edge"
         
         logging.info(f"Starting Native MEXC WS for {symbol}")

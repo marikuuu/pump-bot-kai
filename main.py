@@ -3,11 +3,10 @@ import logging
 import os
 from dotenv import load_dotenv
 
-# ── SSLなど外部ライブラリのノイズを最初に抑制（basicConfigより前に必須）──
+# ── SSLなど外部ライブラリのノイズを最初に抑制 ──
 logging.getLogger('telethon').setLevel(logging.WARNING)
 logging.getLogger('telethon.network').setLevel(logging.WARNING)
 logging.getLogger('urllib3').setLevel(logging.WARNING)
-logging.getLogger('ccxt').setLevel(logging.WARNING)
 
 load_dotenv()
 

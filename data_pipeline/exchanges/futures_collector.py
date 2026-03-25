@@ -50,11 +50,10 @@ class FuturesCollector:
                         candidates = []
                         for s in symbols_raw:
                             if s.get('status') == 'TRADING' and s.get('quoteAsset') == 'USDT':
-                                # Map to CCXT ID: BTCUSDT -> BTC/USDT:USDT
+                                # Map BTCUSDT -> BTC/USDT (Internal Unified)
                                 base = s.get('baseAsset')
-                                ccxt_sym = f"{base}/USDT:USDT"
-                                # Note: Actual volume requires another API hit, we use a placeholder for MC
-                                candidates.append(ccxt_sym)
+                                unified_sym = f"{base}/USDT"
+                                candidates.append(unified_sym)
                         
                         self.symbols = candidates[:50] # Just pick first 50 trading pairs
                         logging.info(f"Native Binance Discovery Success: {len(self.symbols)} symbols.")
@@ -102,8 +101,8 @@ class FuturesCollector:
     async def watch_trades(self, symbol: str):
         import json
         import websockets
-        # Binance Native: btcusdt@aggTrade
-        clean_sym = symbol.replace('/USDT:USDT', '').lower()
+        # Internal: BASE/USDT -> Binance Native: baseusdt (lowercase)
+        clean_sym = symbol.replace('/', '').lower()
         ws_url = f"wss://fstream.binance.com/ws/{clean_sym}@aggTrade"
         
         logging.info(f"Starting Native Binance WS for {symbol}")

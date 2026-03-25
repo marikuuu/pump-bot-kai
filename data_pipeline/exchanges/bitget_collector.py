@@ -52,17 +52,17 @@ class BitgetCollector:
                             sym = t.get('symbol', '') # Bitget Native: BTCUSDT
                             if not sym.endswith('USDT'): continue
                             
-                            # Clean for check
                             base = sym.replace('USDT', '')
                             if base in stocks_to_exclude: continue
                             
                             qv = float(t.get('quoteVolume') or 0)
                             if 500_000 < qv < 20_000_000:
-                                candidates.append((sym, qv))
+                                # Internal format: BASE/USDT
+                                candidates.append((f"{base}/USDT", qv))
                         
                         candidates.sort(key=lambda x: x[1], reverse=True)
                         self.symbols = [s for s, _ in candidates[:50]]
-                        logging.info(f"Native Bitget Discovery: {len(self.symbols)} symbols found.")
+                        logging.info(f"Native Bitget Discovery: {len(self.symbols)} symbols (Unified Format) found.")
             except Exception as e:
                 logging.error(f"Native Bitget Discovery failed: {e}")
                 self.symbols = ["BTCUSDT"]
@@ -76,8 +76,8 @@ class BitgetCollector:
     async def watch_trades(self, symbol: str):
         import json
         import websockets
-        # Bitget Native: BTCUSDT
-        clean_sym = symbol.replace('/USDT:USDT', '').upper()
+        # Internal: BASE/USDT -> Bitget Native: BASEUSDT
+        clean_sym = symbol.replace('/', '').upper()
         ws_url = "wss://ws.bitget.com/v2/ws/public"
         
         logging.info(f"Starting Native Bitget WS for {symbol}")

@@ -67,8 +67,8 @@ class BybitCollector:
     async def watch_trades(self, symbol: str):
         import json
         import websockets
-        # Bybit Native: BTCUSDT
-        clean_sym = symbol.replace('/USDT:USDT', '').upper()
+        # Internal: BASE/USDT -> Bybit Native: BASEUSDT
+        clean_sym = symbol.replace('/', '').upper()
         ws_url = "wss://stream.bybit.com/v5/public/linear"
         
         logging.info(f"Starting Native Bybit WS for {symbol}")
