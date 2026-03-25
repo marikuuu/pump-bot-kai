@@ -100,12 +100,12 @@ class BitgetCollector:
             try:
                 async with websockets.connect(ws_url, ping_interval=20, ping_timeout=10) as ws:
                     
-                    # 🚀 Dedicated Ping Loop for Bitget
+                    # 🚀 Dedicated Ping Loop for Bitget (Literal string "ping")
                     async def ping_loop():
                         while True:
                             try:
                                 await asyncio.sleep(20)
-                                await ws.send(json.dumps({"op": "ping"}))
+                                await ws.send("ping")
                             except:
                                 break
                     
