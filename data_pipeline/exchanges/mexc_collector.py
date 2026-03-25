@@ -100,20 +100,26 @@ class MexcCollector:
             
         logging.info(f"MexcCollector initialized ({len(self.symbols)} symbols).")
 
-    async def watch_trades(self, symbol: str):
+    async def watch_combined_trades(self):
+        """
+        Watches all symbols using a single shared WebSocket connection.
+        """
         import json
         import websockets
-        # Internal: BASE/USDT -> MEXC Native: BASE_USDT
-        native_sym = symbol.replace('/', '_') if '/' in symbol else symbol
         ws_url = "wss://contract.mexc.com/edge"
         
-        logging.info(f"Starting Native MEXC WS for {symbol}")
+        logging.info(f"Starting Combined MEXC WS for {len(self.symbols)} symbols")
         while True:
             try:
                 async with websockets.connect(ws_url, ping_interval=20, ping_timeout=10) as ws:
-                    # Subscribe
-                    sub_msg = json.dumps({"method": "sub.deal", "param": {"symbol": native_sym}})
-                    await ws.send(sub_msg)
+                    sym_map = {} # BTC_USDT -> BTC/USDT or BTC_USDT (if no slash)
+                    # Subscribe to all symbols
+                    for symbol in self.symbols:
+                        native_sym = symbol.replace('/', '_') if '/' in symbol else symbol
+                        sym_map[native_sym] = symbol
+                        sub_msg = json.dumps({"method": "sub.deal", "param": {"symbol": native_sym}})
+                        await ws.send(sub_msg)
+                        await asyncio.sleep(0.05) # Tiny stagger for subscriptions
                     
                     while True:
                         msg = await ws.recv()
@@ -129,8 +135,10 @@ class MexcCollector:
                         for item in flatten(res):
                             if not isinstance(item, dict) or item.get('channel') != 'push.deal': continue
                             
+                            native_sym = item.get('symbol')
+                            unified_sym = sym_map.get(native_sym, native_sym)
+                            
                             data_node = item.get('data', {})
-                            # Data node might be a single trade or a list of trades
                             trades_to_process = data_node if isinstance(data_node, list) else [data_node]
                             
                             for d in trades_to_process:
@@ -143,17 +151,17 @@ class MexcCollector:
                                         'timestamp': d.get('t', 0),
                                         'received_at': time.time()
                                     }
-                                    self.trade_buffers[symbol].append(trade)
+                                    self.trade_buffers[unified_sym].append(trade)
                                     
-                                    # 🚀 DB Logging (Native) - Skip await to keep WS loop fast
+                                    # 🚀 DB Logging
                                     asyncio.create_task(self.logger.log_tick(
-                                        self.exchange_id, symbol, trade['price'], trade['amount'], trade['side'], d.get('M', False)
+                                        self.exchange_id, unified_sym, trade['price'], trade['amount'], trade['side'], d.get('M', False)
                                     ))
                                 except (ValueError, TypeError):
                                     continue
             except Exception as e:
-                logging.error(f"Native MEXC WS Error ({symbol}): {e}")
-                await asyncio.sleep(10)
+                logging.error(f"Combined MEXC WS Error: {e}")
+                await asyncio.sleep(5)
 
     async def scheduler_loop(self):
         while True:
@@ -235,9 +243,8 @@ class MexcCollector:
         await self.initialize()
         
         watchers = []
-        for s in self.symbols:
-            watchers.append(asyncio.create_task(self.watch_trades(s)))
-            await asyncio.sleep(1.0)
+        # 🚀 Use Combined WebSocket
+        watchers.append(asyncio.create_task(self.watch_combined_trades()))
             
         watchers.append(asyncio.create_task(self.scheduler_loop()))
         await asyncio.gather(*watchers)

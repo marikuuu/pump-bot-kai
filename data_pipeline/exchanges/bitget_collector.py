@@ -75,32 +75,41 @@ class BitgetCollector:
             
         logging.info(f"BitgetCollector initialized with {len(self.symbols)} symbols.")
 
-    async def watch_trades(self, symbol: str):
+    async def watch_combined_trades(self):
+        """
+        Watches all symbols using a single shared WebSocket connection.
+        """
         import json
         import websockets
-        # Internal: BASE/USDT -> Bitget Native: BASEUSDT
-        clean_sym = symbol.replace('/', '').upper()
         ws_url = "wss://ws.bitget.com/v2/ws/public"
         
-        logging.info(f"Starting Native Bitget WS for {symbol}")
+        # Build subscription arguments
+        args = []
+        sym_map = {} # BTCUSDT -> BTC/USDT
+        for s in self.symbols:
+            clean = s.replace('/', '').upper()
+            args.append({
+                "instType": "USDT-FUTURES",
+                "channel": "trade",
+                "instId": clean
+            })
+            sym_map[clean] = s
+            
+        logging.info(f"Starting Combined Bitget WS for {len(self.symbols)} symbols")
         while True:
             try:
                 async with websockets.connect(ws_url, ping_interval=20, ping_timeout=10) as ws:
-                    # Subscribe
-                    sub_msg = json.dumps({
-                        "op": "subscribe",
-                        "args": [{
-                            "instType": "USDT-FUTURES",
-                            "channel": "trade",
-                            "instId": clean_sym
-                        }]
-                    })
+                    # Subscribe to all at once
+                    sub_msg = json.dumps({"op": "subscribe", "args": args})
                     await ws.send(sub_msg)
                     
                     while True:
                         msg = await ws.recv()
                         res = json.loads(msg)
-                        if 'data' not in res: continue
+                        if 'data' not in res or 'arg' not in res: continue
+                        
+                        native_sym = res['arg'].get('instId')
+                        unified_sym = sym_map.get(native_sym, native_sym)
                         
                         for d in res['data']:
                             trade = {
@@ -110,14 +119,14 @@ class BitgetCollector:
                                 'timestamp': int(d['ts']),
                                 'received_at': time.time()
                             }
-                            self.trade_buffers[symbol].append(trade)
+                            self.trade_buffers[unified_sym].append(trade)
                             
-                            # 🚀 DB Logging (Native)
+                            # 🚀 DB Logging
                             asyncio.create_task(self.logger.log_tick(
-                                self.exchange_id, symbol, trade['price'], trade['amount'], trade['side'], d.get('m', False)
+                                self.exchange_id, unified_sym, trade['price'], trade['amount'], trade['side'], d.get('m', False)
                             ))
             except Exception as e:
-                logging.error(f"Native Bitget WS Error ({symbol}): {e}")
+                logging.error(f"Combined Bitget WS Error: {e}")
                 await asyncio.sleep(5)
 
     async def scheduler_loop(self):
@@ -169,11 +178,9 @@ class BitgetCollector:
     async def run(self):
         await self.initialize()
         
-        # Staggered start to avoid rate limits (code 30006)
         watchers = []
-        for s in self.symbols:
-            watchers.append(asyncio.create_task(self.watch_trades(s)))
-            await asyncio.sleep(1.0) # 1.0s delay between connections
+        # 🚀 Use Combined WebSocket instead of individual ones
+        watchers.append(asyncio.create_task(self.watch_combined_trades()))
             
         watchers.append(asyncio.create_task(self.scheduler_loop()))
         await asyncio.gather(*watchers)

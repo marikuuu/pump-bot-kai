@@ -66,42 +66,55 @@ class BybitCollector:
             
         logging.info(f"BybitCollector initialized with {len(self.symbols)} symbols.")
 
-    async def watch_trades(self, symbol: str):
+    async def watch_combined_trades(self):
+        """
+        Watches all symbols using a single shared WebSocket connection.
+        """
         import json
         import websockets
-        # Internal: BASE/USDT -> Bybit Native: BASEUSDT
-        clean_sym = symbol.replace('/', '').upper()
         ws_url = "wss://stream.bybit.com/v5/public/linear"
         
-        logging.info(f"Starting Native Bybit WS for {symbol}")
+        logging.info(f"Starting Combined Bybit WS for {len(self.symbols)} symbols")
         while True:
             try:
-                async with websockets.connect(ws_url) as ws:
-                    # Subscribe
-                    sub_msg = json.dumps({"op": "subscribe", "args": [f"publicTrade.{clean_sym}"]})
-                    await ws.send(sub_msg)
+                async with websockets.connect(ws_url, ping_interval=20, ping_timeout=10) as ws:
+                    # Subscribe in batches of 10 to avoid any message size limits
+                    batch_size = 10
+                    for i in range(0, len(self.symbols), batch_size):
+                        batch = self.symbols[i:i+batch_size]
+                        args = [f"publicTrade.{s.replace('/', '').upper()}" for s in batch]
+                        sub_msg = json.dumps({"op": "subscribe", "args": args})
+                        await ws.send(sub_msg)
+                        await asyncio.sleep(0.1)
                     
                     while True:
                         msg = await ws.recv()
                         res = json.loads(msg)
-                        if 'data' not in res: continue
+                        if 'data' not in res or 'topic' not in res: continue
+                        
+                        # Topic: publicTrade.BTCUSDT
+                        topic = res['topic']
+                        native_sym = topic.replace('publicTrade.', '')
+                        
+                        # Find unified symbol
+                        unified_sym = next((s for s in self.symbols if s.replace('/', '').upper() == native_sym), native_sym)
                         
                         for d in res['data']:
                             trade = {
                                 'price': float(d['p']),
                                 'amount': float(d['v']),
-                                'side': d['S'].lower(), # Buy/Sell
+                                'side': d['S'].lower(),
                                 'timestamp': int(d['T']),
                                 'received_at': time.time()
                             }
-                            self.trade_buffers[symbol].append(trade)
+                            self.trade_buffers[unified_sym].append(trade)
                             
-                            # 🚀 DB Logging (Native)
+                            # 🚀 DB Logging
                             asyncio.create_task(self.logger.log_tick(
-                                self.exchange_id, symbol, trade['price'], trade['amount'], trade['side'], d.get('m', False)
+                                self.exchange_id, unified_sym, trade['price'], trade['amount'], trade['side'], d.get('m', False)
                             ))
             except Exception as e:
-                logging.error(f"Native Bybit WS Error ({symbol}): {e}")
+                logging.error(f"Combined Bybit WS Error: {e}")
                 await asyncio.sleep(5)
 
     async def scheduler_loop(self):
@@ -155,9 +168,8 @@ class BybitCollector:
         await self.initialize()
         
         watchers = []
-        for s in self.symbols:
-            watchers.append(asyncio.create_task(self.watch_trades(s)))
-            await asyncio.sleep(1.0)
+        # 🚀 Use Combined WebSocket
+        watchers.append(asyncio.create_task(self.watch_combined_trades()))
             
         watchers.append(asyncio.create_task(self.scheduler_loop()))
         await asyncio.gather(*watchers)

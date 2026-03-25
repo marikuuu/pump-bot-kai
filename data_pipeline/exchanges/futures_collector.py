@@ -98,20 +98,36 @@ class FuturesCollector:
         
         logging.info(f"FuturesCollector initialized for {self.exchange_id} ({len(self.symbols)} symbols).")
 
-    async def watch_trades(self, symbol: str):
+    async def watch_combined_trades(self):
+        """
+        Watches all symbols using a single Combined Stream connection.
+        """
         import json
         import websockets
-        # Internal: BASE/USDT -> Binance Native: baseusdt (lowercase)
-        clean_sym = symbol.replace('/', '').lower()
-        ws_url = f"wss://fstream.binance.com/ws/{clean_sym}@aggTrade"
         
-        logging.info(f"Starting Native Binance WS for {symbol}")
+        # Build streams: btcusdt@aggTrade/ethusdt@aggTrade/...
+        streams = []
+        sym_map = {} # BTCUSDT -> BTC/USDT
+        for s in self.symbols:
+            clean = s.replace('/', '').lower()
+            streams.append(f"{clean}@aggTrade")
+            sym_map[clean.upper()] = s
+            
+        ws_url = f"wss://fstream.binance.com/stream?streams={'/'.join(streams)}"
+        
+        logging.info(f"Starting Combined Binance WS for {len(self.symbols)} symbols")
         while True:
             try:
                 async with websockets.connect(ws_url, ping_interval=20, ping_timeout=10) as ws:
                     while True:
                         msg = await ws.recv()
-                        data = json.loads(msg)
+                        res = json.loads(msg)
+                        if 'data' not in res: continue
+                        
+                        data = res['data']
+                        native_sym = data['s'] # e.g. BTCUSDT
+                        unified_sym = sym_map.get(native_sym, native_sym)
+                        
                         # p: price, q: quantity, m: isBuyerMaker, E: event time
                         trade = {
                             'price': float(data['p']),
@@ -120,14 +136,14 @@ class FuturesCollector:
                             'timestamp': data['E'],
                             'received_at': time.time()
                         }
-                        self.trade_buffers[symbol].append(trade)
+                        self.trade_buffers[unified_sym].append(trade)
                         
-                        # 🚀 DB Logging (Native)
+                        # 🚀 DB Logging
                         asyncio.create_task(self.logger.log_tick(
-                            self.exchange_id, symbol, trade['price'], trade['amount'], trade['side'], data.get('m', False)
+                            self.exchange_id, unified_sym, trade['price'], trade['amount'], trade['side'], data.get('m', False)
                         ))
             except Exception as e:
-                logging.error(f"Native Binance WS Error ({symbol}): {e}")
+                logging.error(f"Combined Binance WS Error: {e}")
                 await asyncio.sleep(5)
 
     async def scheduler_loop(self):
@@ -272,10 +288,14 @@ class FuturesCollector:
     async def run(self):
         await self.initialize()
         watchers = []
+        
+        # 🚀 Use Combined WebSocket instead of individual ones
+        watchers.append(asyncio.create_task(self.watch_combined_trades()))
+        
+        # OI watchers still need to poll per-symbol (Binance FAPI restriction)
         for s in self.symbols:
-            watchers.append(asyncio.create_task(self.watch_trades(s)))
             watchers.append(asyncio.create_task(self.watch_oi(s)))
-            await asyncio.sleep(1.0)
+            await asyncio.sleep(0.1)
         
         # Independent 30s scheduler
         watchers.append(asyncio.create_task(self.scheduler_loop()))
