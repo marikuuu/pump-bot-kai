@@ -41,10 +41,15 @@ class BybitCollector:
                 # Force Bybit V5 Linear logic
                 markets = await self.exchange.fetch_markets(params={'category': 'linear'})
                 candidates = []
-                for sym, m in markets.items():
+                
+                market_items = markets.values() if isinstance(markets, dict) else markets
+                
+                for m in market_items:
+                    sym = m.get('symbol', '')
                     if m.get('active') and m.get('linear') and '/USDT:USDT' in sym:
                          # Use turnover (Volume in Quote)
-                         qv = float(m.get('info', {}).get('turnover24h', 0)) or 0
+                         info = m.get('info', {})
+                         qv = float(info.get('turnover24h') or info.get('volume24h') or 0)
                          if 500_000 < qv: 
                              candidates.append((sym, qv))
                 

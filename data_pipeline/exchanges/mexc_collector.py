@@ -48,7 +48,12 @@ class MexcCollector:
                 # Force MEXC Contract API (swap)
                 markets = await self.exchange.fetch_markets(params={'type': 'swap'})
                 candidates = []
-                for sym, m in markets.items():
+                
+                # Handle both list and dict returns from CCXT
+                market_items = markets.values() if isinstance(markets, dict) else markets
+                
+                for m in market_items:
+                    sym = m.get('symbol', '')
                     if m.get('active') and sym.endswith('/USDT:USDT'):
                         qv = float(m.get('info', {}).get('quoteVolume', 0)) or 0
                         if 100_000 < qv:

@@ -49,9 +49,15 @@ class FuturesCollector:
                 # Use load_markets which handles rate limits better
                 markets = await self.exchange.load_markets()
                 candidates = []
-                for sym, m in markets.items():
+                
+                market_items = markets.values() if isinstance(markets, dict) else markets
+                
+                for m in market_items:
+                    sym = m.get('symbol', '')
                     if m.get('active') and m.get('linear') and sym.endswith('/USDT:USDT'):
-                        qv = float(m.get('info', {}).get('quoteVolume', 0)) or 0
+                        # Support multiple info keys
+                        info = m.get('info', {})
+                        qv = float(info.get('quoteVolume') or info.get('volume') or 0)
                         if 1_000_000 < qv:
                             candidates.append((sym, qv))
                             self.market_caps[sym] = qv
