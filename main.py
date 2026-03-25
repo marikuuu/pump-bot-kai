@@ -25,8 +25,8 @@ async def main():
     Project IZANAGI Pump Detection System (CEX Only).
     DEXモニター（Nansen）は run_nansen.py で別プロセス起動してください。
     """
-    logging.info("🚀 Starting High-Precision Pump Detection System (CEX Mode)...")
-    logging.info("💡 TIP: DEX/Nansen monitor → run separately: python run_nansen.py")
+    logging.info("Starting High-Precision Pump Detection System (CEX Mode)...")
+    logging.info("TIP: DEX/Nansen monitor -> run separately: python run_nansen.py")
 
     # --- Component Configuration ---
 
@@ -89,7 +89,7 @@ async def main():
 
     # Social monitor tasks removed
 
-    logging.info("✅ All systems started. CEX Pump Detection active.")
+    logging.info("All systems started. CEX Pump Detection active.")
     await asyncio.gather(*tasks)
 
 if __name__ == "__main__":

@@ -1,0 +1,45 @@
+Traceback (most recent call last):
+  File "C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\symbol_intel_pro.py", line 195, in <module>
+    asyncio.run(main())
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 195, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py", line 691, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\symbol_intel_pro.py", line 192, in main
+    await intel.generate_report(sys.argv[1])
+  File "C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\symbol_intel_pro.py", line 129, in generate_report
+    flows = await self.get_flow_intelligence(symbol)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\symbol_intel_pro.py", line 56, in get_flow_intelligence
+    exchange_flow = await self.db.fetch("""
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\database\db_manager.py", line 35, in fetch
+    return await connection.fetch(query, *args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\site-packages\asyncpg\connection.py", line 694, in fetch
+    return await self._execute(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\site-packages\asyncpg\connection.py", line 1873, in _execute
+    result, _ = await self.__execute(
+                ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\site-packages\asyncpg\connection.py", line 1970, in __execute
+    result, stmt = await self._do_execute(
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\site-packages\asyncpg\connection.py", line 2013, in _do_execute
+    stmt = await self._get_statement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\site-packages\asyncpg\connection.py", line 443, in _get_statement
+    statement = await self._protocol.prepare(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "asyncpg/protocol/protocol.pyx", line 165, in prepare
+    return await waiter
+asyncpg.exceptions.UndefinedColumnError: column "label" does not exist
+WARNING:ccxt.base.exchange:gateio requires to release all resources with an explicit call to the .close() coroutine. If you are using the exchange instance with async coroutines, add `await exchange.close()` to your code into a place when you're done with the exchange and don't need the exchange instance anymore (at the end of your async coroutine).
+ERROR:asyncio:Unclosed connector
+connections: ['deque([(<aiohttp.client_proto.ResponseHandler object at 0x000001BCFFED50D0>, 191358.39), (<aiohttp.client_proto.ResponseHandler object at 0x000001BCFFED4E30>, 191359.093)])']
+connector: <aiohttp.connector.TCPConnector object at 0x000001BCFF30FAD0>

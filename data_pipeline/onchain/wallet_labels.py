@@ -18,13 +18,14 @@ class WalletLabelManager:
 
     async def get_wallet_info(self, address: str) -> Optional[Dict]:
         """Queries PostgreSQL for entity information"""
-        query = "SELECT label, source, last_seen FROM wallet_labels WHERE address = $1"
-        row = await self.db.fetch(query, address.lower())
-        if row:
+        query = "SELECT entity_name, label_type, source, updated_at FROM wallet_labels WHERE address = $1"
+        rows = await self.db.fetch(query, address.lower())
+        if rows:
+            row = rows[0]
             return {
-                'label': row[0]['label'],
-                'source': row[0]['source'],
-                'last_seen': row[0]['last_seen']
+                'label': f"{row['entity_name']} ({row['label_type']})",
+                'source': row['source'],
+                'updated_at': row['updated_at']
             }
         return None
 
@@ -39,11 +40,11 @@ class WalletLabelManager:
     async def add_arkham_label(self, address: str, name: str, label_type: str = 'smart_money'):
         """Inserts a new label from Arkham/Manual discovery into the DB"""
         query = """
-        INSERT INTO wallet_labels (address, label, source)
-        VALUES ($1, $2, $3)
-        ON CONFLICT (address) DO UPDATE SET label = EXCLUDED.label;
+        INSERT INTO wallet_labels (address, entity_name, label_type, source)
+        VALUES ($1, $2, $3, $4)
+        ON CONFLICT (address) DO UPDATE SET entity_name = EXCLUDED.entity_name, label_type = EXCLUDED.label_type;
         """
-        await self.db.execute(query, address.lower(), f"{label_type}: {name}", 'Arkham_Discovery')
+        await self.db.execute(query, address.lower(), name, label_type, 'Arkham_Discovery')
         logging.info(f"DB Label Sync: {name} ({address})")
 
 if __name__ == "__main__":

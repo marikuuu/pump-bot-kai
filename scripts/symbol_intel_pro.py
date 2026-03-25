@@ -54,8 +54,8 @@ class SymbolIntelPro:
     async def get_flow_intelligence(self, symbol: str) -> Dict:
         """Analyzes 7d flows from local DEX swaps and labels"""
         exchange_flow = await self.db.fetch("""
-            SELECT sum(CASE WHEN recipient IN (SELECT address FROM wallet_labels WHERE label ILIKE '%Exchange%') THEN amount_in ELSE 0 END) - 
-                   sum(CASE WHEN sender IN (SELECT address FROM wallet_labels WHERE label ILIKE '%Exchange%') THEN amount_in ELSE 0 END)
+            SELECT sum(CASE WHEN recipient IN (SELECT address FROM wallet_labels WHERE label_type ILIKE '%Exchange%' OR entity_name ILIKE '%Exchange%') THEN amount_in ELSE 0 END) - 
+                   sum(CASE WHEN sender IN (SELECT address FROM wallet_labels WHERE label_type ILIKE '%Exchange%' OR entity_name ILIKE '%Exchange%') THEN amount_in ELSE 0 END)
             FROM dex_swaps 
             WHERE (wallet_label ILIKE $1) AND time > NOW() - INTERVAL '7 days'
         """, f"%{symbol}%")
@@ -100,7 +100,9 @@ class SymbolIntelPro:
             if s_swap in ex.markets:
                 try:
                     fr_raw = await ex.fetch_funding_rate(s_swap)
-                    data['fr'] = f"{float(fr_raw['fundingRate'])*100:+.4f}%"
+                    fr_val = fr_raw.get('fundingRate') or fr_raw.get('info', {}).get('fundingRate')
+                    if fr_val:
+                        data['fr'] = f"{float(fr_val)*100:+.4f}%"
                     data['oi_change'] = "+5.2%"
                 except: pass
         except: pass
@@ -143,7 +145,7 @@ class SymbolIntelPro:
 📊 **基本情報 & CMC**
 • トークン: [{symbol}]({metrics.get('cmc_url')})
 • チェーン: {network} Chain
-• 現在価格: ${perf.get('now', 'N/A'):,.4f}
+• 現在価格: {f'${perf.get("now"):,.4f}' if perf.get('now') else 'N/A'}
 • 30日間リターン: {perf.get('30d_ret', 0):+.1f}%
 
 📈 **価格動向 & 相関**
@@ -189,7 +191,8 @@ async def main():
     db = DatabaseManager()
     await db.connect()
     intel = SymbolIntelPro(db)
-    await intel.generate_report(sys.argv[1])
+    report = await intel.generate_report(sys.argv[1])
+    print(report)
 
 if __name__ == "__main__":
     asyncio.run(main())

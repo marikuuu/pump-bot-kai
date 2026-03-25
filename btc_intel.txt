@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\symbol_intel_pro.py", line 198, in <module>
+    asyncio.run(main())
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 195, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py", line 691, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\symbol_intel_pro.py", line 195, in main
+    print(report)
+UnicodeEncodeError: 'cp932' codec can't encode character '\U0001f575' in position 2: illegal multibyte sequence
