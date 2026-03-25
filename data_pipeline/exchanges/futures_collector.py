@@ -33,6 +33,7 @@ class FuturesCollector:
         self.history: Dict[str, pd.DataFrame] = {s: pd.DataFrame() for s in self.symbols}
         self.oi_data: Dict[str, float] = {s: 0.0 for s in self.symbols}
         self.market_caps: Dict[str, float] = {}
+        self.tick_buffer: List[tuple] = [] # 🚀 Buffer for high-speed logging
 
     async def initialize(self):
         import aiohttp
@@ -158,8 +159,9 @@ class FuturesCollector:
                         }
                         self.trade_buffers[unified_sym].append(trade)
                         
-                        # 🚀 DB Logging
-                        asyncio.create_task(self.logger.log_tick(
+                        # 🚀 DB Logging (Buffering for speed)
+                        self.tick_buffer.append((
+                            datetime.now(timezone.utc),
                             self.exchange_id, unified_sym, trade['price'], trade['amount'], trade['side'], data.get('m', False)
                         ))
             except Exception as e:
@@ -305,12 +307,22 @@ class FuturesCollector:
             if hasattr(self, 'auditor'):
                 asyncio.create_task(self.auditor.add_signal(symbol, price_end))
 
+    async def flush_ticks_loop(self):
+        """Periodically flushes the tick buffer to DB in bulk."""
+        while True:
+            await asyncio.sleep(2) # Flush every 2 seconds
+            if self.tick_buffer:
+                batch = self.tick_buffer[:]
+                self.tick_buffer = []
+                await self.logger.log_ticks_batch(batch)
+
     async def run(self):
         await self.initialize()
         watchers = []
         
         # 🚀 Use Combined WebSocket instead of individual ones
         watchers.append(asyncio.create_task(self.watch_combined_trades()))
+        watchers.append(asyncio.create_task(self.flush_ticks_loop())) # 🚀 Start flusher
         
         # OI watchers still need to poll per-symbol (Binance FAPI restriction)
         for s in self.symbols:

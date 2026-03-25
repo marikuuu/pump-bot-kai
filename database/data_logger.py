@@ -11,13 +11,25 @@ class DataLogger:
         self.db = db_manager
 
     async def log_tick(self, exchange: str, symbol: str, price: float, amount: float, side: str, is_maker: bool):
+        """Single tick insertion (legacy support)"""
+        await self.log_ticks_batch([(datetime.now(timezone.utc), exchange, symbol, price, amount, side, is_maker)])
+
+    async def log_ticks_batch(self, ticks_list: List[tuple]):
+        """
+        Efficiently inserts many ticks using a single transaction.
+        ticks_list: List of (time, exchange, symbol, price, amount, side, is_buyer_maker)
+        """
+        if not ticks_list: return
+        
         query = """
             INSERT INTO ticks (time, exchange, symbol, price, amount, side, is_buyer_maker)
             VALUES ($1, $2, $3, $4, $5, $6, $7)
         """
-        # Ensure strict types for asyncpg
-        await self.db.execute(query, datetime.now(timezone.utc), exchange, symbol, 
-                             float(price), float(amount), str(side), bool(is_maker))
+        try:
+            # ticks_list format must strictly match query placeholders
+            await self.db.pool.executemany(query, ticks_list)
+        except Exception as e:
+            logging.error(f"Failed to bulk log {len(ticks_list)} ticks: {e}")
 
     async def log_candle(self, exchange: str, symbol: str, open_p, high, low, close, vol):
         query = """

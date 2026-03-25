@@ -33,6 +33,7 @@ class MexcCollector:
         self.last_chunk_time: Dict[str, float] = {}
         self.history: Dict[str, pd.DataFrame] = {}
         self.market_caps: Dict[str, float] = {}
+        self.tick_buffer: List[tuple] = []
 
     async def initialize(self):
         import aiohttp
@@ -191,8 +192,9 @@ class MexcCollector:
                                         }
                                         self.trade_buffers[unified_sym].append(trade)
                                         
-                                        # 🚀 DB Logging
-                                        asyncio.create_task(self.logger.log_tick(
+                                        # 🚀 DB Logging (Buffering)
+                                        self.tick_buffer.append((
+                                            datetime.now(timezone.utc),
                                             self.exchange_id, unified_sym, trade['price'], trade['amount'], trade['side'], d.get('M', False)
                                         ))
                                     except (ValueError, TypeError):
@@ -202,6 +204,15 @@ class MexcCollector:
             except Exception as e:
                 logging.error(f"Combined MEXC WS Error: {e}")
                 await asyncio.sleep(5)
+
+    async def flush_ticks_loop(self):
+        """Periodically flushes the tick buffer to DB in bulk."""
+        while True:
+            await asyncio.sleep(2)
+            if self.tick_buffer:
+                batch = self.tick_buffer[:]
+                self.tick_buffer = []
+                await self.logger.log_ticks_batch(batch)
 
     async def scheduler_loop(self):
         while True:
@@ -285,6 +296,7 @@ class MexcCollector:
         watchers = []
         # 🚀 Use Combined WebSocket
         watchers.append(asyncio.create_task(self.watch_combined_trades()))
+        watchers.append(asyncio.create_task(self.flush_ticks_loop()))
             
         watchers.append(asyncio.create_task(self.scheduler_loop()))
         await asyncio.gather(*watchers)
