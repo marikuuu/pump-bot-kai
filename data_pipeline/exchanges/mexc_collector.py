@@ -119,26 +119,38 @@ class MexcCollector:
                         msg = await ws.recv()
                         res = json.loads(msg)
                         
-                        # Handle both list and dict from MEXC
-                        msg_items = res if isinstance(res, list) else [res]
-                        
-                        for item in msg_items:
-                            if item.get('channel') != 'push.deal': continue
-                            d = item.get('data', {})
+                        # Bulletproof handling for MEXC WS data structure quirks
+                        def flatten(node):
+                            if isinstance(node, list):
+                                for n in node: yield from flatten(n)
+                            elif isinstance(node, dict):
+                                yield node
+
+                        for item in flatten(res):
+                            if not isinstance(item, dict) or item.get('channel') != 'push.deal': continue
                             
-                            trade = {
-                                'price': float(d.get('p', 0)),
-                                'amount': float(d.get('v', 0)),
-                                'side': 'buy' if d.get('T') == 1 else 'sell',
-                                'timestamp': d.get('t', 0),
-                                'received_at': time.time()
-                            }
-                            self.trade_buffers[symbol].append(trade)
+                            data_node = item.get('data', {})
+                            # Data node might be a single trade or a list of trades
+                            trades_to_process = data_node if isinstance(data_node, list) else [data_node]
                             
-                            # 🚀 DB Logging (Native)
-                            asyncio.create_task(self.logger.log_tick(
-                                self.exchange_id, symbol, trade['price'], trade['amount'], trade['side'], d.get('M', False)
-                            ))
+                            for d in trades_to_process:
+                                if not isinstance(d, dict): continue
+                                try:
+                                    trade = {
+                                        'price': float(d.get('p', 0)),
+                                        'amount': float(d.get('v', 0)),
+                                        'side': 'buy' if d.get('T') == 1 else 'sell',
+                                        'timestamp': d.get('t', 0),
+                                        'received_at': time.time()
+                                    }
+                                    self.trade_buffers[symbol].append(trade)
+                                    
+                                    # 🚀 DB Logging (Native) - Skip await to keep WS loop fast
+                                    asyncio.create_task(self.logger.log_tick(
+                                        self.exchange_id, symbol, trade['price'], trade['amount'], trade['side'], d.get('M', False)
+                                    ))
+                                except (ValueError, TypeError):
+                                    continue
             except Exception as e:
                 logging.error(f"Native MEXC WS Error ({symbol}): {e}")
                 await asyncio.sleep(10)
