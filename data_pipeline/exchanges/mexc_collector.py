@@ -106,7 +106,7 @@ class MexcCollector:
                 try:
                     await self.process_chunk(symbol)
                 except Exception as e:
-                    logging.error(f"MEXC Scheduler error for {symbol}: {e}")
+                    logging.error(f"Error processing {symbol} on MEXC: {e}")
 
     async def process_chunk(self, symbol: str):
         trades = self.trade_buffers[symbol]

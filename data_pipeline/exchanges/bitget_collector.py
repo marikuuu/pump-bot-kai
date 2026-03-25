@@ -77,7 +77,10 @@ class BitgetCollector:
         while True:
             await asyncio.sleep(30)
             for symbol in self.symbols:
-                await self.process_chunk(symbol)
+                try:
+                    await self.process_chunk(symbol)
+                except Exception as e:
+                    logging.error(f"Error processing {symbol} on Bitget: {e}")
 
     async def process_chunk(self, symbol: str):
         trades = self.trade_buffers[symbol]

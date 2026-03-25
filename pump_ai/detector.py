@@ -29,6 +29,7 @@ class PumpDetector:
         self.MAX_MARKET_CAP     = thresholds.get('market_cap', 1_000_000_000) if thresholds else 1_000_000_000
         self.VOL_Z_THRESHOLD    = thresholds.get('vol_z',    2.0) if thresholds else 2.0
         self.PC_Z_THRESHOLD     = thresholds.get('pc_z',     1.5) if thresholds else 1.5
+        self.OI_Z_THRESHOLD     = thresholds.get('oi_z',     2.0) if thresholds else 2.0
         self.ML_THRESHOLD       = 0.70  # Universal diversity threshold
 
         # Signal Management

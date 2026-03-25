@@ -114,7 +114,7 @@ class FuturesCollector:
                 try:
                     await self.process_chunk(symbol)
                 except Exception as e:
-                    logging.error(f"Scheduler error for {symbol}: {e}")
+                    logging.error(f"Error processing {symbol} on Binance: {e}")
 
     async def watch_oi(self, symbol: str):
         """
