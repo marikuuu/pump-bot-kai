@@ -118,22 +118,27 @@ class MexcCollector:
                     while True:
                         msg = await ws.recv()
                         res = json.loads(msg)
-                        if res.get('channel') != 'push.deal': continue
-                        d = res.get('data', {})
                         
-                        trade = {
-                            'price': float(d.get('p', 0)),
-                            'amount': float(d.get('v', 0)),
-                            'side': 'buy' if d.get('T') == 1 else 'sell',
-                            'timestamp': d.get('t', 0),
-                            'received_at': time.time()
-                        }
-                        self.trade_buffers[symbol].append(trade)
+                        # Handle both list and dict from MEXC
+                        msg_items = res if isinstance(res, list) else [res]
                         
-                        # 🚀 DB Logging (Native)
-                        asyncio.create_task(self.logger.log_tick(
-                            self.exchange_id, symbol, trade['price'], trade['amount'], trade['side'], d.get('M', False)
-                        ))
+                        for item in msg_items:
+                            if item.get('channel') != 'push.deal': continue
+                            d = item.get('data', {})
+                            
+                            trade = {
+                                'price': float(d.get('p', 0)),
+                                'amount': float(d.get('v', 0)),
+                                'side': 'buy' if d.get('T') == 1 else 'sell',
+                                'timestamp': d.get('t', 0),
+                                'received_at': time.time()
+                            }
+                            self.trade_buffers[symbol].append(trade)
+                            
+                            # 🚀 DB Logging (Native)
+                            asyncio.create_task(self.logger.log_tick(
+                                self.exchange_id, symbol, trade['price'], trade['amount'], trade['side'], d.get('M', False)
+                            ))
             except Exception as e:
                 logging.error(f"Native MEXC WS Error ({symbol}): {e}")
                 await asyncio.sleep(10)
