@@ -46,34 +46,23 @@ class FuturesCollector:
         # Auto-Discovery Logic
         if os.getenv("CEX_SYMBOLS") == "AUTO":
             try:
-                markets = await self.exchange.fetch_markets(params={'type': 'perpetual'})
+                # Use load_markets which handles rate limits better
+                markets = await self.exchange.load_markets()
                 candidates = []
                 for sym, m in markets.items():
-                    # Focus on USDT Perpetuals on Binance (fapi)
                     if m.get('active') and m.get('linear') and sym.endswith('/USDT:USDT'):
-                        # Using info for more accurate 24h volume if available
                         qv = float(m.get('info', {}).get('quoteVolume', 0)) or 0
-                        if 500_000 < qv:
+                        if 1_000_000 < qv:
                             candidates.append((sym, qv))
                             self.market_caps[sym] = qv
                 
                 candidates.sort(key=lambda x: x[1], reverse=True)
                 self.symbols = [s for s, _ in candidates[:50]]
-                logging.info(
-                    f"Binance Discovery Success: {len(self.symbols)} symbols found. "
-                    f"e.g. {self.symbols[:5]}"
-                )
+                logging.info(f"Binance Discovery Success: {len(self.symbols)} symbols found.")
             except Exception as e:
-                logging.error(f"Binance Discovery failed (likely regional block): {e}")
-                self.symbols = [
-                    "BTC/USDT:USDT", "ETH/USDT:USDT", "BNB/USDT:USDT", "SOL/USDT:USDT", 
-                    "XRP/USDT:USDT", "ADA/USDT:USDT", "DOGE/USDT:USDT", "AVAX/USDT:USDT",
-                    "TRX/USDT:USDT", "LINK/USDT:USDT", "DOT/USDT:USDT", "MATIC/USDT:USDT",
-                    "LTC/USDT:USDT", "BCH/USDT:USDT", "SHIB/USDT:USDT", "NEAR/USDT:USDT",
-                    "HBAR/USDT:USDT", "JASMY/USDT:USDT", "FIL/USDT:USDT", "XLM/USDT:USDT"
-                ]
-                for s in self.symbols: self.market_caps[s] = 100_000_000
-                logging.info(f"Using Binance Safety-Fallback (20 symbols): {self.symbols[:5]}...")
+                logging.error(f"Binance Discovery FAILED: {e}")
+                self.symbols = ["BTC/USDT:USDT", "ETH/USDT:USDT", "HBAR/USDT:USDT", "JASMY/USDT:USDT"]
+                logging.info("Binance Fallback to bare minimum. Check region blocks.")
         else:
             for s in self.symbols:
                 self.market_caps[s] = 30_000_000

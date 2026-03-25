@@ -45,6 +45,7 @@ class MexcCollector:
         # Symbol Discovery for MEXC
         if not self.symbols or self.symbols == ["AUTO"]:
             try:
+                # Force MEXC Contract API (swap)
                 markets = await self.exchange.fetch_markets(params={'type': 'swap'})
                 candidates = []
                 for sym, m in markets.items():
@@ -56,16 +57,16 @@ class MexcCollector:
                 
                 candidates.sort(key=lambda x: x[1], reverse=True)
                 self.symbols = [s for s, _ in candidates[:30]]
-                # Ensure targets
+                
+                # Standard core targets
                 u_targets = ["SIREN/USDT:USDT", "TRIA/USDT:USDT", "JCT/USDT:USDT", "LYN/USDT:USDT", "LIGHT/USDT:USDT"]
                 for ut in u_targets:
                     if ut not in self.symbols: self.symbols.append(ut)
                 
                 logging.info(f"MEXC Discovery Success: {len(self.symbols)} symbols.")
             except Exception as e:
-                logging.error(f"MEXC Discovery failed (likely regional block): {e}")
-                self.symbols = ["SIREN/USDT:USDT", "TRIA/USDT:USDT", "JCT/USDT:USDT", "LYN/USDT:USDT", "LIGHT/USDT:USDT", "BR/USDT:USDT"]
-                logging.info(f"Using MEXC Target Fallback: {self.symbols}")
+                logging.error(f"MEXC Discovery FAILED: {e}")
+                self.symbols = ["SIREN/USDT:USDT", "TRIA/USDT:USDT", "JCT/USDT:USDT", "LYN/USDT:USDT"]
         
         for s in self.symbols:
             self.trade_buffers[s] = []

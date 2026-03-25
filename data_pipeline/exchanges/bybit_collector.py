@@ -38,22 +38,23 @@ class BybitCollector:
             await self.db.connect()
         
             try:
+                # Force Bybit V5 Linear logic
                 markets = await self.exchange.fetch_markets(params={'category': 'linear'})
                 candidates = []
                 for sym, m in markets.items():
                     if m.get('active') and m.get('linear') and '/USDT:USDT' in sym:
-                         # Bybit volume is often in 'info'
+                         # Use turnover (Volume in Quote)
                          qv = float(m.get('info', {}).get('turnover24h', 0)) or 0
-                         if 500_000 < qv < 50_000_000:
+                         if 500_000 < qv: 
                              candidates.append((sym, qv))
                 
                 candidates.sort(key=lambda x: x[1], reverse=True)
                 self.symbols = [s for s, _ in candidates[:50]]
-                logging.info(f"Bybit Discovery Success: {len(self.symbols)} symbols found. e.g. {self.symbols[:5]}")
+                logging.info(f"Bybit Discovery Success: {len(self.symbols)} symbols found.")
             except Exception as e:
-                logging.error(f"Bybit Discovery failed (likely regional block): {e}")
-                self.symbols = ["BTC/USDT:USDT", "ETH/USDT:USDT", "SOL/USDT:USDT", "XRP/USDT:USDT", "PEPE/USDT:USDT", "WIF/USDT:USDT", "BONK/USDT:USDT"]
-                logging.info(f"Using Bybit Fallback High-Cap Symbols: {self.symbols}")
+                logging.error(f"Bybit Discovery FAILED: {e}")
+                logging.error("Check if your VPS region is blocked by Bybit, or API keys are required for V5.")
+                self.symbols = ["BTC/USDT:USDT"] # Minimum fallback
         
         for s in self.symbols:
             self.trade_buffers[s] = []
