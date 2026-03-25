@@ -63,8 +63,11 @@ class BitgetCollector:
                                 candidates.append((f"{base}/USDT", qv))
                         
                         candidates.sort(key=lambda x: x[1], reverse=True)
-                        self.symbols = [s for s, _ in candidates[:50]]
-                        logging.info(f"Native Bitget Discovery: {len(self.symbols)} symbols (Unified Format) found.")
+                        
+                        # 🎯 Targeted Discovery: Skip top 30 (high caps), Take next 100 gems
+                        discovery_range = candidates[30:130]
+                        self.symbols = [s for s, _ in discovery_range]
+                        logging.info(f"Native Bitget Discovery: {len(self.symbols)} gems (Rank 30-130) found.")
             except Exception as e:
                 logging.error(f"Native Bitget Discovery failed: {e}")
                 self.symbols = ["BTCUSDT"]

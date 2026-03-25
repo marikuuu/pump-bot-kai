@@ -38,22 +38,39 @@ class BybitCollector:
             await self.db.connect()
         
         # Native Bybit V5 Discovery
+        # Native Bybit V5 Discovery with Volume Ranking
         try:
-            logging.info("Native Bybit V5 Discovery: hitting instruments-info directly...")
-            url = "https://api.bybit.com/v5/market/instruments-info?category=linear"
+            logging.info("Native Bybit V5 Discovery: fetching tickers for volume ranking...")
             async with aiohttp.ClientSession() as session:
+                # 1. Get tickers to rank by volume
+                async with session.get("https://api.bybit.com/v5/market/tickers?category=linear") as t_resp:
+                    t_data = await t_resp.json()
+                    tickers = t_data.get('result', {}).get('list', [])
+                    vol_map = {t['symbol']: float(t['turnover24h']) for t in tickers}
+                
+                # 2. Get instrument metadata
+                url = "https://api.bybit.com/v5/market/instruments-info?category=linear"
                 async with session.get(url) as resp:
                     data = await resp.json()
                     res = data.get('result', {}).get('list', [])
-                    candidates = []
+                    
+                    candidate_data = [] # (unified_sym, volume)
                     for item in res:
                         if item.get('status') == 'Trading':
+                            raw_sym = item.get('symbol')
                             base = item.get('baseCoin')
                             unified_sym = f"{base}/USDT"
-                            candidates.append(unified_sym)
+                            v = vol_map.get(raw_sym, 0)
+                            candidate_data.append((unified_sym, v))
                     
-                    self.symbols = candidates[:50]
-                    logging.info(f"Native Bybit Discovery Success: {len(self.symbols)} symbols (Unified Format).")
+                    # Sort by Volume Descending
+                    candidate_data.sort(key=lambda x: x[1], reverse=True)
+                    
+                    # 🎯 Targeted Discovery: Skip top 50 (Major Assets), Take next 100
+                    discovery_range = candidate_data[50:150]
+                    self.symbols = [s for s, _ in discovery_range]
+                    
+                    logging.info(f"Native Bybit Discovery Success: {len(self.symbols)} gems (Rank 50-150 by Volume).")
         except Exception as e:
             logging.error(f"Native Bybit Discovery FAILED: {e}")
 
