@@ -66,12 +66,11 @@ class MexcCollector:
                 
                 # Sort by Volume Descending
                 ticker_data.sort(key=lambda x: x[1], reverse=True)
-                
-                # 🎯 Targeted Discovery: Skip top 30, Take next 100
-                discovery_range = ticker_data[30:130]
+                # 🎯 Ultra Targeted Discovery: Skip top 100, Take next 100
+                discovery_range = ticker_data[100:200]
                 self.symbols = [s for s, _ in discovery_range]
                 for s, v in discovery_range:
-                     self.market_caps[s] = v / 5.0 # Proxy for MEXC MC
+                     self.market_caps[s] = v * 30.0 # Strict Proxy
                 
                 # Ensure specific low-cap targets are always monitored
                 u_targets = ["SIREN/USDT", "TRIA/USDT", "JCT/USDT", "LYN/USDT", "LIGHT/USDT"]

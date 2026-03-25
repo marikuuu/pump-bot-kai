@@ -67,13 +67,15 @@ class FuturesCollector:
                     # Sort by Volume Descending (High to Low)
                     ticker_data.sort(key=lambda x: x[1], reverse=True)
                     
-                    # 🎯 Targeted Discovery: Skip top 150 (BTC, ETH, AAVE, etc.), Take next 200
-                    discovery_range = ticker_data[150:350] 
+                    # 🎯 Ultra-Targeted Discovery: Skip top 300, Take next 100 (Deep Tail Gems)
+                    # Skipping up to Rank 300 virtually guarantees that mid-high caps like SKY/AAVE/BAT are GONE.
+                    discovery_range = ticker_data[300:400] 
                     self.symbols = [s for s, _ in discovery_range]
                     for s, v in discovery_range:
-                        self.market_caps[s] = v / 10.0 # Heuristic placeholder: Vol/10 as proxy for MC
+                        # Conservative MC proxy: Volume * 50 (Higher MC estimate to trigger Stage 1 filters)
+                        self.market_caps[s] = v * 50.0 
                         
-                    logging.info(f"💎 Native Binance Discovery: Targeted {len(self.symbols)} gems (Rank 150-350 by Volume).")
+                    logging.info(f"💎 Ultra Binance Discovery: Targeted {len(self.symbols)} tail gems (Rank 300-400 by Volume).")
                     logging.info(f"Sample Symbols: {self.symbols[:10]}")
             except Exception as e:
                 logging.error(f"Native Binance Discovery FAILED: {e}")
