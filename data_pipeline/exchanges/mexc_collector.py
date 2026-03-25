@@ -2,10 +2,11 @@ import asyncio
 import logging
 import os
 import time
+import json
+import websockets
 from datetime import datetime, timezone
 from typing import Dict, List, Optional
 
-import ccxt.pro as ccxtpro
 import pandas as pd
 import numpy as np
 from dotenv import load_dotenv
@@ -19,16 +20,11 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 
 class MexcCollector:
     """
-    Collects real-time MEXC trade data for Low-Cap/Diverse Pump detection.
-    Ported from FuturesCollector (Binance) to handle MEXC-specific nuances.
+    Collects real-time MEXC trade data using Direct API (No CCXT).
     """
     def __init__(self, symbols: List[str] = None, db_manager: DatabaseManager = None):
         self.exchange_id = 'mexc'
         self.symbols = symbols or []
-        self.exchange = ccxtpro.mexc({
-            'enableRateLimit': True,
-            'options': {'defaultType': 'swap'}
-        })
         self.db = db_manager or DatabaseManager()
         self.logger = DataLogger(self.db)
         self.detector = PumpDetector()

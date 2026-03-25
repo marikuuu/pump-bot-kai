@@ -6,7 +6,6 @@ import time
 from datetime import datetime, timezone
 from typing import Dict, List, Optional
 
-import ccxt.pro as ccxtpro
 import pandas as pd
 import numpy as np
 from dotenv import load_dotenv
@@ -20,15 +19,11 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 
 class FuturesCollector:
     """
-    Collects real-time Futures (Swap) data including Open Interest.
+    Collects real-time Futures data using Native APIs (No CCXT).
     """
     def __init__(self, exchange_id: str = 'binance', symbols: List[str] = None, db_manager: DatabaseManager = None):
         self.exchange_id = exchange_id
         self.symbols = symbols or []
-        self.exchange = getattr(ccxtpro, exchange_id)({
-            'enableRateLimit': True,
-            'options': {'defaultType': 'future'} # USDT-M Futures (fapi)
-        })
         self.db = db_manager or DatabaseManager()
         self.logger = DataLogger(self.db)
         self.detector = PumpDetector()

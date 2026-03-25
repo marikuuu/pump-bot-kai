@@ -1,13 +1,14 @@
 import asyncio
+import json
 import logging
 import os
 import time
 from datetime import datetime, timezone
 from typing import Dict, List, Optional
 
-import ccxt.pro as ccxtpro
 import pandas as pd
 import numpy as np
+import websockets
 from dotenv import load_dotenv
 
 from database.db_manager import DatabaseManager
@@ -18,15 +19,11 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 
 class BitgetCollector:
     """
-    Collects real-time Bitget trade data for Cross-Exchange validation.
+    Collects real-time Bitget trade data using Direct API (No CCXT).
     """
     def __init__(self, symbols: List[str] = None, db_manager: DatabaseManager = None):
         self.exchange_id = 'bitget'
         self.symbols = symbols or []
-        self.exchange = ccxtpro.bitget({
-            'enableRateLimit': True,
-            'options': {'defaultType': 'swap'} # Bitget Futures
-        })
         self.db = db_manager or DatabaseManager()
         self.detector = None # Will be injected from main.py
         

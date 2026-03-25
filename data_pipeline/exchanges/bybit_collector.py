@@ -2,10 +2,11 @@ import asyncio
 import logging
 import os
 import time
+import json
+import websockets
 from datetime import datetime, timezone
 from typing import Dict, List, Optional
 
-import ccxt.pro as ccxtpro
 import pandas as pd
 import numpy as np
 from dotenv import load_dotenv
@@ -18,15 +19,11 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 
 class BybitCollector:
     """
-    Collects real-time Bybit trade data for Cross-Exchange validation.
+    Collects real-time Bybit trade data using Direct V5 API (No CCXT).
     """
     def __init__(self, symbols: List[str] = None, db_manager: DatabaseManager = None):
         self.exchange_id = 'bybit'
         self.symbols = symbols or []
-        self.exchange = ccxtpro.bybit({
-            'enableRateLimit': True,
-            'options': {'defaultType': 'linear'} # Bybit Futures
-        })
         self.db = db_manager or DatabaseManager()
         self.detector = None # Will be injected from main.py
         
