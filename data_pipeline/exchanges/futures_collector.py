@@ -46,7 +46,7 @@ class FuturesCollector:
         # Auto-Discovery Logic
         if os.getenv("CEX_SYMBOLS") == "AUTO":
             try:
-                markets = await self.exchange.load_markets()
+                markets = await self.exchange.fetch_markets(params={'type': 'perpetual'})
                 candidates = []
                 for sym, m in markets.items():
                     # Focus on USDT Perpetuals on Binance (fapi)
@@ -63,14 +63,17 @@ class FuturesCollector:
                     f"Binance Discovery Success: {len(self.symbols)} symbols found. "
                     f"e.g. {self.symbols[:5]}"
                 )
-            except asyncio.TimeoutError:
-                logging.warning("Auto-Discovery timed out. Using fallback symbols.")
             except Exception as e:
-                logging.error(f"Auto-Discovery failed: {e}. Using fallback symbols.")
-            
-            if not self.symbols:
-                self.symbols = ["AIN/USDT:USDT", "HBAR/USDT:USDT", "JASMY/USDT:USDT"]
-                logging.info(f"Fallback symbols: {self.symbols}")
+                logging.error(f"Binance Discovery failed (likely regional block): {e}")
+                self.symbols = [
+                    "BTC/USDT:USDT", "ETH/USDT:USDT", "BNB/USDT:USDT", "SOL/USDT:USDT", 
+                    "XRP/USDT:USDT", "ADA/USDT:USDT", "DOGE/USDT:USDT", "AVAX/USDT:USDT",
+                    "TRX/USDT:USDT", "LINK/USDT:USDT", "DOT/USDT:USDT", "MATIC/USDT:USDT",
+                    "LTC/USDT:USDT", "BCH/USDT:USDT", "SHIB/USDT:USDT", "NEAR/USDT:USDT",
+                    "HBAR/USDT:USDT", "JASMY/USDT:USDT", "FIL/USDT:USDT", "XLM/USDT:USDT"
+                ]
+                for s in self.symbols: self.market_caps[s] = 100_000_000
+                logging.info(f"Using Binance Safety-Fallback (20 symbols): {self.symbols[:5]}...")
         else:
             for s in self.symbols:
                 self.market_caps[s] = 30_000_000

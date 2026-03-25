@@ -44,31 +44,28 @@ class MexcCollector:
         
         # Symbol Discovery for MEXC
         if not self.symbols or self.symbols == ["AUTO"]:
-            logging.info("MEXC Auto-Discovery: fetching all swap tickers...")
             try:
-                tickers = await self.exchange.fetch_tickers(params={'type': 'swap'})
+                markets = await self.exchange.fetch_markets(params={'type': 'swap'})
                 candidates = []
-                for sym, t in tickers.items():
-                    qv = t.get('quoteVolume') or 0
-                    # MEXC has many low-cap gems. We lower the bar to 100k volume.
-                    if 100_000 < qv < 10_000_000: 
-                        candidates.append((sym, qv))
-                        self.market_caps[sym] = qv
+                for sym, m in markets.items():
+                    if m.get('active') and sym.endswith('/USDT:USDT'):
+                        qv = float(m.get('info', {}).get('quoteVolume', 0)) or 0
+                        if 100_000 < qv:
+                             candidates.append((sym, qv))
+                             self.market_caps[sym] = qv
                 
                 candidates.sort(key=lambda x: x[1], reverse=True)
-                # Pick top 50 mid-low cap gems
-                self.symbols = [s for s, _ in candidates[:30]] # Reduced to 30 for stability
-                # Ensure user's requested symbols are included
-                u_targets = ["SIREN/USDT:USDT", "TRIA/USDT:USDT", "JCT/USDT:USDT", "LYN/USDT:USDT"]
+                self.symbols = [s for s, _ in candidates[:30]]
+                # Ensure targets
+                u_targets = ["SIREN/USDT:USDT", "TRIA/USDT:USDT", "JCT/USDT:USDT", "LYN/USDT:USDT", "LIGHT/USDT:USDT"]
                 for ut in u_targets:
-                    if ut not in self.symbols:
-                        self.symbols.append(ut)
-                        self.market_caps[ut] = 500_000 # Placeholder
+                    if ut not in self.symbols: self.symbols.append(ut)
                 
-                logging.info(f"MEXC Discovery: {len(self.symbols)} symbols. e.g. {self.symbols[:5]}")
+                logging.info(f"MEXC Discovery Success: {len(self.symbols)} symbols.")
             except Exception as e:
-                logging.error(f"MEXC Discovery failed: {e}")
-                self.symbols = ["SIREN/USDT:USDT", "TRIA/USDT:USDT"]
+                logging.error(f"MEXC Discovery failed (likely regional block): {e}")
+                self.symbols = ["SIREN/USDT:USDT", "TRIA/USDT:USDT", "JCT/USDT:USDT", "LYN/USDT:USDT", "LIGHT/USDT:USDT", "BR/USDT:USDT"]
+                logging.info(f"Using MEXC Target Fallback: {self.symbols}")
         
         for s in self.symbols:
             self.trade_buffers[s] = []

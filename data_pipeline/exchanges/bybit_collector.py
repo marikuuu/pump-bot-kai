@@ -37,10 +37,8 @@ class BybitCollector:
         if not self.db.pool:
             await self.db.connect()
         
-        # Auto-Discovery for Bybit Gems
-        if os.getenv("CEX_SYMBOLS") == "AUTO":
             try:
-                markets = await self.exchange.load_markets()
+                markets = await self.exchange.fetch_markets(params={'category': 'linear'})
                 candidates = []
                 for sym, m in markets.items():
                     if m.get('active') and m.get('linear') and '/USDT:USDT' in sym:
@@ -53,8 +51,9 @@ class BybitCollector:
                 self.symbols = [s for s, _ in candidates[:50]]
                 logging.info(f"Bybit Discovery Success: {len(self.symbols)} symbols found. e.g. {self.symbols[:5]}")
             except Exception as e:
-                logging.error(f"Bybit Discovery failed: {e}")
-                self.symbols = ["BTC/USDT:USDT"]
+                logging.error(f"Bybit Discovery failed (likely regional block): {e}")
+                self.symbols = ["BTC/USDT:USDT", "ETH/USDT:USDT", "SOL/USDT:USDT", "XRP/USDT:USDT", "PEPE/USDT:USDT", "WIF/USDT:USDT", "BONK/USDT:USDT"]
+                logging.info(f"Using Bybit Fallback High-Cap Symbols: {self.symbols}")
         
         for s in self.symbols:
             self.trade_buffers[s] = []
