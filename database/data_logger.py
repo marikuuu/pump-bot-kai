@@ -15,8 +15,9 @@ class DataLogger:
             INSERT INTO ticks (time, exchange, symbol, price, amount, side, is_buyer_maker)
             VALUES ($1, $2, $3, $4, $5, $6, $7)
         """
+        # Ensure strict types for asyncpg
         await self.db.execute(query, datetime.now(timezone.utc), exchange, symbol, 
-                             float(price), float(amount), side, is_maker)
+                             float(price), float(amount), str(side), bool(is_maker))
 
     async def log_candle(self, exchange: str, symbol: str, open_p, high, low, close, vol):
         query = """

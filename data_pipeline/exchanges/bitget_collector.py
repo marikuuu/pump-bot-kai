@@ -13,6 +13,7 @@ from dotenv import load_dotenv
 
 from database.db_manager import DatabaseManager
 from pump_ai.detector import PumpDetector
+from database.data_logger import DataLogger
 
 load_dotenv()
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -25,6 +26,7 @@ class BitgetCollector:
         self.exchange_id = 'bitget'
         self.symbols = symbols or []
         self.db = db_manager or DatabaseManager()
+        self.logger = DataLogger(self.db)
         self.detector = None # Will be injected from main.py
         
         self.trade_buffers: Dict[str, List[Dict]] = {}
@@ -109,6 +111,11 @@ class BitgetCollector:
                                 'received_at': time.time()
                             }
                             self.trade_buffers[symbol].append(trade)
+                            
+                            # 🚀 DB Logging (Native)
+                            asyncio.create_task(self.logger.log_tick(
+                                self.exchange_id, symbol, trade['price'], trade['amount'], trade['side'], d.get('m', False)
+                            ))
             except Exception as e:
                 logging.error(f"Native Bitget WS Error ({symbol}): {e}")
                 await asyncio.sleep(5)

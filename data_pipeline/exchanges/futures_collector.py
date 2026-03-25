@@ -121,6 +121,11 @@ class FuturesCollector:
                             'received_at': time.time()
                         }
                         self.trade_buffers[symbol].append(trade)
+                        
+                        # 🚀 DB Logging (Native)
+                        asyncio.create_task(self.logger.log_tick(
+                            self.exchange_id, symbol, trade['price'], trade['amount'], trade['side'], data.get('m', False)
+                        ))
             except Exception as e:
                 logging.error(f"Native Binance WS Error ({symbol}): {e}")
                 await asyncio.sleep(5)
