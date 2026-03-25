@@ -118,8 +118,14 @@ class BitgetCollector:
 
     async def run(self):
         await self.initialize()
-        watchers = [self.watch_trades(s) for s in self.symbols]
-        watchers.append(self.scheduler_loop())
+        
+        # Staggered start to avoid rate limits (code 30006)
+        watchers = []
+        for s in self.symbols:
+            watchers.append(asyncio.create_task(self.watch_trades(s)))
+            await asyncio.sleep(0.5) # 0.5s delay between connections
+            
+        watchers.append(asyncio.create_task(self.scheduler_loop()))
         await asyncio.gather(*watchers)
 
 if __name__ == "__main__":

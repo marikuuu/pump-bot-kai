@@ -53,7 +53,7 @@ class FuturesCollector:
                 candidates = []
                 for sym, t in tickers.items():
                     qv = t.get('quoteVolume') or 0
-                    if t.get('type') == 'swap' and 1_000_000 < qv < 500_000_000:
+                    if t.get('type') == 'swap' and 500_000 < qv < 500_000_000:
                         candidates.append((sym, qv))
                         self.market_caps[sym] = qv
                 
@@ -244,11 +244,12 @@ class FuturesCollector:
         await self.initialize()
         watchers = []
         for s in self.symbols:
-            watchers.append(self.watch_trades(s))
-            watchers.append(self.watch_oi(s))
+            watchers.append(asyncio.create_task(self.watch_trades(s)))
+            watchers.append(asyncio.create_task(self.watch_oi(s)))
+            await asyncio.sleep(0.5)
         
         # Independent 30s scheduler
-        watchers.append(self.scheduler_loop())
+        watchers.append(asyncio.create_task(self.scheduler_loop()))
         
         # 5-min status logger
         async def status_logger():
@@ -256,7 +257,7 @@ class FuturesCollector:
                 await asyncio.sleep(300)
                 logging.info(f"📊 CEX MONITOR: Actively watching {len(self.symbols)} symbols on {self.exchange_id}...")
         
-        watchers.append(status_logger())
+        watchers.append(asyncio.create_task(status_logger()))
         await asyncio.gather(*watchers)
 
 if __name__ == "__main__":
