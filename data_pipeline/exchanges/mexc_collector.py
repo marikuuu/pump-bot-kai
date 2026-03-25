@@ -97,7 +97,7 @@ class MexcCollector:
                     ))
             except Exception as e:
                 logging.error(f"Error in MEXC {symbol} loop: {e}")
-                await asyncio.sleep(5)
+                await asyncio.sleep(10)
 
     async def scheduler_loop(self):
         while True:
@@ -166,7 +166,7 @@ class MexcCollector:
         }
 
         # Stage 3 ML Check
-        if self.detector.check_event(features):
+        if self.detector and self.detector.check_event(features)[0]:
             logging.warning(f"🚀 MEXC PUMP SIGNAL: {symbol} | vol_z={vol_z:.2f} pc_z={pc_z:.2f}")
             
             # Save the raw ticks for future training (The DNA of this pump)
@@ -181,7 +181,7 @@ class MexcCollector:
         watchers = []
         for s in self.symbols:
             watchers.append(asyncio.create_task(self.watch_trades(s)))
-            await asyncio.sleep(0.5)
+            await asyncio.sleep(1.0)
             
         watchers.append(asyncio.create_task(self.scheduler_loop()))
         await asyncio.gather(*watchers)

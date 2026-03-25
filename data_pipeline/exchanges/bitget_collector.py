@@ -116,7 +116,7 @@ class BitgetCollector:
             'exchange': 'BITGET'
         }
 
-        if self.detector and self.detector.check_event(features):
+        if self.detector and self.detector.check_event(features)[0]:
             logging.warning(f"🚀 BITGET PUMP SIGNAL: {symbol} | vol_z={vol_z:.2f} pc_z={pc_z:.2f}")
 
     async def run(self):
@@ -126,7 +126,7 @@ class BitgetCollector:
         watchers = []
         for s in self.symbols:
             watchers.append(asyncio.create_task(self.watch_trades(s)))
-            await asyncio.sleep(0.5) # 0.5s delay between connections
+            await asyncio.sleep(1.0) # 1.0s delay between connections
             
         watchers.append(asyncio.create_task(self.scheduler_loop()))
         await asyncio.gather(*watchers)

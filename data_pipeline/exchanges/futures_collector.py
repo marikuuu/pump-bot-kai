@@ -53,7 +53,8 @@ class FuturesCollector:
                 candidates = []
                 for sym, t in tickers.items():
                     qv = t.get('quoteVolume') or 0
-                    if t.get('type') == 'swap' and 500_000 < qv < 500_000_000:
+                    # Standard Binance USDT-M Perpetual pattern: SYMBOL/USDT:USDT
+                    if sym.endswith('/USDT:USDT') and 500_000 < qv < 1_000_000_000:
                         candidates.append((sym, qv))
                         self.market_caps[sym] = qv
                 
@@ -246,7 +247,7 @@ class FuturesCollector:
         for s in self.symbols:
             watchers.append(asyncio.create_task(self.watch_trades(s)))
             watchers.append(asyncio.create_task(self.watch_oi(s)))
-            await asyncio.sleep(0.5)
+            await asyncio.sleep(1.0)
         
         # Independent 30s scheduler
         watchers.append(asyncio.create_task(self.scheduler_loop()))
