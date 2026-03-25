@@ -103,24 +103,41 @@ class MexcCollector:
         logging.info(f"MexcCollector initialized ({len(self.symbols)} symbols).")
 
     async def watch_trades(self, symbol: str):
-        logging.info(f"Starting MEXC trade watcher for {symbol}")
+        import json
+        import websockets
+        # MEXC Native: BTC_USDT
+        native_sym = symbol.replace('/USDT:USDT', '_USDT') if '/' in symbol else symbol
+        ws_url = "wss://contract.mexc.com/edge"
+        
+        logging.info(f"Starting Native MEXC WS for {symbol}")
         while True:
             try:
-                trades = await self.exchange.watch_trades(symbol)
-                for trade in trades:
-                    trade['received_at'] = time.time()
-                    self.trade_buffers[symbol].append(trade)
-                    # 🚀 Real-time tick logging to DB
-                    asyncio.create_task(self.logger.log_tick(
-                        self.exchange_id, 
-                        symbol, 
-                        trade['price'], 
-                        trade['amount'], 
-                        trade['side'], 
-                        trade.get('info', {}).get('m', False)
-                    ))
+                async with websockets.connect(ws_url, ping_interval=20, ping_timeout=10) as ws:
+                    # Subscribe
+                    sub_msg = json.dumps({"method": "sub.deal", "param": {"symbol": native_sym}})
+                    await ws.send(sub_msg)
+                    
+                    while True:
+                        msg = await ws.recv()
+                        res = json.loads(msg)
+                        if res.get('channel') != 'push.deal': continue
+                        d = res.get('data', {})
+                        
+                        trade = {
+                            'price': float(d.get('p', 0)),
+                            'amount': float(d.get('v', 0)),
+                            'side': 'buy' if d.get('T') == 1 else 'sell',
+                            'timestamp': d.get('t', 0),
+                            'received_at': time.time()
+                        }
+                        self.trade_buffers[symbol].append(trade)
+                        
+                        # 🚀 DB Logging (Native)
+                        asyncio.create_task(self.logger.log_tick(
+                            self.exchange_id, symbol, trade['price'], trade['amount'], trade['side'], d.get('M', False)
+                        ))
             except Exception as e:
-                logging.error(f"Error in MEXC {symbol} loop: {e}")
+                logging.error(f"Native MEXC WS Error ({symbol}): {e}")
                 await asyncio.sleep(10)
 
     async def scheduler_loop(self):

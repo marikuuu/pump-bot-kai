@@ -68,15 +68,36 @@ class BybitCollector:
         logging.info(f"BybitCollector initialized with {len(self.symbols)} symbols.")
 
     async def watch_trades(self, symbol: str):
-        logging.info(f"Starting Bybit trade watcher for {symbol}")
+        import json
+        import websockets
+        # Bybit Native: BTCUSDT
+        clean_sym = symbol.replace('/USDT:USDT', '').upper()
+        ws_url = "wss://stream.bybit.com/v5/public/linear"
+        
+        logging.info(f"Starting Native Bybit WS for {symbol}")
         while True:
             try:
-                trades = await self.exchange.watch_trades(symbol)
-                for trade in trades:
-                    trade['received_at'] = time.time()
-                    self.trade_buffers[symbol].append(trade)
+                async with websockets.connect(ws_url) as ws:
+                    # Subscribe
+                    sub_msg = json.dumps({"op": "subscribe", "args": [f"publicTrade.{clean_sym}"]})
+                    await ws.send(sub_msg)
+                    
+                    while True:
+                        msg = await ws.recv()
+                        res = json.loads(msg)
+                        if 'data' not in res: continue
+                        
+                        for d in res['data']:
+                            trade = {
+                                'price': float(d['p']),
+                                'amount': float(d['v']),
+                                'side': d['S'].lower(), # Buy/Sell
+                                'timestamp': int(d['T']),
+                                'received_at': time.time()
+                            }
+                            self.trade_buffers[symbol].append(trade)
             except Exception as e:
-                logging.error(f"Error in Bybit {symbol} loop: {e}")
+                logging.error(f"Native Bybit WS Error ({symbol}): {e}")
                 await asyncio.sleep(5)
 
     async def scheduler_loop(self):

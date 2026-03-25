@@ -77,15 +77,43 @@ class BitgetCollector:
         logging.info(f"BitgetCollector initialized with {len(self.symbols)} symbols.")
 
     async def watch_trades(self, symbol: str):
-        logging.info(f"Starting Bitget trade watcher for {symbol}")
+        import json
+        import websockets
+        # Bitget Native: BTCUSDT
+        clean_sym = symbol.replace('/USDT:USDT', '').upper()
+        ws_url = "wss://ws.bitget.com/v2/ws/public"
+        
+        logging.info(f"Starting Native Bitget WS for {symbol}")
         while True:
             try:
-                trades = await self.exchange.watch_trades(symbol)
-                for trade in trades:
-                    trade['received_at'] = time.time()
-                    self.trade_buffers[symbol].append(trade)
+                async with websockets.connect(ws_url, ping_interval=20, ping_timeout=10) as ws:
+                    # Subscribe
+                    sub_msg = json.dumps({
+                        "op": "subscribe",
+                        "args": [{
+                            "instType": "USDT-FUTURES",
+                            "channel": "trade",
+                            "instId": clean_sym
+                        }]
+                    })
+                    await ws.send(sub_msg)
+                    
+                    while True:
+                        msg = await ws.recv()
+                        res = json.loads(msg)
+                        if 'data' not in res: continue
+                        
+                        for d in res['data']:
+                            trade = {
+                                'price': float(d['price']),
+                                'amount': float(d['size']),
+                                'side': d['side'].lower(),
+                                'timestamp': int(d['ts']),
+                                'received_at': time.time()
+                            }
+                            self.trade_buffers[symbol].append(trade)
             except Exception as e:
-                logging.error(f"Error in Bitget {symbol} loop: {e}")
+                logging.error(f"Native Bitget WS Error ({symbol}): {e}")
                 await asyncio.sleep(5)
 
     async def scheduler_loop(self):

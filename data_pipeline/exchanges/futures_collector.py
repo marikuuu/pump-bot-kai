@@ -105,25 +105,30 @@ class FuturesCollector:
         logging.info(f"FuturesCollector initialized for {self.exchange_id} ({len(self.symbols)} symbols).")
 
     async def watch_trades(self, symbol: str):
-        """Pure data collection — just append trades to buffer. Scheduler handles processing."""
-        logging.info(f"Starting Futures trade watcher for {symbol}")
+        import json
+        import websockets
+        # Binance Native: btcusdt@aggTrade
+        clean_sym = symbol.replace('/USDT:USDT', '').lower()
+        ws_url = f"wss://fstream.binance.com/ws/{clean_sym}@aggTrade"
+        
+        logging.info(f"Starting Native Binance WS for {symbol}")
         while True:
             try:
-                trades = await self.exchange.watch_trades(symbol)
-                for trade in trades:
-                    trade['received_at'] = time.time()
-                    self.trade_buffers[symbol].append(trade)
-                    # 🚀 Real-time tick logging to DB
-                    asyncio.create_task(self.logger.log_tick(
-                        self.exchange_id, 
-                        symbol, 
-                        trade['price'], 
-                        trade['amount'], 
-                        trade['side'], 
-                        trade.get('info', {}).get('m', False) # is_buyer_maker for Binance
-                    ))
+                async with websockets.connect(ws_url, ping_interval=20, ping_timeout=10) as ws:
+                    while True:
+                        msg = await ws.recv()
+                        data = json.loads(msg)
+                        # p: price, q: quantity, m: isBuyerMaker, E: event time
+                        trade = {
+                            'price': float(data['p']),
+                            'amount': float(data['q']),
+                            'side': 'sell' if data['m'] else 'buy',
+                            'timestamp': data['E'],
+                            'received_at': time.time()
+                        }
+                        self.trade_buffers[symbol].append(trade)
             except Exception as e:
-                logging.error(f"Error in {symbol} trade loop: {e}")
+                logging.error(f"Native Binance WS Error ({symbol}): {e}")
                 await asyncio.sleep(5)
 
     async def scheduler_loop(self):
