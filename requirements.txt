@@ -16,3 +16,4 @@ alembic
 tardis-client
 telethon
 pyrogram
+discord.py
