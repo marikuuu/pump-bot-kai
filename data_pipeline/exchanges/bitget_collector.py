@@ -43,14 +43,18 @@ class BitgetCollector:
             try:
                 tickers = await self.exchange.fetch_tickers()
                 candidates = []
-                for sym, t in tickers.items():
+                
+                ticker_items = tickers.values() if isinstance(tickers, dict) else tickers
+                
+                for t in ticker_items:
+                    sym = t.get('symbol', '')
                     qv = t.get('quoteVolume') or 0
-                    if 500_000 < qv < 20_000_000:
+                    if 500_000 < qv < 20_000_000 and sym.endswith('/USDT:USDT'):
                         candidates.append((sym, qv))
                 
                 candidates.sort(key=lambda x: x[1], reverse=True)
                 self.symbols = [s for s, _ in candidates[:50]]
-                logging.info(f"Bitget Discovery: {len(self.symbols)} symbols found. e.g. {self.symbols[:5]}")
+                logging.info(f"Bitget Discovery: {len(self.symbols)} symbols found.")
             except Exception as e:
                 logging.error(f"Bitget Discovery failed: {e}")
                 self.symbols = ["BTC/USDT:USDT"]

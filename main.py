@@ -77,7 +77,19 @@ async def main():
     binance_collector.auditor = signal_auditor
     # mexc_collector.auditor = signal_auditor # Optional: add if MEXC signals should be audited
 
-    # --- Run Loops ---
+    # --- Step 1: Initialize Discovery (Sequential Bridge) ---
+    logging.info("Starting Discovery Master (Bitget)...")
+    await bitget_collector.initialize()
+    master_symbols = bitget_collector.symbols
+    
+    # Bridge Bitget symbols to others that might be blocked
+    if master_symbols:
+        logging.info(f"Discovery Bridge: Sharing {len(master_symbols)} symbols with rest of the world.")
+        if not binance_collector.symbols: binance_collector.symbols = master_symbols[:30]
+        if not mexc_collector.symbols:    mexc_collector.symbols    = master_symbols[:30]
+        if not bybit_collector.symbols:   bybit_collector.symbols   = master_symbols[:30]
+
+    # --- Step 2: Parallel Startup ---
     tasks = [
         binance_collector.run(),
         mexc_collector.run(),
@@ -88,8 +100,6 @@ async def main():
         signal_auditor.run_loop(),
         run_bot(db)
     ]
-
-    # Social monitor tasks removed
 
     logging.info("All systems started. CEX Pump Detection active.")
     await asyncio.gather(*tasks)
