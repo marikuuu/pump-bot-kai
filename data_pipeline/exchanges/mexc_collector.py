@@ -8,6 +8,8 @@ from typing import Dict, List, Optional
 import ccxt.pro as ccxtpro
 import pandas as pd
 import numpy as np
+from dotenv import load_dotenv
+
 from database.db_manager import DatabaseManager
 from pump_ai.detector import PumpDetector
 from database.data_logger import DataLogger
