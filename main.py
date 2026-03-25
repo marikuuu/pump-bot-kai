@@ -17,9 +17,8 @@ logging.basicConfig(
     handlers=[logging.FileHandler("bot_log.txt"), logging.StreamHandler()]
 )
 
-# Import our components
-from data_pipeline.exchanges.collector import MainCollector
-from data_pipeline.social.telegram_monitor import SocialMonitor
+# Import our components (Cleaned for v5.3)
+# legacy component removal
 
 async def main():
     """
@@ -55,13 +54,7 @@ async def main():
     bitget_collector = BitgetCollector()
     bitget_collector.detector = shared_detector
 
-    # 2. Social Monitor
-    API_ID = int(os.getenv("TELEGRAM_API_ID", 0))
-    API_HASH = os.getenv("TELEGRAM_API_HASH", "")
-    PHONE = os.getenv("TELEGRAM_PHONE", "")
     social_monitor = None
-    if API_ID != 0:
-        social_monitor = SocialMonitor(API_ID, API_HASH, PHONE)
 
     # 3. BTC Crash Watcher (Linked to Shared Detector)
     from data_pipeline.exchanges.btc_watcher import BTCWatcher
@@ -94,8 +87,7 @@ async def main():
         run_bot(db)
     ]
 
-    if social_monitor:
-        tasks.append(social_monitor.run())
+    # Social monitor tasks removed
 
     logging.info("✅ All systems started. CEX Pump Detection active.")
     await asyncio.gather(*tasks)
