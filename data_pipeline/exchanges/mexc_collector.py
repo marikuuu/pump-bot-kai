@@ -56,10 +56,8 @@ class MexcCollector:
                         for c in contracts:
                             raw_sym = c.get('symbol', '')
                             if c.get('state') == 0 and raw_sym.endswith('_USDT'):
-                                # Map BTC_USDT -> BTC/USDT:USDT
-                                base = raw_sym.replace('_USDT', '')
-                                ccxt_sym = f"{base}/USDT:USDT"
-                                candidates.append(ccxt_sym)
+                                # Use native symbol directly: BTC_USDT
+                                candidates.append(raw_sym)
                         
                         self.symbols = candidates[:30]
                         logging.info(f"Native MEXC Discovery Success: {len(self.symbols)} symbols.")
@@ -77,7 +75,7 @@ class MexcCollector:
                 
                 for m in market_items:
                     sym = m.get('symbol', '')
-                    if m.get('active') and sym.endswith('/USDT:USDT'):
+                    if m.get('active') and '_' in sym: # Native MEXC style
                         qv = float(m.get('info', {}).get('quoteVolume', 0)) or 0
                         if 100_000 < qv:
                              candidates.append((sym, qv))
@@ -86,15 +84,15 @@ class MexcCollector:
                 candidates.sort(key=lambda x: x[1], reverse=True)
                 self.symbols = [s for s, _ in candidates[:30]]
                 
-                # Standard core targets
-                u_targets = ["SIREN/USDT:USDT", "TRIA/USDT:USDT", "JCT/USDT:USDT", "LYN/USDT:USDT", "LIGHT/USDT:USDT"]
+                # Standard core targets (Native format)
+                u_targets = ["SIREN_USDT", "TRIA_USDT", "JCT_USDT", "LYN_USDT", "LIGHT_USDT"]
                 for ut in u_targets:
                     if ut not in self.symbols: self.symbols.append(ut)
                 
                 logging.info(f"MEXC Discovery Success: {len(self.symbols)} symbols.")
             except Exception as e:
                 logging.error(f"MEXC Discovery FAILED: {e}")
-                self.symbols = ["SIREN/USDT:USDT", "TRIA/USDT:USDT", "JCT/USDT:USDT", "LYN/USDT:USDT"]
+                self.symbols = ["SIREN_USDT", "TRIA_USDT", "JCT_USDT", "LYN_USDT"]
         
         for s in self.symbols:
             self.trade_buffers[s] = []

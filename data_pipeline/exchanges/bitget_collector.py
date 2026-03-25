@@ -34,38 +34,41 @@ class BitgetCollector:
         self.history: Dict[str, pd.DataFrame] = {}
 
     async def initialize(self):
+        import aiohttp
         if not self.db.pool:
             await self.db.connect()
         
-        # Auto-Discovery for Bitget Gems
+        # Native Bitget V2 Discovery
         if os.getenv("CEX_SYMBOLS") == "AUTO":
-            logging.info("Bitget Auto-Discovery: scanning for mid-low cap gems...")
+            logging.info("Native Bitget Discovery: hitting api.bitget.com directly...")
             try:
-                tickers = await self.exchange.fetch_tickers()
-                candidates = []
-                
-                ticker_items = tickers.values() if isinstance(tickers, dict) else tickers
-                
-                # Exclude stock-based synthetic assets
-                stocks_to_exclude = ['NVDA', 'AAPL', 'TSLA', 'MSTR', 'MU', 'AMZN', 'GOOG', 'META', 'NFLX', 'MSFT', 'COIN', 'HOOD']
-                
-                for t in ticker_items:
-                    sym = t.get('symbol', '')
-                    if not sym.endswith('/USDT:USDT'): continue
-                    
-                    base = sym.split('/')[0]
-                    if base in stocks_to_exclude: continue # Clean out non-crypto
-                    
-                    qv = t.get('quoteVolume') or 0
-                    if 500_000 < qv < 20_000_000:
-                        candidates.append((sym, qv))
-                
-                candidates.sort(key=lambda x: x[1], reverse=True)
-                self.symbols = [s for s, _ in candidates[:50]]
-                logging.info(f"Bitget Discovery: {len(self.symbols)} crypto symbols found.")
+                url = "https://api.bitget.com/api/v2/mix/market/tickers?productType=USDT-FUTURES"
+                async with aiohttp.ClientSession() as session:
+                    async with session.get(url) as resp:
+                        data = await resp.json()
+                        tickers = data.get('data', [])
+                        candidates = []
+                        
+                        stocks_to_exclude = ['NVDA', 'AAPL', 'TSLA', 'MSTR', 'MU', 'AMZN', 'GOOG', 'META', 'NFLX', 'MSFT', 'COIN', 'HOOD']
+                        
+                        for t in tickers:
+                            sym = t.get('symbol', '') # Bitget Native: BTCUSDT
+                            if not sym.endswith('USDT'): continue
+                            
+                            # Clean for check
+                            base = sym.replace('USDT', '')
+                            if base in stocks_to_exclude: continue
+                            
+                            qv = float(t.get('quoteVolume') or 0)
+                            if 500_000 < qv < 20_000_000:
+                                candidates.append((sym, qv))
+                        
+                        candidates.sort(key=lambda x: x[1], reverse=True)
+                        self.symbols = [s for s, _ in candidates[:50]]
+                        logging.info(f"Native Bitget Discovery: {len(self.symbols)} symbols found.")
             except Exception as e:
-                logging.error(f"Bitget Discovery failed: {e}")
-                self.symbols = ["BTC/USDT:USDT"]
+                logging.error(f"Native Bitget Discovery failed: {e}")
+                self.symbols = ["BTCUSDT"]
         
         for s in self.symbols:
             self.trade_buffers[s] = []
