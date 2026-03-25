@@ -137,7 +137,10 @@ class MexcCollector:
                     try:
                         while True:
                             msg = await ws.recv()
-                            res = json.loads(msg)
+                            try:
+                                res = json.loads(msg)
+                            except json.JSONDecodeError:
+                                continue # Skip non-JSON messages (like raw strings)
                             
                             # Bulletproof handling for MEXC WS data structure quirks
                             def flatten(node):

@@ -118,9 +118,11 @@ class BitgetCollector:
                     try:
                         while True:
                             msg = await ws.recv()
-                            res = json.loads(msg)
                             
-                            if res == "pong": continue # Handle pong response
+                            # 🚀 Handle literal "pong" BEFORE JSON parsing
+                            if msg == "pong": continue
+                            
+                            res = json.loads(msg)
                             if 'data' not in res or 'arg' not in res: continue
                             
                             native_sym = res['arg'].get('instId')

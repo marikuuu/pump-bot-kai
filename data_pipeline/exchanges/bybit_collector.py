@@ -102,7 +102,10 @@ class BybitCollector:
                     try:
                         while True:
                             msg = await ws.recv()
-                            res = json.loads(msg)
+                            try:
+                                res = json.loads(msg)
+                            except json.JSONDecodeError:
+                                continue
                             
                             if 'ret_msg' in res and res['ret_msg'] == 'pong': continue
                             if 'data' not in res or 'topic' not in res: continue
