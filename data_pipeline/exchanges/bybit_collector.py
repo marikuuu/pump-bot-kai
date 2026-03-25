@@ -47,11 +47,11 @@ class BybitCollector:
                     for item in res:
                         if item.get('status') == 'Trading':
                             base = item.get('baseCoin')
-                            ccxt_sym = f"{base}/USDT:USDT"
-                            candidates.append(ccxt_sym)
+                            unified_sym = f"{base}/USDT"
+                            candidates.append(unified_sym)
                     
                     self.symbols = candidates[:50]
-                    logging.info(f"Native Bybit Discovery Success: {len(self.symbols)} symbols.")
+                    logging.info(f"Native Bybit Discovery Success: {len(self.symbols)} symbols (Unified Format).")
         except Exception as e:
             logging.error(f"Native Bybit Discovery FAILED: {e}")
 
