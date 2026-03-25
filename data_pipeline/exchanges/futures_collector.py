@@ -40,11 +40,34 @@ class FuturesCollector:
         self.market_caps: Dict[str, float] = {}
 
     async def initialize(self):
+        import aiohttp
         if not self.db.pool:
             await self.db.connect()
         
-        # Auto-Discovery Logic
-        if os.getenv("CEX_SYMBOLS") == "AUTO":
+        # Native API Discovery (Bypassing CCXT)
+        if os.getenv("CEX_SYMBOLS") == "AUTO" and self.exchange_id == 'binance':
+            try:
+                logging.info(f"Native Binance Discovery: hitting https://fapi.binance.com/fapi/v1/exchangeInfo directly...")
+                async with aiohttp.ClientSession() as session:
+                    async with session.get("https://fapi.binance.com/fapi/v1/exchangeInfo") as resp:
+                        data = await resp.json()
+                        symbols_raw = data.get('symbols', [])
+                        candidates = []
+                        for s in symbols_raw:
+                            if s.get('status') == 'TRADING' and s.get('quoteAsset') == 'USDT':
+                                # Map to CCXT ID: BTCUSDT -> BTC/USDT:USDT
+                                base = s.get('baseAsset')
+                                ccxt_sym = f"{base}/USDT:USDT"
+                                # Note: Actual volume requires another API hit, we use a placeholder for MC
+                                candidates.append(ccxt_sym)
+                        
+                        self.symbols = candidates[:50] # Just pick first 50 trading pairs
+                        logging.info(f"Native Binance Discovery Success: {len(self.symbols)} symbols.")
+            except Exception as e:
+                logging.error(f"Native Binance Discovery FAILED: {e}")
+                
+        # Original logic fallback if native fails
+        if not self.symbols and os.getenv("CEX_SYMBOLS") == "AUTO":
             try:
                 # Use load_markets which handles rate limits better
                 markets = await self.exchange.load_markets()

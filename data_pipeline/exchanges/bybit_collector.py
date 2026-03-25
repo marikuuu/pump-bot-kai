@@ -34,32 +34,32 @@ class BybitCollector:
         self.history: Dict[str, pd.DataFrame] = {}
 
     async def initialize(self):
+        import aiohttp
         if not self.db.pool:
             await self.db.connect()
         
-            try:
-                # Force Bybit V5 Linear logic
-                markets = await self.exchange.fetch_markets(params={'category': 'linear'})
-                candidates = []
-                
-                market_items = markets.values() if isinstance(markets, dict) else markets
-                
-                for m in market_items:
-                    sym = m.get('symbol', '')
-                    if m.get('active') and m.get('linear') and '/USDT:USDT' in sym:
-                         # Use turnover (Volume in Quote)
-                         info = m.get('info', {})
-                         qv = float(info.get('turnover24h') or info.get('volume24h') or 0)
-                         if 500_000 < qv: 
-                             candidates.append((sym, qv))
-                
-                candidates.sort(key=lambda x: x[1], reverse=True)
-                self.symbols = [s for s, _ in candidates[:50]]
-                logging.info(f"Bybit Discovery Success: {len(self.symbols)} symbols found.")
-            except Exception as e:
-                logging.error(f"Bybit Discovery FAILED: {e}")
-                logging.error("Check if your VPS region is blocked by Bybit, or API keys are required for V5.")
-                self.symbols = ["BTC/USDT:USDT"] # Minimum fallback
+        # Native Bybit V5 Discovery
+        try:
+            logging.info("Native Bybit V5 Discovery: hitting instruments-info directly...")
+            url = "https://api.bybit.com/v5/market/instruments-info?category=linear"
+            async with aiohttp.ClientSession() as session:
+                async with session.get(url) as resp:
+                    data = await resp.json()
+                    res = data.get('result', {}).get('list', [])
+                    candidates = []
+                    for item in res:
+                        if item.get('status') == 'Trading':
+                            base = item.get('baseCoin')
+                            ccxt_sym = f"{base}/USDT:USDT"
+                            candidates.append(ccxt_sym)
+                    
+                    self.symbols = candidates[:50]
+                    logging.info(f"Native Bybit Discovery Success: {len(self.symbols)} symbols.")
+        except Exception as e:
+            logging.error(f"Native Bybit Discovery FAILED: {e}")
+
+        if not self.symbols:
+             logging.warning("Bybit Discovery returned 0 symbols. Bridge might be needed.")
         
         for s in self.symbols:
             self.trade_buffers[s] = []

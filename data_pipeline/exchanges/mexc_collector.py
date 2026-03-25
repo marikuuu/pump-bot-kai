@@ -39,10 +39,33 @@ class MexcCollector:
         self.market_caps: Dict[str, float] = {}
 
     async def initialize(self):
+        import aiohttp
         if not self.db.pool:
             await self.db.connect()
         
-        # Symbol Discovery for MEXC
+        # Native MEXC Discovery (Bypassing CCXT for contract stability)
+        if not self.symbols or self.symbols == ["AUTO"]:
+            try:
+                logging.info("Native MEXC Discovery: hitting contract.mexc.com directly...")
+                url = "https://contract.mexc.com/api/v1/contract/detail"
+                async with aiohttp.ClientSession() as session:
+                    async with session.get(url) as resp:
+                        data = await resp.json()
+                        contracts = data.get('data', [])
+                        candidates = []
+                        for c in contracts:
+                            raw_sym = c.get('symbol', '')
+                            if c.get('state') == 0 and raw_sym.endswith('_USDT'):
+                                # Map BTC_USDT -> BTC/USDT:USDT
+                                base = raw_sym.replace('_USDT', '')
+                                ccxt_sym = f"{base}/USDT:USDT"
+                                candidates.append(ccxt_sym)
+                        
+                        self.symbols = candidates[:30]
+                        logging.info(f"Native MEXC Discovery Success: {len(self.symbols)} symbols.")
+            except Exception as e:
+                logging.error(f"Native MEXC Discovery FAILED: {e}")
+
         if not self.symbols or self.symbols == ["AUTO"]:
             try:
                 # Force MEXC Contract API (swap)
