@@ -36,15 +36,31 @@ class BybitCollector:
     async def initialize(self):
         if not self.db.pool:
             await self.db.connect()
-        # Specific targets requested by user
-        targets = ["SIREN/USDT:USDT", "TRIA/USDT:USDT", "JCT/USDT:USDT", "LYN/USDT:USDT", "LIGHT/USDT:USDT"]
-        self.symbols = [s for s in targets] # Focus on these core 100x candidates for now
+        
+        # Auto-Discovery for Bybit Gems
+        if os.getenv("CEX_SYMBOLS") == "AUTO":
+            logging.info("Bybit Auto-Discovery: scanning for mid-low cap gems...")
+            try:
+                tickers = await self.exchange.fetch_tickers()
+                candidates = []
+                for sym, t in tickers.items():
+                    qv = t.get('quoteVolume') or 0
+                    # Discovery range for 100x candidates: 500k to 20M volume
+                    if 500_000 < qv < 20_000_000:
+                        candidates.append((sym, qv))
+                
+                candidates.sort(key=lambda x: x[1], reverse=True)
+                self.symbols = [s for s, _ in candidates[:50]]
+                logging.info(f"Bybit Discovery: {len(self.symbols)} symbols found. e.g. {self.symbols[:5]}")
+            except Exception as e:
+                logging.error(f"Bybit Discovery failed: {e}")
+                self.symbols = ["BTC/USDT:USDT"]
         
         for s in self.symbols:
             self.trade_buffers[s] = []
             self.history[s] = pd.DataFrame()
             
-        logging.info(f"BybitCollector initialized with {len(self.symbols)} strategy symbols.")
+        logging.info(f"BybitCollector initialized with {len(self.symbols)} symbols.")
 
     async def watch_trades(self, symbol: str):
         logging.info(f"Starting Bybit trade watcher for {symbol}")
