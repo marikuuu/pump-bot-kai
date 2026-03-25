@@ -1,6 +1,7 @@
 import asyncio
 import logging
 from datetime import datetime, timezone
+from typing import List
 from database.db_manager import DatabaseManager
 
 class DataLogger:
