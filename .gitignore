@@ -1,0 +1,43 @@
+# Environments
+.env
+
+# Logs
+*.log
+bot_log.txt
+nansen_log.txt
+crash_log.txt
+terminal_output.txt
+
+# Databases
+*.sql
+*.db
+*.sqlite
+
+# Data & Results (Proprietary/Large)
+data/
+backtest/
+backtester/
+backup_*/
+blind_backtest_results.csv
+live_replay_backtest_results.csv
+multiverse_candidates.json
+multiverse_optimization_results.csv
+multiverse_results.csv
+one_month_gold_events.csv
+profile_results.csv
+tick_backtest_results.csv
+tick_training_data*.csv
+training_hits_list.json
+out_*.txt
+
+# Python
+__pycache__/
+*.pyc
+venv/
+.ipynb_checkpoints/
+
+# System
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

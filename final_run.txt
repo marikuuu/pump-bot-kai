@@ -1,0 +1,26 @@
+2026-03-23 23:43:56,286 - INFO - Failed to load SSL library: <class 'OSError'> (no library called "ssl" found)
+2026-03-23 23:43:56,287 - INFO - cryptg module not installed and libssl not found, falling back to (slower) Python encryption
+2026-03-23 23:43:56,589 - INFO - Starting High-Precision Pump Detection System...
+2026-03-23 23:43:58,667 - INFO - Initializing Web3 with RPC: [wss://ethereum-rpc.publicnode.com]
+2026-03-23 23:43:59,534 - INFO - Connected to PostgreSQL database pool.
+2026-03-23 23:43:59,547 - INFO - System active. Monitoring 1 CEX symbols, On-chain Swaps, and BTC Cracks.
+2026-03-23 23:43:59,555 - INFO - BTC Watcher started (Crash monitoring active).
+2026-03-23 23:43:59,555 - INFO - HealthMonitor loop started.
+2026-03-23 23:43:59,556 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2026-03-23 23:43:59,558 - INFO - logging in using static token
+2026-03-23 23:44:01,147 - INFO - Connected to PostgreSQL database pool.
+2026-03-23 23:44:01,147 - INFO - FuturesCollector initialized for binance (Futures/Swap mode).
+2026-03-23 23:44:01,364 - INFO - Starting Futures trade watcher for AIN/USDT:USDT
+2026-03-23 23:44:01,365 - INFO - Starting OI watcher for AIN/USDT:USDT
+2026-03-23 23:44:02,179 - INFO - Connected to PostgreSQL database pool.
+2026-03-23 23:44:02,179 - INFO - Connecting to RPC WebSocket: wss://ethereum-rpc.publicnode.com
+2026-03-23 23:44:02,180 - INFO - Connecting to: wss://ethereum-rpc.publicnode.com
+2026-03-23 23:44:04,572 - INFO - Discord Slash Commands synced.
+2026-03-23 23:44:04,576 - INFO - Successfully connected to: wss://ethereum-rpc.publicnode.com
+2026-03-23 23:44:04,576 - INFO - WebSocketProvider listener background task started. Storing all messages in appropriate request processor queues / caches to be processed.
+2026-03-23 23:44:04,844 - INFO - Successfully subscribed to subscription:
+    label: uniswap-v2-swaps
+    id: 0xec0ec517bce38443ff17d23665503523
+2026-03-23 23:44:04,844 - INFO - Subscribed to Uniswap V2 Swap events. Listening...
+2026-03-23 23:44:05,140 - INFO - Shard ID None has connected to Gateway (Session ID: 150411557ff10e7dfb2b8a36b399f68c).
+2026-03-23 23:44:07,152 - INFO - Logged in as Nansan#7146 (ID: 1485638959039250561)
