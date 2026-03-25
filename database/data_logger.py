@@ -27,8 +27,20 @@ class DataLogger:
             VALUES ($1, $2, $3, $4, $5, $6, $7)
         """
         try:
-            # ticks_list format must strictly match query placeholders
-            await self.db.pool.executemany(query, ticks_list)
+            # 🚀 Strict type casting for asyncpg executemany
+            # (time, exchange, symbol, price, amount, side, is_buyer_maker)
+            refined_list = [
+                (
+                    t[0],             # time (datetime)
+                    str(t[1]),        # exchange
+                    str(t[2]),        # symbol
+                    float(t[3]),      # price
+                    float(t[4]),      # amount
+                    str(t[5]),        # side
+                    bool(t[6])        # is_buyer_maker (bool) - Force cast to avoid int errors
+                ) for t in ticks_list
+            ]
+            await self.db.pool.executemany(query, refined_list)
         except Exception as e:
             logging.error(f"Failed to bulk log {len(ticks_list)} ticks: {e}")
 
