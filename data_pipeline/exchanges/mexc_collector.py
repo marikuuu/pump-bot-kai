@@ -111,7 +111,20 @@ class MexcCollector:
         logging.info(f"Starting Combined MEXC WS for {len(self.symbols)} symbols")
         while True:
             try:
+                # Use longer timeout for MEXC
                 async with websockets.connect(ws_url, ping_interval=20, ping_timeout=10) as ws:
+                    
+                    # 🚀 Dedicated Ping Loop for MEXC (JSON-based)
+                    async def ping_loop():
+                        while True:
+                            try:
+                                await asyncio.sleep(20)
+                                await ws.send(json.dumps({"method": "ping"}))
+                            except:
+                                break
+                    
+                    ping_task = asyncio.create_task(ping_loop())
+                    
                     sym_map = {} # BTC_USDT -> BTC/USDT or BTC_USDT (if no slash)
                     # Subscribe to all symbols
                     for symbol in self.symbols:
@@ -121,44 +134,47 @@ class MexcCollector:
                         await ws.send(sub_msg)
                         await asyncio.sleep(0.05) # Tiny stagger for subscriptions
                     
-                    while True:
-                        msg = await ws.recv()
-                        res = json.loads(msg)
-                        
-                        # Bulletproof handling for MEXC WS data structure quirks
-                        def flatten(node):
-                            if isinstance(node, list):
-                                for n in node: yield from flatten(n)
-                            elif isinstance(node, dict):
-                                yield node
+                    try:
+                        while True:
+                            msg = await ws.recv()
+                            res = json.loads(msg)
+                            
+                            # Bulletproof handling for MEXC WS data structure quirks
+                            def flatten(node):
+                                if isinstance(node, list):
+                                    for n in node: yield from flatten(n)
+                                elif isinstance(node, dict):
+                                    yield node
 
-                        for item in flatten(res):
-                            if not isinstance(item, dict) or item.get('channel') != 'push.deal': continue
-                            
-                            native_sym = item.get('symbol')
-                            unified_sym = sym_map.get(native_sym, native_sym)
-                            
-                            data_node = item.get('data', {})
-                            trades_to_process = data_node if isinstance(data_node, list) else [data_node]
-                            
-                            for d in trades_to_process:
-                                if not isinstance(d, dict): continue
-                                try:
-                                    trade = {
-                                        'price': float(d.get('p', 0)),
-                                        'amount': float(d.get('v', 0)),
-                                        'side': 'buy' if d.get('T') == 1 else 'sell',
-                                        'timestamp': d.get('t', 0),
-                                        'received_at': time.time()
-                                    }
-                                    self.trade_buffers[unified_sym].append(trade)
-                                    
-                                    # 🚀 DB Logging
-                                    asyncio.create_task(self.logger.log_tick(
-                                        self.exchange_id, unified_sym, trade['price'], trade['amount'], trade['side'], d.get('M', False)
-                                    ))
-                                except (ValueError, TypeError):
-                                    continue
+                            for item in flatten(res):
+                                if not isinstance(item, dict) or item.get('channel') != 'push.deal': continue
+                                
+                                native_sym = item.get('symbol')
+                                unified_sym = sym_map.get(native_sym, native_sym)
+                                
+                                data_node = item.get('data', {})
+                                trades_to_process = data_node if isinstance(data_node, list) else [data_node]
+                                
+                                for d in trades_to_process:
+                                    if not isinstance(d, dict): continue
+                                    try:
+                                        trade = {
+                                            'price': float(d.get('p', 0)),
+                                            'amount': float(d.get('v', 0)),
+                                            'side': 'buy' if d.get('T') == 1 else 'sell',
+                                            'timestamp': d.get('t', 0),
+                                            'received_at': time.time()
+                                        }
+                                        self.trade_buffers[unified_sym].append(trade)
+                                        
+                                        # 🚀 DB Logging
+                                        asyncio.create_task(self.logger.log_tick(
+                                            self.exchange_id, unified_sym, trade['price'], trade['amount'], trade['side'], d.get('M', False)
+                                        ))
+                                    except (ValueError, TypeError):
+                                        continue
+                    finally:
+                        ping_task.cancel()
             except Exception as e:
                 logging.error(f"Combined MEXC WS Error: {e}")
                 await asyncio.sleep(5)

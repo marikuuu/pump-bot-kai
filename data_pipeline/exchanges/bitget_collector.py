@@ -99,32 +99,49 @@ class BitgetCollector:
         while True:
             try:
                 async with websockets.connect(ws_url, ping_interval=20, ping_timeout=10) as ws:
+                    
+                    # 🚀 Dedicated Ping Loop for Bitget
+                    async def ping_loop():
+                        while True:
+                            try:
+                                await asyncio.sleep(20)
+                                await ws.send(json.dumps({"op": "ping"}))
+                            except:
+                                break
+                    
+                    ping_task = asyncio.create_task(ping_loop())
+                    
                     # Subscribe to all at once
                     sub_msg = json.dumps({"op": "subscribe", "args": args})
                     await ws.send(sub_msg)
                     
-                    while True:
-                        msg = await ws.recv()
-                        res = json.loads(msg)
-                        if 'data' not in res or 'arg' not in res: continue
-                        
-                        native_sym = res['arg'].get('instId')
-                        unified_sym = sym_map.get(native_sym, native_sym)
-                        
-                        for d in res['data']:
-                            trade = {
-                                'price': float(d['price']),
-                                'amount': float(d['size']),
-                                'side': d['side'].lower(),
-                                'timestamp': int(d['ts']),
-                                'received_at': time.time()
-                            }
-                            self.trade_buffers[unified_sym].append(trade)
+                    try:
+                        while True:
+                            msg = await ws.recv()
+                            res = json.loads(msg)
                             
-                            # 🚀 DB Logging
-                            asyncio.create_task(self.logger.log_tick(
-                                self.exchange_id, unified_sym, trade['price'], trade['amount'], trade['side'], d.get('m', False)
-                            ))
+                            if res == "pong": continue # Handle pong response
+                            if 'data' not in res or 'arg' not in res: continue
+                            
+                            native_sym = res['arg'].get('instId')
+                            unified_sym = sym_map.get(native_sym, native_sym)
+                            
+                            for d in res['data']:
+                                trade = {
+                                    'price': float(d['price']),
+                                    'amount': float(d['size']),
+                                    'side': d['side'].lower(),
+                                    'timestamp': int(d['ts']),
+                                    'received_at': time.time()
+                                }
+                                self.trade_buffers[unified_sym].append(trade)
+                                
+                                # 🚀 DB Logging
+                                asyncio.create_task(self.logger.log_tick(
+                                    self.exchange_id, unified_sym, trade['price'], trade['amount'], trade['side'], d.get('m', False)
+                                ))
+                    finally:
+                        ping_task.cancel()
             except Exception as e:
                 logging.error(f"Combined Bitget WS Error: {e}")
                 await asyncio.sleep(5)

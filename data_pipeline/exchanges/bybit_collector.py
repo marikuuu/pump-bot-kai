@@ -78,6 +78,18 @@ class BybitCollector:
         while True:
             try:
                 async with websockets.connect(ws_url, ping_interval=20, ping_timeout=10) as ws:
+                    
+                    # 🚀 Dedicated Ping Loop for Bybit
+                    async def ping_loop():
+                        while True:
+                            try:
+                                await asyncio.sleep(20)
+                                await ws.send(json.dumps({"op": "ping"}))
+                            except:
+                                break
+                    
+                    ping_task = asyncio.create_task(ping_loop())
+                    
                     # Subscribe in batches of 10 to avoid any message size limits
                     batch_size = 10
                     for i in range(0, len(self.symbols), batch_size):
@@ -87,32 +99,37 @@ class BybitCollector:
                         await ws.send(sub_msg)
                         await asyncio.sleep(0.1)
                     
-                    while True:
-                        msg = await ws.recv()
-                        res = json.loads(msg)
-                        if 'data' not in res or 'topic' not in res: continue
-                        
-                        # Topic: publicTrade.BTCUSDT
-                        topic = res['topic']
-                        native_sym = topic.replace('publicTrade.', '')
-                        
-                        # Find unified symbol
-                        unified_sym = next((s for s in self.symbols if s.replace('/', '').upper() == native_sym), native_sym)
-                        
-                        for d in res['data']:
-                            trade = {
-                                'price': float(d['p']),
-                                'amount': float(d['v']),
-                                'side': d['S'].lower(),
-                                'timestamp': int(d['T']),
-                                'received_at': time.time()
-                            }
-                            self.trade_buffers[unified_sym].append(trade)
+                    try:
+                        while True:
+                            msg = await ws.recv()
+                            res = json.loads(msg)
                             
-                            # 🚀 DB Logging
-                            asyncio.create_task(self.logger.log_tick(
-                                self.exchange_id, unified_sym, trade['price'], trade['amount'], trade['side'], d.get('m', False)
-                            ))
+                            if 'ret_msg' in res and res['ret_msg'] == 'pong': continue
+                            if 'data' not in res or 'topic' not in res: continue
+                            
+                            # Topic: publicTrade.BTCUSDT
+                            topic = res['topic']
+                            native_sym = topic.replace('publicTrade.', '')
+                            
+                            # Find unified symbol
+                            unified_sym = next((s for s in self.symbols if s.replace('/', '').upper() == native_sym), native_sym)
+                            
+                            for d in res['data']:
+                                trade = {
+                                    'price': float(d['p']),
+                                    'amount': float(d['v']),
+                                    'side': d['S'].lower(),
+                                    'timestamp': int(d['T']),
+                                    'received_at': time.time()
+                                }
+                                self.trade_buffers[unified_sym].append(trade)
+                                
+                                # 🚀 DB Logging
+                                asyncio.create_task(self.logger.log_tick(
+                                    self.exchange_id, unified_sym, trade['price'], trade['amount'], trade['side'], d.get('m', False)
+                                ))
+                    finally:
+                        ping_task.cancel()
             except Exception as e:
                 logging.error(f"Combined Bybit WS Error: {e}")
                 await asyncio.sleep(5)
