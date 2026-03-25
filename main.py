@@ -41,17 +41,26 @@ async def main():
     from data_pipeline.exchanges.mexc_collector import MexcCollector
     from data_pipeline.exchanges.bybit_collector import BybitCollector
     from data_pipeline.exchanges.bitget_collector import BitgetCollector
+
+    # 4. System Health Monitor & Auditor & Discord Bot
+    from pump_ai.health_monitor import HealthMonitor
+    from pump_ai.signal_auditor import SignalAuditor
+    from pump_ai.discord_bot import run_bot
+    from database.db_manager import DatabaseManager
+    db = DatabaseManager()
+    await db.connect()
     
-    binance_collector = FuturesCollector(exchange_id='binance', symbols=cex_symbols)
+    # Update collectors to use the SHARED DB instance to avoid "Too many connections"
+    binance_collector = FuturesCollector(exchange_id='binance', symbols=cex_symbols, db_manager=db)
     binance_collector.detector = shared_detector
     
-    mexc_collector = MexcCollector()
+    mexc_collector = MexcCollector(db_manager=db)
     mexc_collector.detector = shared_detector
 
-    bybit_collector = BybitCollector()
+    bybit_collector = BybitCollector(db_manager=db)
     bybit_collector.detector = shared_detector
 
-    bitget_collector = BitgetCollector()
+    bitget_collector = BitgetCollector(db_manager=db)
     bitget_collector.detector = shared_detector
 
     social_monitor = None
@@ -61,13 +70,6 @@ async def main():
     btc_watcher = BTCWatcher()
     btc_watcher.shared_detector = shared_detector # Inject detector to update its state
 
-    # 4. System Health Monitor & Auditor & Discord Bot
-    from pump_ai.health_monitor import HealthMonitor
-    from pump_ai.signal_auditor import SignalAuditor
-    from pump_ai.discord_bot import run_bot
-    from database.db_manager import DatabaseManager
-    db = DatabaseManager()
-    await db.connect()
     health_monitor = HealthMonitor(db)
     signal_auditor = SignalAuditor(db)
 

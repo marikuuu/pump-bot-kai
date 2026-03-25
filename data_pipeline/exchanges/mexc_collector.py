@@ -22,14 +22,14 @@ class MexcCollector:
     Collects real-time MEXC trade data for Low-Cap/Diverse Pump detection.
     Ported from FuturesCollector (Binance) to handle MEXC-specific nuances.
     """
-    def __init__(self, symbols: List[str] = None):
+    def __init__(self, symbols: List[str] = None, db_manager: DatabaseManager = None):
         self.exchange_id = 'mexc'
         self.symbols = symbols or []
         self.exchange = ccxtpro.mexc({
             'enableRateLimit': True,
             'options': {'defaultType': 'swap'}
         })
-        self.db = DatabaseManager()
+        self.db = db_manager or DatabaseManager()
         self.logger = DataLogger(self.db)
         self.detector = PumpDetector()
         
@@ -39,7 +39,8 @@ class MexcCollector:
         self.market_caps: Dict[str, float] = {}
 
     async def initialize(self):
-        await self.db.connect()
+        if not self.db.pool:
+            await self.db.connect()
         
         # Symbol Discovery for MEXC
         if not self.symbols or self.symbols == ["AUTO"]:

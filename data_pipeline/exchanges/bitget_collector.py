@@ -20,20 +20,22 @@ class BitgetCollector:
     """
     Collects real-time Bitget trade data for Cross-Exchange validation.
     """
-    def __init__(self, symbols: List[str] = None):
+    def __init__(self, symbols: List[str] = None, db_manager: DatabaseManager = None):
         self.exchange_id = 'bitget'
         self.symbols = symbols or []
         self.exchange = ccxtpro.bitget({
             'enableRateLimit': True,
             'options': {'defaultType': 'swap'} # Bitget Futures
         })
-        self.db = DatabaseManager()
+        self.db = db_manager or DatabaseManager()
         self.detector = None # Will be injected from main.py
         
         self.trade_buffers: Dict[str, List[Dict]] = {}
         self.history: Dict[str, pd.DataFrame] = {}
 
     async def initialize(self):
+        if not self.db.pool:
+            await self.db.connect()
         # Specific targets requested by user
         targets = ["SIREN/USDT:USDT", "TRIA/USDT:USDT", "JCT/USDT:USDT", "LYN/USDT:USDT", "LIGHT/USDT:USDT"]
         self.symbols = [s for s in targets]

@@ -22,14 +22,14 @@ class FuturesCollector:
     """
     Collects real-time Futures (Swap) data including Open Interest.
     """
-    def __init__(self, exchange_id: str = 'binance', symbols: List[str] = None):
+    def __init__(self, exchange_id: str = 'binance', symbols: List[str] = None, db_manager: DatabaseManager = None):
         self.exchange_id = exchange_id
         self.symbols = symbols or []
         self.exchange = getattr(ccxtpro, exchange_id)({
             'enableRateLimit': True,
             'options': {'defaultType': 'swap'}
         })
-        self.db = DatabaseManager()
+        self.db = db_manager or DatabaseManager()
         self.logger = DataLogger(self.db)
         self.detector = PumpDetector()
         
@@ -40,7 +40,8 @@ class FuturesCollector:
         self.market_caps: Dict[str, float] = {}
 
     async def initialize(self):
-        await self.db.connect()
+        if not self.db.pool:
+            await self.db.connect()
         
         # Auto-Discovery Logic
         if os.getenv("CEX_SYMBOLS") == "AUTO":

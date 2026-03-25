@@ -14,10 +14,18 @@ class DatabaseManager:
         self.dsn = os.getenv("DATABASE_URL", "postgresql://admin:password@127.0.0.1:5433/pump_ai")
 
     async def connect(self):
+        if self.pool:
+            return
         try:
             logging.info(f"Connecting to DB: {self.dsn}")
-            self.pool = await asyncpg.create_pool(dsn=self.dsn)
-            logging.info("Connected to PostgreSQL database pool.")
+            # Limit connections for VPS stability (Total CEX + DEX + Stats < 100)
+            self.pool = await asyncpg.create_pool(
+                dsn=self.dsn,
+                min_size=1,
+                max_size=20,
+                command_timeout=60
+            )
+            logging.info("Connected to PostgreSQL database pool (max_size=20).")
         except Exception as e:
             logging.error(f"Failed to connect to database: {e}")
             raise
