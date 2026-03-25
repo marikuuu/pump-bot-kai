@@ -145,10 +145,14 @@ class FuturesCollector:
         logging.info(f"Starting OI watcher for {symbol}")
         while True:
             try:
-                # Optimized for Binance/Bybit
-                oi_raw = await self.exchange.fetch_open_interest(symbol)
-                self.oi_data[symbol] = float(oi_raw['openInterestAmount'])
-                await asyncio.sleep(10) # OI doesn't move as fast as trades
+                import aiohttp
+                clean_sym = symbol.replace('/', '').upper()
+                url = f"https://fapi.binance.com/fapi/v1/openInterest?symbol={clean_sym}"
+                async with aiohttp.ClientSession() as session:
+                    async with session.get(url) as resp:
+                        data = await resp.json()
+                        self.oi_data[symbol] = float(data.get('openInterest', 0))
+                await asyncio.sleep(60)
             except Exception as e:
                 logging.error(f"Error in {symbol} OI loop: {e}")
                 await asyncio.sleep(30)
