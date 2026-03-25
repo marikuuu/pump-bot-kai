@@ -9,7 +9,7 @@ crash_log.txt
 terminal_output.txt
 
 # Databases
-*.sql
+# *.sql (Removing this to allow database/schema.sql)
 *.db
 *.sqlite
 
