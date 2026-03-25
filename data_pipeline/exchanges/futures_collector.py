@@ -44,19 +44,37 @@ class FuturesCollector:
             try:
                 logging.info(f"Native Binance Discovery: hitting https://fapi.binance.com/fapi/v1/exchangeInfo directly...")
                 async with aiohttp.ClientSession() as session:
+                    # 1. Fetch all symbols to get metadata (status, assets)
                     async with session.get("https://fapi.binance.com/fapi/v1/exchangeInfo") as resp:
-                        data = await resp.json()
-                        symbols_raw = data.get('symbols', [])
-                        candidates = []
-                        for s in symbols_raw:
-                            if s.get('status') == 'TRADING' and s.get('quoteAsset') == 'USDT':
-                                # Map BTCUSDT -> BTC/USDT (Internal Unified)
-                                base = s.get('baseAsset')
-                                unified_sym = f"{base}/USDT"
-                                candidates.append(unified_sym)
+                        exchange_data = await resp.json()
+                        symbols_raw = exchange_data.get('symbols', [])
                         
-                        self.symbols = candidates[:50] # Just pick first 50 trading pairs
-                        logging.info(f"Native Binance Discovery Success: {len(self.symbols)} symbols.")
+                    # 2. Fetch 24h ticker data to get Volume
+                    async with session.get("https://fapi.binance.com/fapi/v1/ticker/24hr") as t_resp:
+                        tickers_all = await t_resp.json()
+                        vol_map = {t['symbol']: float(t['quoteVolume']) for t in tickers_all}
+                        
+                    # 3. Filter and Rank
+                    ticker_data = [] # List of (symbol, quote_volume)
+                    for s in symbols_raw:
+                        if s.get('status') == 'TRADING' and s.get('quoteAsset') == 'USDT':
+                            raw_sym = s.get('symbol')
+                            base = s.get('baseAsset')
+                            unified_sym = f"{base}/USDT"
+                            qv = vol_map.get(raw_sym, 0)
+                            ticker_data.append((unified_sym, qv))
+                    
+                    # Sort by Volume Descending (High to Low)
+                    ticker_data.sort(key=lambda x: x[1], reverse=True)
+                    
+                    # 🎯 Targeted Discovery: Skip top 150 (BTC, ETH, AAVE, etc.), Take next 200
+                    discovery_range = ticker_data[150:350] 
+                    self.symbols = [s for s, _ in discovery_range]
+                    for s, v in discovery_range:
+                        self.market_caps[s] = v / 10.0 # Heuristic placeholder: Vol/10 as proxy for MC
+                        
+                    logging.info(f"💎 Native Binance Discovery: Targeted {len(self.symbols)} gems (Rank 150-350 by Volume).")
+                    logging.info(f"Sample Symbols: {self.symbols[:10]}")
             except Exception as e:
                 logging.error(f"Native Binance Discovery FAILED: {e}")
                 

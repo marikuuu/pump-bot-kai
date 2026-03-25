@@ -40,27 +40,49 @@ class MexcCollector:
             await self.db.connect()
         
         # Native MEXC Discovery (Bypassing CCXT for contract stability)
-        if not self.symbols or self.symbols == ["AUTO"]:
-            try:
-                logging.info("Native MEXC Discovery: hitting contract.mexc.com directly...")
-                url = "https://contract.mexc.com/api/v1/contract/detail"
-                async with aiohttp.ClientSession() as session:
-                    async with session.get(url) as resp:
-                        data = await resp.json()
-                        contracts = data.get('data', [])
-                        candidates = []
-                        for c in contracts:
-                            raw_sym = c.get('symbol', '')
-                            if c.get('state') == 0 and raw_sym.endswith('_USDT'):
-                                # Map BTC_USDT -> BTC/USDT (Internal Unified)
-                                base = raw_sym.replace('_USDT', '')
-                                unified_sym = f"{base}/USDT"
-                                candidates.append(unified_sym)
+        try:
+            # 🚀 MEXC Smart Discovery: Target low-cap gems
+            # Skip top 30 (high caps) and pick next 100 gems
+            async with aiohttp.ClientSession() as session:
+                # 1. Get all ticker data for volume ranking
+                async with session.get("https://contract.mexc.com/api/v1/contract/ticker") as t_resp:
+                    t_data = await t_resp.json()
+                    tickers = t_data.get('data', [])
+                    vol_map = {t['symbol']: float(t['lastPrice']) * float(t['volume24h']) for t in tickers}
+                
+                # 2. Get contract details for metadata
+                async with session.get("https://contract.mexc.com/api/v1/contract/detail") as c_resp:
+                    c_data = await c_resp.json()
+                    contracts = c_data.get('data', [])
+                    
+                ticker_data = [] # (unified_sym, volume)
+                for c in contracts:
+                    raw_sym = c.get('symbol', '')
+                    if c.get('state') == 0 and raw_sym.endswith('_USDT'):
+                         base = raw_sym.replace('_USDT', '')
+                         unified_sym = f"{base}/USDT"
+                         v = vol_map.get(raw_sym, 0)
+                         ticker_data.append((unified_sym, v))
+                
+                # Sort by Volume Descending
+                ticker_data.sort(key=lambda x: x[1], reverse=True)
+                
+                # 🎯 Targeted Discovery: Skip top 30, Take next 100
+                discovery_range = ticker_data[30:130]
+                self.symbols = [s for s, _ in discovery_range]
+                for s, v in discovery_range:
+                     self.market_caps[s] = v / 5.0 # Proxy for MEXC MC
+                
+                # Ensure specific low-cap targets are always monitored
+                u_targets = ["SIREN/USDT", "TRIA/USDT", "JCT/USDT", "LYN/USDT", "LIGHT/USDT"]
+                for ut in u_targets:
+                    if ut not in self.symbols:
+                        self.symbols.append(ut)
+                        self.market_caps[ut] = 500_000
                         
-                        self.symbols = candidates[:30]
-                        logging.info(f"Native MEXC Discovery Success: {len(self.symbols)} symbols (Unified Format).")
-            except Exception as e:
-                logging.error(f"Native MEXC Discovery FAILED: {e}")
+                logging.info(f"💎 MEXC Native Discovery: Targeted {len(self.symbols)} gems (Rank 30-130).")
+        except Exception as e:
+            logging.error(f"Native MEXC Discovery FAILED: {e}")
 
         if not self.symbols or self.symbols == ["AUTO"]:
             try:
