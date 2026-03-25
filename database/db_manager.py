@@ -32,3 +32,8 @@ class DatabaseManager:
             raise Exception("Database not connected. Call connect() first.")
         async with self.pool.acquire() as connection:
             return await connection.fetch(query, *args)
+
+    async def close(self):
+        if self.pool:
+            await self.pool.close()
+            logging.info("Database connection pool closed.")
