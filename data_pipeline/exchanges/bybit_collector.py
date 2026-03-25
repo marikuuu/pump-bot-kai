@@ -39,19 +39,19 @@ class BybitCollector:
         
         # Auto-Discovery for Bybit Gems
         if os.getenv("CEX_SYMBOLS") == "AUTO":
-            logging.info("Bybit Auto-Discovery: scanning for mid-low cap gems...")
             try:
-                tickers = await self.exchange.fetch_tickers(params={'category': 'linear'})
+                markets = await self.exchange.load_markets()
                 candidates = []
-                for sym, t in tickers.items():
-                    qv = t.get('quoteVolume') or 0
-                    # Discovery range for 100x candidates: 500k to 20M volume
-                    if 500_000 < qv < 20_000_000:
-                        candidates.append((sym, qv))
+                for sym, m in markets.items():
+                    if m.get('active') and m.get('linear') and '/USDT:USDT' in sym:
+                         # Bybit volume is often in 'info'
+                         qv = float(m.get('info', {}).get('turnover24h', 0)) or 0
+                         if 500_000 < qv < 50_000_000:
+                             candidates.append((sym, qv))
                 
                 candidates.sort(key=lambda x: x[1], reverse=True)
                 self.symbols = [s for s, _ in candidates[:50]]
-                logging.info(f"Bybit Discovery: {len(self.symbols)} symbols found. e.g. {self.symbols[:5]}")
+                logging.info(f"Bybit Discovery Success: {len(self.symbols)} symbols found. e.g. {self.symbols[:5]}")
             except Exception as e:
                 logging.error(f"Bybit Discovery failed: {e}")
                 self.symbols = ["BTC/USDT:USDT"]

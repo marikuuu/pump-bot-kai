@@ -1,7 +1,7 @@
 import asyncio
 import logging
 import pandas as pd
-import ccxt.async_support as ccxt
+import ccxt.pro as ccxt
 from datetime import datetime, timezone
 from pump_ai.notifier import DiscordNotifier
 
@@ -10,7 +10,10 @@ class BTCWatcher:
     Monitors BTC price for sudden crashes and sends Discord alerts.
     """
     def __init__(self, interval_sec: int = 60):
-        self.exchange = ccxt.binance({'options': {'defaultType': 'future'}})
+        self.exchange = ccxt.binance({
+            'enableRateLimit': True,
+            'options': {'defaultType': 'future'}
+        })
         self.notifier = DiscordNotifier()
         self.history = pd.DataFrame(columns=['timestamp', 'price'])
         self.interval_sec = interval_sec

@@ -45,23 +45,22 @@ class FuturesCollector:
         
         # Auto-Discovery Logic
         if os.getenv("CEX_SYMBOLS") == "AUTO":
-            logging.info("Auto-Discovery mode: fetching tickers from Binance (30s timeout)...")
             try:
-                tickers = await asyncio.wait_for(
-                    self.exchange.fetch_tickers(params={'type': 'perpetual'}), timeout=30
-                )
+                markets = await self.exchange.load_markets()
                 candidates = []
-                for sym, t in tickers.items():
-                    qv = t.get('quoteVolume') or 0
-                    # Standard Binance USDT-M Perpetual pattern: SYMBOL/USDT:USDT
-                    if sym.endswith('/USDT:USDT') and 500_000 < qv < 1_000_000_000:
-                        candidates.append((sym, qv))
-                        self.market_caps[sym] = qv
+                for sym, m in markets.items():
+                    # Focus on USDT Perpetuals on Binance (fapi)
+                    if m.get('active') and m.get('linear') and sym.endswith('/USDT:USDT'):
+                        # Using info for more accurate 24h volume if available
+                        qv = float(m.get('info', {}).get('quoteVolume', 0)) or 0
+                        if 500_000 < qv:
+                            candidates.append((sym, qv))
+                            self.market_caps[sym] = qv
                 
                 candidates.sort(key=lambda x: x[1], reverse=True)
                 self.symbols = [s for s, _ in candidates[:50]]
                 logging.info(
-                    f"Auto-Discovery: {len(self.symbols)} mid-cap symbols. "
+                    f"Binance Discovery Success: {len(self.symbols)} symbols found. "
                     f"e.g. {self.symbols[:5]}"
                 )
             except asyncio.TimeoutError:
