@@ -15,6 +15,7 @@ class DatabaseManager:
 
     async def connect(self):
         try:
+            logging.info(f"Connecting to DB: {self.dsn}")
             self.pool = await asyncpg.create_pool(dsn=self.dsn)
             logging.info("Connected to PostgreSQL database pool.")
         except Exception as e:

@@ -1,0 +1,683 @@
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\logging\__init__.py", line 1163, in emit
+    stream.write(msg + self.terminator)
+UnicodeEncodeError: 'cp932' codec can't encode character '\U0001f680' in position 33: illegal multibyte sequence
+Call stack:
+  File "C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\main.py", line 97, in <module>
+    asyncio.run(main())
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 195, in run
+    return runner.run(main)
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py", line 678, in run_until_complete
+    self.run_forever()
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\windows_events.py", line 322, in run_forever
+    super().run_forever()
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py", line 645, in run_forever
+    self._run_once()
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py", line 1999, in _run_once
+    handle._run()
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\main.py", line 28, in main
+    logging.info("\U0001f680 Starting High-Precision Pump Detection System (CEX Mode)...")
+Message: '\U0001f680 Starting High-Precision Pump Detection System (CEX Mode)...'
+Arguments: ()
+2026-03-25 13:21:46,340 - INFO - \U0001f680 Starting High-Precision Pump Detection System (CEX Mode)...
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\logging\__init__.py", line 1163, in emit
+    stream.write(msg + self.terminator)
+UnicodeEncodeError: 'cp932' codec can't encode character '\U0001f4a1' in position 33: illegal multibyte sequence
+Call stack:
+  File "C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\main.py", line 97, in <module>
+    asyncio.run(main())
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 195, in run
+    return runner.run(main)
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py", line 678, in run_until_complete
+    self.run_forever()
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\windows_events.py", line 322, in run_forever
+    super().run_forever()
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py", line 645, in run_forever
+    self._run_once()
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py", line 1999, in _run_once
+    handle._run()
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\main.py", line 29, in main
+    logging.info("\U0001f4a1 TIP: DEX/Nansen monitor → run separately: python run_nansen.py")
+Message: '\U0001f4a1 TIP: DEX/Nansen monitor → run separately: python run_nansen.py'
+Arguments: ()
+2026-03-25 13:21:46,344 - INFO - \U0001f4a1 TIP: DEX/Nansen monitor → run separately: python run_nansen.py
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\logging\__init__.py", line 1163, in emit
+    stream.write(msg + self.terminator)
+UnicodeEncodeError: 'cp932' codec can't encode character '\u2705' in position 33: illegal multibyte sequence
+Call stack:
+  File "C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\main.py", line 97, in <module>
+    asyncio.run(main())
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 195, in run
+    return runner.run(main)
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py", line 678, in run_until_complete
+    self.run_forever()
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\windows_events.py", line 322, in run_forever
+    super().run_forever()
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py", line 645, in run_forever
+    self._run_once()
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py", line 1999, in _run_once
+    handle._run()
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\main.py", line 35, in main
+    shared_detector = PumpDetector() # Shared logic and BTC state
+  File "C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\pump_ai\detector.py", line 19, in __init__
+    logging.info(f"\u2705 Loaded ML Model v5.1 (Diverse): {classifier_path}")
+Message: '\u2705 Loaded ML Model v5.1 (Diverse): pump_ai/pump_model_v51_diverse.pkl'
+Arguments: ()
+2026-03-25 13:21:48,415 - INFO - \u2705 Loaded ML Model v5.1 (Diverse): pump_ai/pump_model_v51_diverse.pkl
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\logging\__init__.py", line 1163, in emit
+    stream.write(msg + self.terminator)
+UnicodeEncodeError: 'cp932' codec can't encode character '\u2705' in position 33: illegal multibyte sequence
+Call stack:
+  File "C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\main.py", line 97, in <module>
+    asyncio.run(main())
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 195, in run
+    return runner.run(main)
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py", line 678, in run_until_complete
+    self.run_forever()
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\windows_events.py", line 322, in run_forever
+    super().run_forever()
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py", line 645, in run_forever
+    self._run_once()
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py", line 1999, in _run_once
+    handle._run()
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\main.py", line 45, in main
+    binance_collector = FuturesCollector(exchange_id='binance', symbols=cex_symbols)
+  File "C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\data_pipeline\exchanges\futures_collector.py", line 34, in __init__
+    self.detector = PumpDetector()
+  File "C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\pump_ai\detector.py", line 19, in __init__
+    logging.info(f"\u2705 Loaded ML Model v5.1 (Diverse): {classifier_path}")
+Message: '\u2705 Loaded ML Model v5.1 (Diverse): pump_ai/pump_model_v51_diverse.pkl'
+Arguments: ()
+2026-03-25 13:21:49,716 - INFO - \u2705 Loaded ML Model v5.1 (Diverse): pump_ai/pump_model_v51_diverse.pkl
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\logging\__init__.py", line 1163, in emit
+    stream.write(msg + self.terminator)
+UnicodeEncodeError: 'cp932' codec can't encode character '\u2705' in position 33: illegal multibyte sequence
+Call stack:
+  File "C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\main.py", line 97, in <module>
+    asyncio.run(main())
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 195, in run
+    return runner.run(main)
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py", line 678, in run_until_complete
+    self.run_forever()
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\windows_events.py", line 322, in run_forever
+    super().run_forever()
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py", line 645, in run_forever
+    self._run_once()
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py", line 1999, in _run_once
+    handle._run()
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\main.py", line 48, in main
+    mexc_collector = MexcCollector()
+  File "C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\data_pipeline\exchanges\mexc_collector.py", line 34, in __init__
+    self.detector = PumpDetector()
+  File "C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\pump_ai\detector.py", line 19, in __init__
+    logging.info(f"\u2705 Loaded ML Model v5.1 (Diverse): {classifier_path}")
+Message: '\u2705 Loaded ML Model v5.1 (Diverse): pump_ai/pump_model_v51_diverse.pkl'
+Arguments: ()
+2026-03-25 13:21:49,729 - INFO - \u2705 Loaded ML Model v5.1 (Diverse): pump_ai/pump_model_v51_diverse.pkl
+2026-03-25 13:21:50,168 - INFO - Connected to PostgreSQL database pool.
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\logging\__init__.py", line 1163, in emit
+    stream.write(msg + self.terminator)
+UnicodeEncodeError: 'cp932' codec can't encode character '\u2705' in position 33: illegal multibyte sequence
+Call stack:
+  File "C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\main.py", line 97, in <module>
+    asyncio.run(main())
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 195, in run
+    return runner.run(main)
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py", line 678, in run_until_complete
+    self.run_forever()
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\windows_events.py", line 322, in run_forever
+    super().run_forever()
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py", line 645, in run_forever
+    self._run_once()
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py", line 1999, in _run_once
+    handle._run()
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\main.py", line 92, in main
+    logging.info("\u2705 All systems started. CEX Pump Detection active.")
+Message: '\u2705 All systems started. CEX Pump Detection active.'
+Arguments: ()
+2026-03-25 13:21:50,178 - INFO - \u2705 All systems started. CEX Pump Detection active.
+2026-03-25 13:21:50,185 - INFO - BybitCollector initialized with 5 strategy symbols.
+2026-03-25 13:21:50,186 - INFO - BitgetCollector initialized with 5 strategy symbols.
+2026-03-25 13:21:50,187 - INFO - BTC Watcher started (Crash monitoring active).
+2026-03-25 13:21:50,187 - INFO - HealthMonitor loop started.
+2026-03-25 13:21:50,187 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2026-03-25 13:21:50,188 - INFO - logging in using static token
+2026-03-25 13:21:50,190 - INFO - Starting Bybit trade watcher for SIREN/USDT:USDT
+2026-03-25 13:21:50,190 - INFO - Starting Bybit trade watcher for TRIA/USDT:USDT
+2026-03-25 13:21:50,190 - INFO - Starting Bybit trade watcher for JCT/USDT:USDT
+2026-03-25 13:21:50,190 - INFO - Starting Bybit trade watcher for LYN/USDT:USDT
+2026-03-25 13:21:50,190 - INFO - Starting Bybit trade watcher for LIGHT/USDT:USDT
+2026-03-25 13:21:50,190 - INFO - Starting Bitget trade watcher for SIREN/USDT:USDT
+2026-03-25 13:21:50,191 - INFO - Starting Bitget trade watcher for TRIA/USDT:USDT
+2026-03-25 13:21:50,191 - INFO - Starting Bitget trade watcher for JCT/USDT:USDT
+2026-03-25 13:21:50,191 - INFO - Starting Bitget trade watcher for LYN/USDT:USDT
+2026-03-25 13:21:50,191 - INFO - Starting Bitget trade watcher for LIGHT/USDT:USDT
+2026-03-25 13:21:51,510 - ERROR - Exception in callback _ProactorReadPipeTransport._loop_reading(<_OverlappedF...shed result=1>)
+handle: <Handle _ProactorReadPipeTransport._loop_reading(<_OverlappedF...shed result=1>)>
+Traceback (most recent call last):
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 195, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py", line 691, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\main.py", line 93, in main
+    await asyncio.gather(*tasks)
+  File "C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\pump_ai\signal_auditor.py", line 84, in run_loop
+    await self.run_audit_cycle()
+  File "C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\pump_ai\signal_auditor.py", line 38, in run_audit_cycle
+    audits = await self.db.fetch("SELECT * FROM signal_audits WHERE status = 'ACTIVE'")
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\database\db_manager.py", line 34, in fetch
+    return await connection.fetch(query, *args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\site-packages\asyncpg\connection.py", line 694, in fetch
+    return await self._execute(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\site-packages\asyncpg\connection.py", line 1873, in _execute
+    result, _ = await self.__execute(
+                ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\site-packages\asyncpg\connection.py", line 1970, in __execute
+    result, stmt = await self._do_execute(
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\site-packages\asyncpg\connection.py", line 2013, in _do_execute
+    stmt = await self._get_statement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\site-packages\asyncpg\connection.py", line 443, in _get_statement
+    statement = await self._protocol.prepare(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "asyncpg/protocol/protocol.pyx", line 165, in prepare
+asyncpg.exceptions.UndefinedTableError: relation "signal_audits" does not exist
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\proactor_events.py", line 325, in _loop_reading
+    self._data_received(data, length)
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\proactor_events.py", line 274, in _data_received
+    self._protocol.data_received(data)
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\site-packages\asyncpg\connect_utils.py", line 936, in data_received
+    self.on_data.set_result(False)
+asyncio.exceptions.InvalidStateError: invalid state
+2026-03-25 13:21:51,514 - ERROR - Exception in callback _ProactorReadPipeTransport._loop_reading(<_OverlappedF...shed result=1>)
+handle: <Handle _ProactorReadPipeTransport._loop_reading(<_OverlappedF...shed result=1>)>
+Traceback (most recent call last):
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 195, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py", line 691, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\main.py", line 93, in main
+    await asyncio.gather(*tasks)
+  File "C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\pump_ai\signal_auditor.py", line 84, in run_loop
+    await self.run_audit_cycle()
+  File "C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\pump_ai\signal_auditor.py", line 38, in run_audit_cycle
+    audits = await self.db.fetch("SELECT * FROM signal_audits WHERE status = 'ACTIVE'")
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\database\db_manager.py", line 34, in fetch
+    return await connection.fetch(query, *args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\site-packages\asyncpg\connection.py", line 694, in fetch
+    return await self._execute(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\site-packages\asyncpg\connection.py", line 1873, in _execute
+    result, _ = await self.__execute(
+                ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\site-packages\asyncpg\connection.py", line 1970, in __execute
+    result, stmt = await self._do_execute(
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\site-packages\asyncpg\connection.py", line 2013, in _do_execute
+    stmt = await self._get_statement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\site-packages\asyncpg\connection.py", line 443, in _get_statement
+    statement = await self._protocol.prepare(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "asyncpg/protocol/protocol.pyx", line 165, in prepare
+asyncpg.exceptions.UndefinedTableError: relation "signal_audits" does not exist
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\proactor_events.py", line 325, in _loop_reading
+    self._data_received(data, length)
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\proactor_events.py", line 274, in _data_received
+    self._protocol.data_received(data)
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\site-packages\asyncpg\connect_utils.py", line 936, in data_received
+    self.on_data.set_result(False)
+asyncio.exceptions.InvalidStateError: invalid state
+2026-03-25 13:21:51,516 - ERROR - Exception in callback _ProactorReadPipeTransport._loop_reading(<_OverlappedF...shed result=1>)
+handle: <Handle _ProactorReadPipeTransport._loop_reading(<_OverlappedF...shed result=1>)>
+Traceback (most recent call last):
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 195, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py", line 691, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\main.py", line 93, in main
+    await asyncio.gather(*tasks)
+  File "C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\pump_ai\signal_auditor.py", line 84, in run_loop
+    await self.run_audit_cycle()
+  File "C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\pump_ai\signal_auditor.py", line 38, in run_audit_cycle
+    audits = await self.db.fetch("SELECT * FROM signal_audits WHERE status = 'ACTIVE'")
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\database\db_manager.py", line 34, in fetch
+    return await connection.fetch(query, *args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\site-packages\asyncpg\connection.py", line 694, in fetch
+    return await self._execute(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\site-packages\asyncpg\connection.py", line 1873, in _execute
+    result, _ = await self.__execute(
+                ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\site-packages\asyncpg\connection.py", line 1970, in __execute
+    result, stmt = await self._do_execute(
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\site-packages\asyncpg\connection.py", line 2013, in _do_execute
+    stmt = await self._get_statement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\site-packages\asyncpg\connection.py", line 443, in _get_statement
+    statement = await self._protocol.prepare(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "asyncpg/protocol/protocol.pyx", line 165, in prepare
+asyncpg.exceptions.UndefinedTableError: relation "signal_audits" does not exist
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\proactor_events.py", line 325, in _loop_reading
+    self._data_received(data, length)
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\proactor_events.py", line 274, in _data_received
+    self._protocol.data_received(data)
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\site-packages\asyncpg\connect_utils.py", line 936, in data_received
+    self.on_data.set_result(False)
+asyncio.exceptions.InvalidStateError: invalid state
+2026-03-25 13:21:51,517 - ERROR - Exception in callback _ProactorReadPipeTransport._loop_reading(<_OverlappedF...shed result=1>)
+handle: <Handle _ProactorReadPipeTransport._loop_reading(<_OverlappedF...shed result=1>)>
+Traceback (most recent call last):
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 195, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py", line 691, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\main.py", line 93, in main
+    await asyncio.gather(*tasks)
+  File "C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\pump_ai\signal_auditor.py", line 84, in run_loop
+    await self.run_audit_cycle()
+  File "C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\pump_ai\signal_auditor.py", line 38, in run_audit_cycle
+    audits = await self.db.fetch("SELECT * FROM signal_audits WHERE status = 'ACTIVE'")
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\database\db_manager.py", line 34, in fetch
+    return await connection.fetch(query, *args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\site-packages\asyncpg\connection.py", line 694, in fetch
+    return await self._execute(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\site-packages\asyncpg\connection.py", line 1873, in _execute
+    result, _ = await self.__execute(
+                ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\site-packages\asyncpg\connection.py", line 1970, in __execute
+    result, stmt = await self._do_execute(
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\site-packages\asyncpg\connection.py", line 2013, in _do_execute
+    stmt = await self._get_statement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\site-packages\asyncpg\connection.py", line 443, in _get_statement
+    statement = await self._protocol.prepare(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "asyncpg/protocol/protocol.pyx", line 165, in prepare
+asyncpg.exceptions.UndefinedTableError: relation "signal_audits" does not exist
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\proactor_events.py", line 325, in _loop_reading
+    self._data_received(data, length)
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\proactor_events.py", line 274, in _data_received
+    self._protocol.data_received(data)
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\site-packages\asyncpg\connect_utils.py", line 936, in data_received
+    self.on_data.set_result(False)
+asyncio.exceptions.InvalidStateError: invalid state
+2026-03-25 13:21:51,519 - ERROR - Exception in callback _ProactorReadPipeTransport._loop_reading(<_OverlappedF...shed result=1>)
+handle: <Handle _ProactorReadPipeTransport._loop_reading(<_OverlappedF...shed result=1>)>
+Traceback (most recent call last):
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 195, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py", line 691, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\main.py", line 93, in main
+    await asyncio.gather(*tasks)
+  File "C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\pump_ai\signal_auditor.py", line 84, in run_loop
+    await self.run_audit_cycle()
+  File "C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\pump_ai\signal_auditor.py", line 38, in run_audit_cycle
+    audits = await self.db.fetch("SELECT * FROM signal_audits WHERE status = 'ACTIVE'")
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\database\db_manager.py", line 34, in fetch
+    return await connection.fetch(query, *args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\site-packages\asyncpg\connection.py", line 694, in fetch
+    return await self._execute(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\site-packages\asyncpg\connection.py", line 1873, in _execute
+    result, _ = await self.__execute(
+                ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\site-packages\asyncpg\connection.py", line 1970, in __execute
+    result, stmt = await self._do_execute(
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\site-packages\asyncpg\connection.py", line 2013, in _do_execute
+    stmt = await self._get_statement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\site-packages\asyncpg\connection.py", line 443, in _get_statement
+    statement = await self._protocol.prepare(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "asyncpg/protocol/protocol.pyx", line 165, in prepare
+asyncpg.exceptions.UndefinedTableError: relation "signal_audits" does not exist
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\proactor_events.py", line 325, in _loop_reading
+    self._data_received(data, length)
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\proactor_events.py", line 274, in _data_received
+    self._protocol.data_received(data)
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\site-packages\asyncpg\connect_utils.py", line 936, in data_received
+    self.on_data.set_result(False)
+asyncio.exceptions.InvalidStateError: invalid state
+2026-03-25 13:21:51,519 - ERROR - Exception in callback _ProactorReadPipeTransport._loop_reading(<_OverlappedF...shed result=1>)
+handle: <Handle _ProactorReadPipeTransport._loop_reading(<_OverlappedF...shed result=1>)>
+Traceback (most recent call last):
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 195, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py", line 691, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\main.py", line 93, in main
+    await asyncio.gather(*tasks)
+  File "C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\pump_ai\signal_auditor.py", line 84, in run_loop
+    await self.run_audit_cycle()
+  File "C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\pump_ai\signal_auditor.py", line 38, in run_audit_cycle
+    audits = await self.db.fetch("SELECT * FROM signal_audits WHERE status = 'ACTIVE'")
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\database\db_manager.py", line 34, in fetch
+    return await connection.fetch(query, *args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\site-packages\asyncpg\connection.py", line 694, in fetch
+    return await self._execute(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\site-packages\asyncpg\connection.py", line 1873, in _execute
+    result, _ = await self.__execute(
+                ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\site-packages\asyncpg\connection.py", line 1970, in __execute
+    result, stmt = await self._do_execute(
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\site-packages\asyncpg\connection.py", line 2013, in _do_execute
+    stmt = await self._get_statement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\site-packages\asyncpg\connection.py", line 443, in _get_statement
+    statement = await self._protocol.prepare(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "asyncpg/protocol/protocol.pyx", line 165, in prepare
+asyncpg.exceptions.UndefinedTableError: relation "signal_audits" does not exist
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\proactor_events.py", line 325, in _loop_reading
+    self._data_received(data, length)
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\proactor_events.py", line 274, in _data_received
+    self._protocol.data_received(data)
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\site-packages\asyncpg\connect_utils.py", line 936, in data_received
+    self.on_data.set_result(False)
+asyncio.exceptions.InvalidStateError: invalid state
+2026-03-25 13:21:51,523 - ERROR - Exception in callback _ProactorReadPipeTransport._loop_reading(<_OverlappedF...shed result=1>)
+handle: <Handle _ProactorReadPipeTransport._loop_reading(<_OverlappedF...shed result=1>)>
+Traceback (most recent call last):
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 195, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py", line 691, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\main.py", line 93, in main
+    await asyncio.gather(*tasks)
+  File "C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\pump_ai\signal_auditor.py", line 84, in run_loop
+    await self.run_audit_cycle()
+  File "C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\pump_ai\signal_auditor.py", line 38, in run_audit_cycle
+    audits = await self.db.fetch("SELECT * FROM signal_audits WHERE status = 'ACTIVE'")
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\database\db_manager.py", line 34, in fetch
+    return await connection.fetch(query, *args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\site-packages\asyncpg\connection.py", line 694, in fetch
+    return await self._execute(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\site-packages\asyncpg\connection.py", line 1873, in _execute
+    result, _ = await self.__execute(
+                ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\site-packages\asyncpg\connection.py", line 1970, in __execute
+    result, stmt = await self._do_execute(
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\site-packages\asyncpg\connection.py", line 2013, in _do_execute
+    stmt = await self._get_statement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\site-packages\asyncpg\connection.py", line 443, in _get_statement
+    statement = await self._protocol.prepare(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "asyncpg/protocol/protocol.pyx", line 165, in prepare
+asyncpg.exceptions.UndefinedTableError: relation "signal_audits" does not exist
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\proactor_events.py", line 325, in _loop_reading
+    self._data_received(data, length)
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\proactor_events.py", line 274, in _data_received
+    self._protocol.data_received(data)
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\site-packages\asyncpg\connect_utils.py", line 936, in data_received
+    self.on_data.set_result(False)
+asyncio.exceptions.InvalidStateError: invalid state
+2026-03-25 13:21:51,523 - ERROR - Exception in callback _ProactorReadPipeTransport._loop_reading(<_OverlappedF...shed result=1>)
+handle: <Handle _ProactorReadPipeTransport._loop_reading(<_OverlappedF...shed result=1>)>
+Traceback (most recent call last):
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 195, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py", line 691, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\main.py", line 93, in main
+    await asyncio.gather(*tasks)
+  File "C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\pump_ai\signal_auditor.py", line 84, in run_loop
+    await self.run_audit_cycle()
+  File "C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\pump_ai\signal_auditor.py", line 38, in run_audit_cycle
+    audits = await self.db.fetch("SELECT * FROM signal_audits WHERE status = 'ACTIVE'")
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\database\db_manager.py", line 34, in fetch
+    return await connection.fetch(query, *args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\site-packages\asyncpg\connection.py", line 694, in fetch
+    return await self._execute(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\site-packages\asyncpg\connection.py", line 1873, in _execute
+    result, _ = await self.__execute(
+                ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\site-packages\asyncpg\connection.py", line 1970, in __execute
+    result, stmt = await self._do_execute(
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\site-packages\asyncpg\connection.py", line 2013, in _do_execute
+    stmt = await self._get_statement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\site-packages\asyncpg\connection.py", line 443, in _get_statement
+    statement = await self._protocol.prepare(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "asyncpg/protocol/protocol.pyx", line 165, in prepare
+asyncpg.exceptions.UndefinedTableError: relation "signal_audits" does not exist
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\proactor_events.py", line 325, in _loop_reading
+    self._data_received(data, length)
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\proactor_events.py", line 274, in _data_received
+    self._protocol.data_received(data)
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\site-packages\asyncpg\connect_utils.py", line 936, in data_received
+    self.on_data.set_result(False)
+asyncio.exceptions.InvalidStateError: invalid state
+Traceback (most recent call last):
+  File "C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\main.py", line 97, in <module>
+    asyncio.run(main())
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 195, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py", line 691, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\main.py", line 93, in main
+    await asyncio.gather(*tasks)
+  File "C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\pump_ai\signal_auditor.py", line 84, in run_loop
+    await self.run_audit_cycle()
+  File "C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\pump_ai\signal_auditor.py", line 38, in run_audit_cycle
+    audits = await self.db.fetch("SELECT * FROM signal_audits WHERE status = 'ACTIVE'")
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\database\db_manager.py", line 34, in fetch
+    return await connection.fetch(query, *args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\site-packages\asyncpg\connection.py", line 694, in fetch
+    return await self._execute(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\site-packages\asyncpg\connection.py", line 1873, in _execute
+    result, _ = await self.__execute(
+                ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\site-packages\asyncpg\connection.py", line 1970, in __execute
+    result, stmt = await self._do_execute(
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\site-packages\asyncpg\connection.py", line 2013, in _do_execute
+    stmt = await self._get_statement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\site-packages\asyncpg\connection.py", line 443, in _get_statement
+    statement = await self._protocol.prepare(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "asyncpg/protocol/protocol.pyx", line 165, in prepare
+    return await waiter
+asyncpg.exceptions.UndefinedTableError: relation "signal_audits" does not exist
+2026-03-25 13:21:51,662 - ERROR - Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x000001B41FD916D0>
+2026-03-25 13:21:51,663 - ERROR - Future exception was never retrieved
+future: <Future finished exception=ConnectionError('unexpected connection_lost() call')>
+ConnectionError: unexpected connection_lost() call
+2026-03-25 13:21:51,663 - ERROR - Future exception was never retrieved
+future: <Future finished exception=ConnectionError('unexpected connection_lost() call')>
+ConnectionError: unexpected connection_lost() call
+2026-03-25 13:21:51,663 - ERROR - Future exception was never retrieved
+future: <Future finished exception=ConnectionError('unexpected connection_lost() call')>
+ConnectionError: unexpected connection_lost() call
+2026-03-25 13:21:51,663 - ERROR - Future exception was never retrieved
+future: <Future finished exception=ConnectionError('unexpected connection_lost() call')>
+ConnectionError: unexpected connection_lost() call
+2026-03-25 13:21:51,664 - ERROR - Future exception was never retrieved
+future: <Future finished exception=ConnectionError('unexpected connection_lost() call')>
+ConnectionError: unexpected connection_lost() call
+2026-03-25 13:21:51,664 - ERROR - Future exception was never retrieved
+future: <Future finished exception=ConnectionError('unexpected connection_lost() call')>
+ConnectionError: unexpected connection_lost() call
+2026-03-25 13:21:51,664 - ERROR - Future exception was never retrieved
+future: <Future finished exception=ConnectionError('unexpected connection_lost() call')>
+ConnectionError: unexpected connection_lost() call
+2026-03-25 13:21:51,664 - ERROR - Future exception was never retrieved
+future: <Future finished exception=ConnectionError('unexpected connection_lost() call')>
+ConnectionError: unexpected connection_lost() call
+2026-03-25 13:21:51,664 - ERROR - Future exception was never retrieved
+future: <Future finished exception=ConnectionError('unexpected connection_lost() call')>
+ConnectionError: unexpected connection_lost() call
+2026-03-25 13:21:51,775 - WARNING - bybit requires to release all resources with an explicit call to the .close() coroutine. If you are using the exchange instance with async coroutines, add `await exchange.close()` to your code into a place when you're done with the exchange and don't need the exchange instance anymore (at the end of your async coroutine).
+2026-03-25 13:21:51,775 - WARNING - bitget requires to release all resources with an explicit call to the .close() coroutine. If you are using the exchange instance with async coroutines, add `await exchange.close()` to your code into a place when you're done with the exchange and don't need the exchange instance anymore (at the end of your async coroutine).
+2026-03-25 13:21:51,775 - WARNING - binance requires to release all resources with an explicit call to the .close() coroutine. If you are using the exchange instance with async coroutines, add `await exchange.close()` to your code into a place when you're done with the exchange and don't need the exchange instance anymore (at the end of your async coroutine).
+2026-03-25 13:21:51,775 - ERROR - Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x000001B41FD932C0>
+2026-03-25 13:21:51,775 - ERROR - Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x000001B41F988560>
+2026-03-25 13:21:51,775 - ERROR - Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x000001B41FD92F00>
