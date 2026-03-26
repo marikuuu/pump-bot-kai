@@ -31,6 +31,7 @@ class BitgetCollector:
         
         self.trade_buffers: Dict[str, List[Dict]] = {}
         self.history: Dict[str, pd.DataFrame] = {}
+        self.oi_data: Dict[str, float] = {} # 🚀 Added OI Storage
         self.tick_buffer: List[tuple] = []
 
     async def initialize(self):
@@ -163,7 +164,22 @@ class BitgetCollector:
                 await self.logger.log_ticks_batch(batch)
 
     async def scheduler_loop(self):
+        import aiohttp
         while True:
+            # 🚀 Bulk fetch OI for all symbols from Bitget V2
+            try:
+                url = "https://api.bitget.com/api/v2/mix/market/tickers?productType=USDT-FUTURES"
+                async with aiohttp.ClientSession() as session:
+                    async with session.get(url) as resp:
+                        data = await resp.json()
+                        for t in data.get('data', []):
+                            sym = t.get('symbol', '') # e.g. BTCUSDT
+                            unified = next((s for s in self.symbols if s.replace('/','').upper() == sym), None)
+                            if unified:
+                                self.oi_data[unified] = float(t.get('openInterest', 0))
+            except Exception as e:
+                logging.error(f"Bitget OI Bulk Fetch Error: {e}")
+
             await asyncio.sleep(30)
             for symbol in self.symbols:
                 try:
@@ -195,11 +211,24 @@ class BitgetCollector:
         vol_z = (vol - self.history[symbol]['volume'].mean()) / (self.history[symbol]['volume'].std() or 1)
         pc_z = (price_change - self.history[symbol]['price_change'].mean()) / (self.history[symbol]['price_change'].std() or 1)
 
+        # 🚀 OI Z-Score Calculation
+        current_oi = self.oi_data.get(symbol, 0)
+        prev_oi = self.history[symbol]['oi'].iloc[-1] if 'oi' in self.history[symbol].columns and not self.history[symbol].empty else current_oi
+        oi_change = (current_oi - prev_oi) / (prev_oi + 1e-9)
+        
+        # Update history with OI
+        new_row['oi'] = current_oi
+        new_row['oi_change'] = oi_change
+        self.history[symbol] = pd.concat([self.history[symbol], pd.DataFrame([new_row])]).iloc[-120:]
+        
+        oi_z = (oi_change - self.history[symbol]['oi_change'].mean()) / (self.history[symbol]['oi_change'].std() or 1)
+
         features = {
             'symbol': symbol,
             'price': price_end,
             'vol_z': vol_z,
             'pc_z': pc_z,
+            'oi_z': oi_z, # 🚀 Added OI
             'std_rush': std_rush,
             'buy_ratio': len(buy_df) / (len(df) + 1e-9),
             'exchange': 'BITGET'

@@ -31,6 +31,7 @@ class BybitCollector:
         
         self.trade_buffers: Dict[str, List[Dict]] = {}
         self.history: Dict[str, pd.DataFrame] = {}
+        self.oi_data: Dict[str, float] = {} # 🚀 Added OI Storage
         self.tick_buffer: List[tuple] = []
 
     async def initialize(self):
@@ -166,7 +167,21 @@ class BybitCollector:
                 await self.logger.log_ticks_batch(batch)
 
     async def scheduler_loop(self):
+        import aiohttp
         while True:
+            # 🚀 Bulk fetch OI for all symbols from Bybit V5
+            try:
+                async with aiohttp.ClientSession() as session:
+                    async with session.get("https://api.bybit.com/v5/market/tickers?category=linear") as resp:
+                        data = await resp.json()
+                        for t in data.get('result', {}).get('list', []):
+                            sym = t['symbol']
+                            unified = next((s for s in self.symbols if s.replace('/','').upper() == sym), None)
+                            if unified:
+                                self.oi_data[unified] = float(t.get('openInterest', 0))
+            except Exception as e:
+                logging.error(f"Bybit OI Bulk Fetch Error: {e}")
+
             await asyncio.sleep(30)
             for symbol in self.symbols:
                 try:
@@ -199,18 +214,31 @@ class BybitCollector:
         vol_z = (vol - self.history[symbol]['volume'].mean()) / (self.history[symbol]['volume'].std() or 1)
         pc_z = (price_change - self.history[symbol]['price_change'].mean()) / (self.history[symbol]['price_change'].std() or 1)
 
+        # 🚀 OI Z-Score Calculation
+        current_oi = self.oi_data.get(symbol, 0)
+        prev_oi = self.history[symbol]['oi'].iloc[-1] if 'oi' in self.history[symbol].columns and not self.history[symbol].empty else current_oi
+        oi_change = (current_oi - prev_oi) / (prev_oi + 1e-9)
+        
+        # Update history with OI
+        new_row['oi'] = current_oi
+        new_row['oi_change'] = oi_change
+        self.history[symbol] = pd.concat([self.history[symbol], pd.DataFrame([new_row])]).iloc[-120:]
+        
+        oi_z = (oi_change - self.history[symbol]['oi_change'].mean()) / (self.history[symbol]['oi_change'].std() or 1)
+
         features = {
             'symbol': symbol,
             'price': price_end,
             'vol_z': vol_z,
             'pc_z': pc_z,
+            'oi_z': oi_z, # 🚀 Added OI
             'std_rush': std_rush,
             'buy_ratio': len(buy_df) / (len(df) + 1e-9),
             'exchange': 'BYBIT'
         }
 
         if self.detector and self.detector.check_event(features)[0]:
-            logging.warning(f"🚀 BYBIT PUMP SIGNAL: {symbol} | vol_z={vol_z:.2f} pc_z={pc_z:.2f}")
+            logging.warning(f"🚀 BYBIT PUMP SIGNAL: {symbol} | vol_z={vol_z:.2f} pc_z={pc_z:.2f} oi_z={oi_z:.2f}")
 
     async def run(self):
         await self.initialize()
