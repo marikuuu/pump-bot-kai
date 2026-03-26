@@ -17,3 +17,5 @@ tardis-client
 telethon
 pyrogram
 discord.py
+numexpr>=2.10.2
+bottleneck>=1.4.2
