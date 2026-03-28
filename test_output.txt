@@ -1,0 +1,31 @@
+INFO:root:\u2705 Loaded ML Model v5.1 (Diverse): pump_ai/pump_model_v51_diverse.pkl
+INFO:root:Testing Protocol GHOST Triggers (Whale Accumulation + Vacuum)...
+INFO:root:\U0001f40b [WHALE] GHOST_ACCUM_1/USDT Accumulation detected! Stack: 1
+INFO:root:\U0001f40b [WHALE] GHOST_ACCUM_1/USDT Accumulation detected! Stack: 2
+INFO:root:\U0001f40b [WHALE] GHOST_ACCUM_1/USDT Accumulation detected! Stack: 3
+INFO:root:\U0001f40b [WHALE] GHOST_ACCUM_1/USDT Accumulation detected! Stack: 4
+WARNING:root:\U0001f47b [PROTOCOL GHOST] GHOST_ACCUM_1/USDT GHOST TRIGGER (Whale+Vacuum) on bybit,binance!
+Accum 1 (Binance): is_pump=False, stage=3
+Traceback (most recent call last):
+DEBUG GHOST_ACCUM_1/USDT: ex=bybit window={'bybit', 'binance'} hit=True new=True first=False
+Accum 2 (Bybit): is_pump=True, stage=4
+Standard 1 (Binance): is_pump=False, stage=2
+Standard 2 (Bybit): is_pump=False, stage=2
+DEBUG: Stage 1 Filter: MCAP=50000000 MAX=200000000
+DEBUG: Stage 2 Filter: VOLZ=5.0 PCZ=2.0
+DEBUG: Stage 3 Filter: RUSH=15.0
+  File "c:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\tests\test_ghost_logic.py", line 77, in <module>
+    asyncio.run(test_ghost_logic())
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 195, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rkawa\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py", line 691, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "c:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\tests\test_ghost_logic.py", line 71, in test_ghost_logic
+    assert res2[0] == True
+           ^^^^^^^^^^^^^^^
+AssertionError

@@ -256,7 +256,7 @@ class FuturesCollector:
                     # Vacuum = relative emptiness vs POC
                     vacuum_score = 1.0 - (counts[curr_idx] / (counts[poc_idx] + 1e-9))
 
-        # === Update rolling history ===
+        # === Update rolling history (Protocol GHOST Memory Expansion) ===
         new_row = {
             'time': datetime.now(timezone.utc),
             'volume': vol,
@@ -266,25 +266,25 @@ class FuturesCollector:
             'pc_change': pc_change,
             'std_rush': std_rush
         }
-        self.history[symbol] = pd.concat([self.history[symbol], pd.DataFrame([new_row])]).iloc[-240:]
+        # Keep 24 hours of 5s data (17,280 samples) for deep VPVR analysis
+        self.history[symbol] = pd.concat([self.history[symbol], pd.DataFrame([new_row])]).iloc[-17280:]
 
-        # Need at least 20 candles to compute meaningful Z-scores
+        # Need at least 20 candles
         if len(self.history[symbol]) < 20: return
 
-        # === Z-Scores ===
-        hist = self.history[symbol]
+        # === Long-term Stats (4 hour window for Z-Scores) ===
+        # 4 hours at 5s interval = 2880 samples
+        hist_full = self.history[symbol]
+        hist_stats = hist_full.iloc[-2880:] 
         
-        # Pre-accumulation (using 30-min window from history)
-        if len(hist) >= 20:
-             pre_vol_mid = hist['volume'].iloc[:len(hist)//2].mean()
-             pre_vol_late = hist['volume'].iloc[len(hist)//2:].mean()
-             pre_accum_z = (pre_vol_late - pre_vol_mid) / (hist['volume'].std() + 1e-9)
-        else:
-             pre_accum_z = 0.0
+        # Pre-accumulation (using half of the stats window)
+        pre_vol_mid = hist_stats['volume'].iloc[:len(hist_stats)//2].mean()
+        pre_vol_late = hist_stats['volume'].iloc[len(hist_stats)//2:].mean()
+        pre_accum_z = (pre_vol_late - pre_vol_mid) / (hist_stats['volume'].std() + 1e-9)
 
-        vol_z  = (vol       - hist['volume'].mean())    / (hist['volume'].std()    or 1)
-        pc_z   = (pc_change - hist['pc_change'].mean()) / (hist['pc_change'].std() or 1)
-        oi_z   = (oi_change - hist['oi_change'].mean()) / (hist['oi_change'].std() or 1)
+        vol_z  = (vol       - hist_stats['volume'].mean())    / (hist_stats['volume'].std()    or 1)
+        pc_z   = (pc_change - hist_stats['pc_change'].mean()) / (hist_stats['pc_change'].std() or 1)
+        oi_z   = (oi_change - hist_stats['oi_change'].mean()) / (hist_stats['oi_change'].std() or 1)
 
         # ── 30秒スキャンサマリー ──
         vol_24h = self.volumes_24h.get(symbol, 10_000_000)
