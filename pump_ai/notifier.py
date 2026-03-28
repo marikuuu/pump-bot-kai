@@ -42,24 +42,47 @@ class DiscordNotifier:
 
     async def send_pump_alert(self, symbol: str, lead_time: str, move: str,
                                price: float = 0, vol_z: float = 0,
-                               pc_z: float = 0, oi_z: float = 0, rush: float = 0):
-        title = f"🚀 PUMP DETECTED: {symbol}"
+                               pc_z: float = 0, oi_z: float = 0, rush: float = 0,
+                               whale_stack: int = 0, vacuum_score: float = 0.0,
+                               is_ghost: bool = False):
+        
+        # UI Elements
+        tv_symbol = symbol.replace("/", "").upper()
+        tv_link = f"https://www.tradingview.com/chart/?symbol=BINANCE:{tv_symbol}PERP"
+        
+        if is_ghost:
+            title = f"👻 [PROTOCOL GHOST] {symbol} DETECTED"
+            color = 0x8A2BE2 # BlueViolet
+            status_text = "💎 **GHOST TRIGGER (Whale Accumulation + Vacuum)**"
+        else:
+            title = f"🚀 [STANDARD PUMP] {symbol} DETECTED"
+            color = 0x00FF7F # SpringGreen
+            status_text = "💹 **STANDARD MOMENTUM BREAKOUT**"
+
+        # Progress / Stars
+        stars = "⭐" * min(whale_stack, 5) if whale_stack > 0 else "🌑 (No Stack)"
+        v_bars = int(vacuum_score * 10)
+        v_gauge = f"[`{'■' * v_bars}{'-' * (10 - v_bars)}`] {int(vacuum_score * 100)}%"
+
         desc = (
-            f"**バックテスト精度90%+** のシグナルパターンが一致しました。\n"
-            f"**エントリーウィンドウ（目安）**: 検知後 30〜120 秒以内"
+            f"{status_text}\n"
+            f"**Action**: 30〜120秒以内に指値検討\n"
+            f"**Chart**: [TradingViewで開く]({tv_link})"
         )
+        
         fields = [
             {"name": "💲 現在価格",         "value": f"`${price:.5f}`",          "inline": True},
+            {"name": "🐋 Whale DNA",        "value": f"{stars}",                 "inline": True},
+            {"name": "🌌 Vacuum Score",     "value": f"{v_gauge}",               "inline": False},
             {"name": "📈 Vol Z-score",       "value": f"`{vol_z:+.2f}`",          "inline": True},
             {"name": "💹 Price Z-score",     "value": f"`{pc_z:+.2f}`",           "inline": True},
             {"name": "📡 OI Z-score",        "value": f"`{oi_z:+.2f}`",           "inline": True},
             {"name": "⚡ Rush Orders (σ)",   "value": f"`{rush:.1f}`",            "inline": True},
             {"name": "🎯 想定リターン",      "value": f"`{move}`",                "inline": True},
-            {"name": "🛡️ Stage 1",          "value": "✅ 銘柄フィルター通過",    "inline": True},
-            {"name": "📊 Stage 2",          "value": "✅ 統計的異常 検知",       "inline": True},
-            {"name": "🤖 Stage 3/4",        "value": "✅ Rush + ML 確定",        "inline": True},
+            {"name": "🔍 先読み精度",        "value": "`90%+ (v6.1)`",            "inline": True},
         ]
-        await self.send_alert(title, desc, color=0x00FF7F, fields=fields)
+        
+        await self.send_alert(title, desc, color=color, fields=fields)
 
     async def send_crash_alert(self, symbol: str, price_drop: str, window: str):
         title = f"⚠️ MARKET CRASH WARNING: {symbol}"

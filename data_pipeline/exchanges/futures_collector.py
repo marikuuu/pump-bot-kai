@@ -32,7 +32,7 @@ class FuturesCollector:
         self.last_chunk_time: Dict[str, float] = {s: time.time() for s in self.symbols}
         self.history: Dict[str, pd.DataFrame] = {s: pd.DataFrame() for s in self.symbols}
         self.oi_data: Dict[str, float] = {s: 0.0 for s in self.symbols}
-        self.market_caps: Dict[str, float] = {}
+        self.volumes_24h: Dict[str, float] = {}
         self.tick_buffer: List[tuple] = [] # 🚀 Buffer for high-speed logging
 
     async def initialize(self):
@@ -73,8 +73,8 @@ class FuturesCollector:
                     discovery_range = ticker_data[300:400] 
                     self.symbols = [s for s, _ in discovery_range]
                     for s, v in discovery_range:
-                        # Conservative MC proxy: Volume * 50 (Higher MC estimate to trigger Stage 1 filters)
-                        self.market_caps[s] = v * 50.0 
+                        # Conservative MC proxy: Volume * 50
+                        self.volumes_24h[s] = v * 50.0 
                         
                     logging.info(f"💎 Ultra Binance Discovery: Targeted {len(self.symbols)} tail gems (Rank 300-400 by Volume).")
                     logging.info(f"Sample Symbols: {self.symbols[:10]}")
@@ -98,18 +98,20 @@ class FuturesCollector:
                         qv = float(info.get('quoteVolume') or info.get('volume') or 0)
                         if 1_000_000 < qv:
                             candidates.append((sym, qv))
-                            self.market_caps[sym] = qv
+                            self.volumes_24h[sym] = qv
                 
                 candidates.sort(key=lambda x: x[1], reverse=True)
-                self.symbols = [s for s, _ in candidates[:50]]
-                logging.info(f"Binance Discovery Success: {len(self.symbols)} symbols found.")
+                # 🎯 [FIX] Fallback must also skip top coins
+                self.symbols = [s for s, _ in candidates[100:150]]
+                for s, v in candidates[100:150]:
+                    self.volumes_24h[s] = v 
             except Exception as e:
                 logging.error(f"Binance Discovery FAILED: {e}")
                 self.symbols = ["BTC/USDT:USDT", "ETH/USDT:USDT", "HBAR/USDT:USDT", "JASMY/USDT:USDT"]
                 logging.info("Binance Fallback to bare minimum. Check region blocks.")
         else:
             for s in self.symbols:
-                self.market_caps[s] = 30_000_000
+                self.volumes_24h[s] = 10_000_000 # Default fallback
         
         # Re-initialize state containers for final symbol list
         self.trade_buffers   = {s: [] for s in self.symbols}
@@ -169,10 +171,10 @@ class FuturesCollector:
                 await asyncio.sleep(5)
 
     async def scheduler_loop(self):
-        """Fires process_chunk for every symbol every 30 seconds, independent of trade flow."""
-        logging.info(f"Scheduler started: will scan {len(self.symbols)} symbols every 30s")
+        """Fires process_chunk for every symbol every 5 seconds (Protocol GHOST Speed)."""
+        logging.info(f"Scheduler started: GHOST MODE (5s interval)")
         while True:
-            await asyncio.sleep(30)
+            await asyncio.sleep(5)
             for symbol in self.symbols:
                 try:
                     await self.process_chunk(symbol)
@@ -180,24 +182,20 @@ class FuturesCollector:
                     logging.error(f"Error processing {symbol} on Binance: {e}")
 
     async def watch_oi(self, symbol: str):
-        """
-        Watch Open Interest for the symbol.
-        Note: CCXT Pro support for watch_open_interest varies by exchange.
-        Fallback to polling if sub-second updates aren't available.
-        """
+        """Watch Open Interest for the symbol."""
         logging.info(f"Starting OI watcher for {symbol}")
         while True:
             try:
                 import aiohttp
-                clean_sym = symbol.replace('/', '').upper()
+                clean_sym = symbol.replace('/', '').upper().replace(':USDT', '')
                 url = f"https://fapi.binance.com/fapi/v1/openInterest?symbol={clean_sym}"
                 async with aiohttp.ClientSession() as session:
                     async with session.get(url) as resp:
                         data = await resp.json()
                         self.oi_data[symbol] = float(data.get('openInterest', 0))
-                await asyncio.sleep(60)
+                await asyncio.sleep(30) # Increased speed
             except Exception as e:
-                logging.error(f"Error in {symbol} OI loop: {e}")
+                # logging.error(f"Error in {symbol} OI loop: {e}")
                 await asyncio.sleep(30)
 
     async def process_chunk(self, symbol: str):
@@ -231,45 +229,66 @@ class FuturesCollector:
         prices = df['price']
         price_impact = (prices.max() - prices.iloc[0]) / (prices.iloc[0] + 1e-9) if len(prices) >= 2 else 0.0
 
-        # === FEATURE: OI Change ===
+        # === FEATURE: OI + Price Change (Protocol GHOST) ===
         current_oi = self.oi_data[symbol]
-        prev_oi = self.history[symbol]['oi'].iloc[-1] if not self.history[symbol].empty else current_oi
+        prev_row = self.history[symbol].iloc[-1] if not self.history[symbol].empty else None
+        
+        prev_oi = prev_row['oi'] if prev_row is not None else current_oi
+        prev_price = prev_row['price_end'] if prev_row is not None else price_end
+        
         oi_change = (current_oi - prev_oi) / (prev_oi + 1e-9)
+        pc_change = (price_end - prev_price) / (prev_price + 1e-9)
+
+        # === FEATURE: VPVR Vacuum Score ===
+        vacuum_score = 0.0
+        hist_df = self.history[symbol]
+        if len(hist_df) >= 30:
+            price_min = hist_df['price_end'].min()
+            price_max = hist_df['price_end'].max()
+            if price_max > price_min:
+                bins = np.linspace(price_min, price_max, 20)
+                counts, _ = np.histogram(hist_df['price_end'], bins=bins, weights=hist_df['volume'])
+                poc_idx = np.argmax(counts)
+                
+                # Check where current price sits in histogram
+                curr_idx = np.digitize(price_end, bins) - 1
+                if 0 <= curr_idx < len(counts):
+                    # Vacuum = relative emptiness vs POC
+                    vacuum_score = 1.0 - (counts[curr_idx] / (counts[poc_idx] + 1e-9))
 
         # === Update rolling history ===
-        price_change = (price_end - df['price'].iloc[0]) / (df['price'].iloc[0] + 1e-9)
-        
-        # Pre-accumulation (using 30-min window from history)
-        hist_v = self.history[symbol]['volume'] if not self.history[symbol].empty else pd.Series()
-        if len(hist_v) >= 20:
-             pre_vol_mid = hist_v.iloc[:len(hist_v)//2].mean()
-             pre_vol_late = hist_v.iloc[len(hist_v)//2:].mean()
-             pre_accum_z = (pre_vol_late - pre_vol_mid) / (hist_v.std() + 1e-9)
-        else:
-             pre_accum_z = 0.0
-
         new_row = {
             'time': datetime.now(timezone.utc),
             'volume': vol,
-            'price_change': price_change,
+            'price_end': price_end,
             'oi': current_oi,
             'oi_change': oi_change,
+            'pc_change': pc_change,
             'std_rush': std_rush
         }
-        self.history[symbol] = pd.concat([self.history[symbol], pd.DataFrame([new_row])]).iloc[-120:]
+        self.history[symbol] = pd.concat([self.history[symbol], pd.DataFrame([new_row])]).iloc[-240:]
 
         # Need at least 20 candles to compute meaningful Z-scores
         if len(self.history[symbol]) < 20: return
 
         # === Z-Scores ===
         hist = self.history[symbol]
-        vol_z  = (vol         - hist['volume'].mean())       / (hist['volume'].std()       or 1)
-        pc_z   = (price_change - hist['price_change'].mean()) / (hist['price_change'].std() or 1)
-        oi_z   = (oi_change   - hist['oi_change'].mean())    / (hist['oi_change'].std()    or 1)
+        
+        # Pre-accumulation (using 30-min window from history)
+        if len(hist) >= 20:
+             pre_vol_mid = hist['volume'].iloc[:len(hist)//2].mean()
+             pre_vol_late = hist['volume'].iloc[len(hist)//2:].mean()
+             pre_accum_z = (pre_vol_late - pre_vol_mid) / (hist['volume'].std() + 1e-9)
+        else:
+             pre_accum_z = 0.0
+
+        vol_z  = (vol       - hist['volume'].mean())    / (hist['volume'].std()    or 1)
+        pc_z   = (pc_change - hist['pc_change'].mean()) / (hist['pc_change'].std() or 1)
+        oi_z   = (oi_change - hist['oi_change'].mean()) / (hist['oi_change'].std() or 1)
 
         # ── 30秒スキャンサマリー ──
-        market_cap = self.market_caps.get(symbol, 30_000_000)
-        s1_ok = market_cap <= self.detector.MAX_MARKET_CAP
+        vol_24h = self.volumes_24h.get(symbol, 10_000_000)
+        s1_ok = vol_24h <= self.detector.MAX_MARKET_CAP
         s2_ok = s1_ok and (vol_z > self.detector.VOL_Z_THRESHOLD and pc_z > self.detector.PC_Z_THRESHOLD)
 
         logging.info(
@@ -278,9 +297,10 @@ class FuturesCollector:
             f"| STAGE 1: {'OK' if s1_ok else 'SKIP'} | STAGE 2: {'ANOMALY' if s2_ok else 'normal'}"
         )
 
-        # === Build feature dict for v5 ===
+        # === Build feature dict for v6 (Protocol GHOST) ===
         features = {
             'symbol': symbol,
+            'exchange': self.exchange_id,
             'price': price_end,
             'vol_z': vol_z,
             'pc_z': pc_z,
@@ -292,8 +312,11 @@ class FuturesCollector:
             'buy_ratio': buy_ratio,
             'acceleration': acceleration,
             'price_impact': price_impact,
-            'market_cap': market_cap,
-            'oi_z': oi_z
+            'market_cap': vol_24h,
+            'oi_z': oi_z,
+            'oi_change': oi_change,
+            'pc_change': pc_change,
+            'vacuum_score': vacuum_score
         }
 
         result = self.detector.check_event(features)

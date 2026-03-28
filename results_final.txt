@@ -1,0 +1,27 @@
+--- Stage 4 Sync Validation (Binance vs Bybit) ---
+Total Binance Signals: 89
+
+VALIDATION RESULTS:
+Total Signals:  89
+Synced (Confirmed): 15
+Ignored (Noise):    74
+
+STAGE 4 IMPACT:
+Raw Precision:  12.4%
+Sync Precision: 46.7%
+
+Detailed Synced Signals (Top 10):
+         symbol        time  binance_gain%  bybit_sim_gain%    TP
+  JCT/USDT:USDT 03/17 15:12           40.7             1.89  True
+ANIME/USDT:USDT 03/17 00:10           38.2             2.42  True
+  ENJ/USDT:USDT 03/17 12:46           38.1             8.90  True
+  ARC/USDT:USDT 03/18 17:23           31.6             2.83  True
+  KAS/USDT:USDT 03/16 05:43           27.0             2.19  True
+POLYX/USDT:USDT 03/17 09:00           26.3             1.92  True
+    B/USDT:USDT 03/16 03:20           25.6             1.84  True
+ANIME/USDT:USDT 03/21 00:14            6.7             2.81 False
+ANIME/USDT:USDT 03/19 00:17            4.3             4.12 False
+  KAS/USDT:USDT 03/20 18:20            3.1             2.47 False
+
+NOTE: Bybit data was fetched for 11 specific symbols only.
+Stage 4 filtered out Binance-exclusive noise, keeping high-probability gems.

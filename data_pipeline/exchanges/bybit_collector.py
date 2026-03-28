@@ -167,7 +167,9 @@ class BybitCollector:
                 await self.logger.log_ticks_batch(batch)
 
     async def scheduler_loop(self):
+        """Fires process_chunk for every symbol every 5 seconds (Protocol GHOST Speed)."""
         import aiohttp
+        logging.info(f"Bybit Scheduler started: GHOST MODE (5s interval)")
         while True:
             # 🚀 Bulk fetch OI for all symbols from Bybit V5
             try:
@@ -180,9 +182,9 @@ class BybitCollector:
                             if unified:
                                 self.oi_data[unified] = float(t.get('openInterest', 0))
             except Exception as e:
-                logging.error(f"Bybit OI Bulk Fetch Error: {e}")
+                pass
 
-            await asyncio.sleep(30)
+            await asyncio.sleep(5)
             for symbol in self.symbols:
                 try:
                     await self.process_chunk(symbol)
@@ -198,56 +200,80 @@ class BybitCollector:
         price_end = df['price'].iloc[-1]
         vol = df['amount'].sum()
         
-        # Calculate v5.1 feature set (Simplified for Cross-Ex validation)
+        # === FEATURE: std_rush ===
         df['ts_dt'] = pd.to_datetime(df['received_at'], unit='s')
         df['sec'] = df['ts_dt'].dt.second
         buy_df = df[df['side'] == 'buy']
         rush_counts = buy_df.groupby('sec').size().reindex(range(0, 60), fill_value=0)
         std_rush = float(rush_counts.std())
 
+        # Features
         price_change = (price_end - df['price'].iloc[0]) / (df['price'].iloc[0] + 1e-9)
-        new_row = {'volume': vol, 'price_change': price_change}
-        self.history[symbol] = pd.concat([self.history[symbol], pd.DataFrame([new_row])]).iloc[-120:]
-
-        if len(self.history[symbol]) < 10: return
-
-        vol_z = (vol - self.history[symbol]['volume'].mean()) / (self.history[symbol]['volume'].std() or 1)
-        pc_z = (price_change - self.history[symbol]['price_change'].mean()) / (self.history[symbol]['price_change'].std() or 1)
-
-        # 🚀 OI Z-Score Calculation
+        
+        # Rolling Metrics
         current_oi = self.oi_data.get(symbol, 0)
-        prev_oi = self.history[symbol]['oi'].iloc[-1] if 'oi' in self.history[symbol].columns and not self.history[symbol].empty else current_oi
+        prev_row = self.history[symbol].iloc[-1] if not self.history[symbol].empty else None
+        
+        prev_oi = prev_row['oi'] if prev_row is not None else current_oi
+        prev_price = prev_row['price_end'] if prev_row is not None else price_end
+        
         oi_change = (current_oi - prev_oi) / (prev_oi + 1e-9)
+        pc_change = (price_end - prev_price) / (prev_price + 1e-9)
+
+        # Update history
+        new_row = {
+            'time': datetime.now(timezone.utc),
+            'volume': vol,
+            'price_end': price_end,
+            'oi': current_oi,
+            'oi_change': oi_change,
+            'pc_change': pc_change,
+            'std_rush': std_rush
+        }
+        self.history[symbol] = pd.concat([self.history[symbol], pd.DataFrame([new_row])]).iloc[-240:]
         
-        # Update history with OI
-        new_row['oi'] = current_oi
-        new_row['oi_change'] = oi_change
-        self.history[symbol] = pd.concat([self.history[symbol], pd.DataFrame([new_row])]).iloc[-120:]
-        
-        oi_z = (oi_change - self.history[symbol]['oi_change'].mean()) / (self.history[symbol]['oi_change'].std() or 1)
+        if len(self.history[symbol]) < 20: return
+        hist = self.history[symbol]
+
+        # === FEATURE: VPVR Vacuum Score ===
+        vacuum_score = 0.0
+        price_min, price_max = hist['price_end'].min(), hist['price_end'].max()
+        if price_max > price_min:
+            bins = np.linspace(price_min, price_max, 20)
+            counts, _ = np.histogram(hist['price_end'], bins=bins, weights=hist['volume'])
+            poc_idx, curr_idx = np.argmax(counts), np.digitize(price_end, bins) - 1
+            if 0 <= curr_idx < len(counts):
+                vacuum_score = 1.0 - (counts[curr_idx] / (counts[poc_idx] + 1e-9))
+
+        # === Z-Scores & Pre-accum ===
+        pre_accum_z = 0.0
+        if len(hist) >= 40:
+             pre_vol_mid = hist['volume'].iloc[:len(hist)//2].mean()
+             pre_vol_late = hist['volume'].iloc[len(hist)//2:].mean()
+             pre_accum_z = (pre_vol_late - pre_vol_mid) / (hist['volume'].std() + 1e-9)
+
+        vol_z  = (vol       - hist['volume'].mean())    / (hist['volume'].std()    or 1)
+        pc_z   = (pc_change - hist['pc_change'].mean()) / (hist['pc_change'].std() or 1)
+        oi_z   = (oi_change - hist['oi_change'].mean()) / (hist['oi_change'].std() or 1)
 
         features = {
-            'symbol': symbol,
-            'price': price_end,
-            'vol_z': vol_z,
-            'pc_z': pc_z,
-            'oi_z': oi_z, # 🚀 Added OI
-            'std_rush': std_rush,
-            'buy_ratio': len(buy_df) / (len(df) + 1e-9),
-            'exchange': 'BYBIT'
+            'symbol': symbol, 'exchange': 'BYBIT', 'price': price_end,
+            'vol_z': vol_z, 'pc_z': pc_z, 'oi_z': oi_z, 'pre_accum_z': pre_accum_z,
+            'std_rush': std_rush, 'oi_change': oi_change, 'pc_change': pc_change,
+            'vacuum_score': vacuum_score, 'buy_ratio': len(buy_df)/(len(df)+1e-9),
+            'market_cap': 50_000_000 # Placeholder for Bybit Discovery
         }
 
         if self.detector and self.detector.check_event(features)[0]:
-            logging.warning(f"🚀 BYBIT PUMP SIGNAL: {symbol} | vol_z={vol_z:.2f} pc_z={pc_z:.2f} oi_z={oi_z:.2f}")
+            logging.warning(f"👻 BYBIT GHOST SIGNAL: {symbol} | vol_z={vol_z:.2f} pc_z={pc_z:.2f}")
 
     async def run(self):
         await self.initialize()
-        
-        watchers = []
-        # 🚀 Use Combined WebSocket
-        watchers.append(asyncio.create_task(self.watch_combined_trades()))
-            
-        watchers.append(asyncio.create_task(self.scheduler_loop()))
+        watchers = [
+            asyncio.create_task(self.watch_combined_trades()),
+            asyncio.create_task(self.scheduler_loop()),
+            asyncio.create_task(self.flush_ticks_loop())
+        ]
         await asyncio.gather(*watchers)
 
 if __name__ == "__main__":

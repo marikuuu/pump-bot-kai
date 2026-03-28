@@ -13,7 +13,7 @@ PC_Z_THRESH     = 1.5       # Optimized for Max Profit
 RUSH_THRESH     = 5.0
 TAKER_RATIO     = 3.0
 OUTCOME_DAYS    = 3
-PUMP_THRESHOLD  = 1.25      # 25%以上の上昇を成功(TP)と定義
+PUMP_THRESHOLD  = 1.5      # 25%以上の上昇を成功(TP)と定義
 
 START_TS = int(datetime(2026, 3, 15, 15, 0, 0, tzinfo=timezone.utc).timestamp() * 1000)
 END_TS   = int(datetime(2026, 3, 21, 15, 0, 0, tzinfo=timezone.utc).timestamp() * 1000)

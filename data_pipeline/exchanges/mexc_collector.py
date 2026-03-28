@@ -215,8 +215,10 @@ class MexcCollector:
                 await self.logger.log_ticks_batch(batch)
 
     async def scheduler_loop(self):
+        """Fires process_chunk for every symbol every 5 seconds (Protocol GHOST Speed)."""
+        logging.info(f"MEXC Scheduler started: GHOST MODE (5s interval)")
         while True:
-            await asyncio.sleep(30)
+            await asyncio.sleep(5)
             for symbol in self.symbols:
                 try:
                     await self.process_chunk(symbol)
@@ -240,9 +242,9 @@ class MexcCollector:
         std_rush = float(rush_counts.std())
 
         costs = df['price'] * df['amount']
-        avg_trade_size = float(costs.mean())
-        max_trade_size = float(costs.max())
-        median_trade_size = float(costs.median())
+        avg_trade_size = float(costs.mean()) if not costs.empty else 0.0
+        max_trade_size = float(costs.max()) if not costs.empty else 0.0
+        median_trade_size = float(costs.median()) if not costs.empty else 0.0
         buy_ratio = len(buy_df) / (len(df) + 1e-9)
         
         mid_ts = df['received_at'].min() + 15
@@ -251,38 +253,63 @@ class MexcCollector:
         prices = df['price']
         price_impact = (prices.max() - prices.iloc[0]) / (prices.iloc[0] + 1e-9) if len(prices) >= 2 else 0.0
 
+        # Features
+        current_oi = 0.0 # MEXC Bulk OI is hard, placeholder
+        prev_row = self.history[symbol].iloc[-1] if not self.history[symbol].empty else None
+        prev_price = prev_row['price_end'] if prev_row is not None else price_end
+        
+        oi_change = 0.0
+        pc_change = (price_end - prev_price) / (prev_price + 1e-9)
+
         # Update history
-        price_change = (price_end - df['price'].iloc[0]) / (df['price'].iloc[0] + 1e-9)
-        new_row = {'volume': vol, 'price_change': price_change}
-        self.history[symbol] = pd.concat([self.history[symbol], pd.DataFrame([new_row])]).iloc[-120:]
+        new_row = {
+            'time': datetime.now(timezone.utc),
+            'volume': vol,
+            'price_end': price_end,
+            'oi': current_oi,
+            'oi_change': oi_change,
+            'pc_change': pc_change,
+            'std_rush': std_rush
+        }
+        self.history[symbol] = pd.concat([self.history[symbol], pd.DataFrame([new_row])]).iloc[-240:]
 
-        if len(self.history[symbol]) < 10: return
-
-        # Z-Scores
+        if len(self.history[symbol]) < 20: return
         hist = self.history[symbol]
-        vol_z  = (vol - hist['volume'].mean()) / (hist['volume'].std() or 1)
-        pc_z   = (price_change - hist['price_change'].mean()) / (hist['price_change'].std() or 1)
+
+        # === FEATURE: VPVR Vacuum Score ===
+        vacuum_score = 0.0
+        price_min, price_max = hist['price_end'].min(), hist['price_end'].max()
+        if price_max > price_min:
+            bins = np.linspace(price_min, price_max, 20)
+            counts, _ = np.histogram(hist['price_end'], bins=bins, weights=hist['volume'])
+            poc_idx, curr_idx = np.argmax(counts), np.digitize(price_end, bins) - 1
+            if 0 <= curr_idx < len(counts):
+                vacuum_score = 1.0 - (counts[curr_idx] / (counts[poc_idx] + 1e-9))
+
+        # === Z-Scores & Pre-accum ===
+        pre_accum_z = 0.0
+        if len(hist) >= 40:
+             pre_vol_mid = hist['volume'].iloc[:len(hist)//2].mean()
+             pre_vol_late = hist['volume'].iloc[len(hist)//2:].mean()
+             pre_accum_z = (pre_vol_late - pre_vol_mid) / (hist['volume'].std() + 1e-9)
+
+        vol_z  = (vol       - hist['volume'].mean())    / (hist['volume'].std()    or 1)
+        pc_z   = (pc_change - hist['pc_change'].mean()) / (hist['pc_change'].std() or 1)
+        oi_z   = 0.0 
 
         features = {
-            'symbol': symbol,
-            'price': price_end,
-            'vol_z': vol_z,
-            'pc_z': pc_z,
-            'pre_accum_z': 0.0, # Not enough history for deep pre-accum check yet
-            'std_rush': std_rush,
-            'avg_trade_size': avg_trade_size,
-            'max_trade_size': max_trade_size,
-            'median_trade_size': median_trade_size,
-            'buy_ratio': buy_ratio,
-            'acceleration': acceleration,
+            'symbol': symbol, 'exchange': 'MEXC', 'price': price_end,
+            'vol_z': vol_z, 'pc_z': pc_z, 'oi_z': oi_z, 'pre_accum_z': pre_accum_z,
+            'std_rush': std_rush, 'oi_change': oi_change, 'pc_change': pc_change,
+            'vacuum_score': vacuum_score, 'buy_ratio': buy_ratio,
+            'avg_trade_size': avg_trade_size, 'max_trade_size': max_trade_size,
+            'median_trade_size': median_trade_size, 'acceleration': acceleration,
             'price_impact': price_impact,
-            'market_cap': self.market_caps.get(symbol, 1_000_000),
-            'oi_z': 0.0 # MEXC OI data is harder to fetch real-time in bulk
+            'market_cap': self.market_caps.get(symbol, 1_000_000)
         }
 
-        # Stage 3 ML Check
         if self.detector and self.detector.check_event(features)[0]:
-            logging.warning(f"🚀 MEXC PUMP SIGNAL: {symbol} | vol_z={vol_z:.2f} pc_z={pc_z:.2f}")
+            logging.warning(f"👻 MEXC GHOST SIGNAL: {symbol} | vol_z={vol_z:.2f} pc_z={pc_z:.2f}")
             
             # Save the raw ticks for future training (The DNA of this pump)
             save_path = f"data/ticks_mexc_{symbol.replace('/','_').replace(':','_')}_{int(time.time())}.csv"
@@ -292,13 +319,11 @@ class MexcCollector:
 
     async def run(self):
         await self.initialize()
-        
-        watchers = []
-        # 🚀 Use Combined WebSocket
-        watchers.append(asyncio.create_task(self.watch_combined_trades()))
-        watchers.append(asyncio.create_task(self.flush_ticks_loop()))
-            
-        watchers.append(asyncio.create_task(self.scheduler_loop()))
+        watchers = [
+            asyncio.create_task(self.watch_combined_trades()),
+            asyncio.create_task(self.scheduler_loop()),
+            asyncio.create_task(self.flush_ticks_loop())
+        ]
         await asyncio.gather(*watchers)
 
 if __name__ == "__main__":

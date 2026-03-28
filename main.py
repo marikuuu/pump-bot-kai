@@ -84,9 +84,10 @@ async def main():
     # Bridge Bitget symbols to others that might be blocked
     if master_symbols:
         logging.info(f"Discovery Bridge: Sharing {len(master_symbols)} symbols with rest of the world.")
-        if not binance_collector.symbols: binance_collector.symbols = master_symbols[:30]
-        if not mexc_collector.symbols:    mexc_collector.symbols    = master_symbols[:30]
-        if not bybit_collector.symbols:   bybit_collector.symbols   = master_symbols[:30]
+        # Expand scope to target more deep-tail gems
+        if not binance_collector.symbols: binance_collector.symbols = master_symbols[:100]
+        if not mexc_collector.symbols:    mexc_collector.symbols    = master_symbols[:100]
+        if not bybit_collector.symbols:   bybit_collector.symbols   = master_symbols[:100]
 
     # --- Step 2: Parallel Startup ---
     tasks = [

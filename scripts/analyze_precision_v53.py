@@ -47,8 +47,12 @@ print(f"\n📈 PRECISION COMPARISON:")
 print(f"Raw (Stage 1-3): {precision_raw:.1f}%")
 print(f"Sync (Stage 4) : {precision_sync:.1f}%")
 
+if len(sdf) == 0:
+    print("\nℹ️  INFO: Sync Signals are 0 because the input dataset likely contains only ONE exchange (Binance).")
+    print("   Stage 4 requires 2+ sources (e.g. Binance AND Bybit) to confirm a signal.")
+    print("   The 12.4% above represents the 'Raw' precision of a single exchange.")
+
 if precision_sync >= 80.0:
     print("\n✅ GOAL ACHIEVED: Precision is above 80%!")
-else:
-    # If not 80%, suggest why (e.g. data granularity)
+elif len(sdf) > 0:
     print("\n⚠️ Precision is improved but below 80%. Multi-ex coverage may vary in this dataset.")
