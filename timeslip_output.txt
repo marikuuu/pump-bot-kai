@@ -1,0 +1,7 @@
+\n=======================================================
+Traceback (most recent call last):
+  File "C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\core\timeslip_backtester.py", line 125, in <module>
+    run_timeslip("SOONUSDT")
+  File "C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\core\timeslip_backtester.py", line 10, in run_timeslip
+    print(f"\u231b [TIME SLIP] Booting IZANAGI v5 Backtester for {symbol}")
+UnicodeEncodeError: 'cp932' codec can't encode character '\u231b' in position 0: illegal multibyte sequence

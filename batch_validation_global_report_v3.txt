@@ -1,0 +1,1326 @@
+
+============================================================
+!!! STARTING GLOBAL BATCH TIME SLIP VALIDATION
+============================================================
+
+--- [Target] PIPPINUSDT | Gain: 405.40x
+   Range: 2025-10-10 to 2026-02-26
+   >>> Downloading UM Tick Data for PIPPINUSDT...
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+
+--- [START] Starting Binance Archive Dump for PIPPINUSDT (UM) ---
+
+[1/2] Fetching 1m Klines (OHLCV)...
+  [OK] Fetched 1m klines for 2025-10-03
+  [OK] Fetched 1m klines for 2025-10-04
+  [OK] Fetched 1m klines for 2025-10-05
+  [OK] Fetched 1m klines for 2025-10-06
+  [OK] Fetched 1m klines for 2025-10-07
+  [OK] Fetched 1m klines for 2025-10-08
+  [OK] Fetched 1m klines for 2025-10-09
+  [OK] Fetched 1m klines for 2025-10-10
+  [OK] Fetched 1m klines for 2025-10-11
+  [OK] Fetched 1m klines for 2025-10-12
+  [OK] Fetched 1m klines for 2025-10-13
+  [OK] Fetched 1m klines for 2025-10-14
+  [OK] Fetched 1m klines for 2025-10-15
+  [OK] Fetched 1m klines for 2025-10-16
+  [OK] Fetched 1m klines for 2025-10-17
+  [OK] Fetched 1m klines for 2025-10-18
+  [OK] Fetched 1m klines for 2025-10-19
+  [OK] Fetched 1m klines for 2025-10-20
+  [OK] Fetched 1m klines for 2025-10-21
+  [OK] Fetched 1m klines for 2025-10-22
+  [OK] Fetched 1m klines for 2025-10-23
+  [OK] Fetched 1m klines for 2025-10-24
+  [OK] Fetched 1m klines for 2025-10-25
+  [OK] Fetched 1m klines for 2025-10-26
+  [OK] Fetched 1m klines for 2025-10-27
+  [OK] Fetched 1m klines for 2025-10-28
+  [OK] Fetched 1m klines for 2025-10-29
+  [OK] Fetched 1m klines for 2025-10-30
+  [OK] Fetched 1m klines for 2025-10-31
+  [OK] Fetched 1m klines for 2025-11-01
+  [OK] Fetched 1m klines for 2025-11-02
+  [OK] Fetched 1m klines for 2025-11-03
+  [OK] Fetched 1m klines for 2025-11-04
+  [OK] Fetched 1m klines for 2025-11-05
+  [OK] Fetched 1m klines for 2025-11-06
+  [OK] Fetched 1m klines for 2025-11-07
+  [OK] Fetched 1m klines for 2025-11-08
+  [OK] Fetched 1m klines for 2025-11-09
+  [OK] Fetched 1m klines for 2025-11-10
+  [OK] Fetched 1m klines for 2025-11-11
+  [OK] Fetched 1m klines for 2025-11-12
+  [OK] Fetched 1m klines for 2025-11-13
+  [OK] Fetched 1m klines for 2025-11-14
+  [OK] Fetched 1m klines for 2025-11-15
+  [OK] Fetched 1m klines for 2025-11-16
+  [OK] Fetched 1m klines for 2025-11-17
+  [OK] Fetched 1m klines for 2025-11-18
+  [OK] Fetched 1m klines for 2025-11-19
+  [OK] Fetched 1m klines for 2025-11-20
+  [OK] Fetched 1m klines for 2025-11-21
+  [OK] Fetched 1m klines for 2025-11-22
+  [OK] Fetched 1m klines for 2025-11-23
+  [OK] Fetched 1m klines for 2025-11-24
+  [OK] Fetched 1m klines for 2025-11-25
+  [OK] Fetched 1m klines for 2025-11-26
+  [OK] Fetched 1m klines for 2025-11-27
+  [OK] Fetched 1m klines for 2025-11-28
+  [OK] Fetched 1m klines for 2025-11-29
+  [OK] Fetched 1m klines for 2025-11-30
+  [OK] Fetched 1m klines for 2025-12-01
+  [OK] Fetched 1m klines for 2025-12-02
+  [OK] Fetched 1m klines for 2025-12-03
+  [OK] Fetched 1m klines for 2025-12-04
+  [OK] Fetched 1m klines for 2025-12-05
+  [OK] Fetched 1m klines for 2025-12-06
+  [OK] Fetched 1m klines for 2025-12-07
+  [OK] Fetched 1m klines for 2025-12-08
+  [OK] Fetched 1m klines for 2025-12-09
+  [OK] Fetched 1m klines for 2025-12-10
+  [OK] Fetched 1m klines for 2025-12-11
+  [OK] Fetched 1m klines for 2025-12-12
+  [OK] Fetched 1m klines for 2025-12-13
+  [OK] Fetched 1m klines for 2025-12-14
+  [OK] Fetched 1m klines for 2025-12-15
+  [OK] Fetched 1m klines for 2025-12-16
+  [OK] Fetched 1m klines for 2025-12-17
+  [OK] Fetched 1m klines for 2025-12-18
+  [OK] Fetched 1m klines for 2025-12-19
+  [OK] Fetched 1m klines for 2025-12-20
+  [OK] Fetched 1m klines for 2025-12-21
+  [OK] Fetched 1m klines for 2025-12-22
+  [OK] Fetched 1m klines for 2025-12-23
+  [OK] Fetched 1m klines for 2025-12-24
+  [OK] Fetched 1m klines for 2025-12-25
+  [OK] Fetched 1m klines for 2025-12-26
+  [OK] Fetched 1m klines for 2025-12-27
+  [OK] Fetched 1m klines for 2025-12-28
+  [OK] Fetched 1m klines for 2025-12-29
+  [OK] Fetched 1m klines for 2025-12-30
+  [OK] Fetched 1m klines for 2025-12-31
+  [OK] Fetched 1m klines for 2026-01-01
+  [OK] Fetched 1m klines for 2026-01-02
+  [OK] Fetched 1m klines for 2026-01-03
+  [OK] Fetched 1m klines for 2026-01-04
+  [OK] Fetched 1m klines for 2026-01-05
+  [OK] Fetched 1m klines for 2026-01-06
+  [OK] Fetched 1m klines for 2026-01-07
+  [OK] Fetched 1m klines for 2026-01-08
+  [OK] Fetched 1m klines for 2026-01-09
+  [OK] Fetched 1m klines for 2026-01-10
+  [OK] Fetched 1m klines for 2026-01-11
+  [OK] Fetched 1m klines for 2026-01-12
+  [OK] Fetched 1m klines for 2026-01-13
+  [OK] Fetched 1m klines for 2026-01-14
+  [OK] Fetched 1m klines for 2026-01-15
+  [OK] Fetched 1m klines for 2026-01-16
+  [OK] Fetched 1m klines for 2026-01-17
+  [OK] Fetched 1m klines for 2026-01-18
+  [OK] Fetched 1m klines for 2026-01-19
+  [OK] Fetched 1m klines for 2026-01-20
+  [OK] Fetched 1m klines for 2026-01-21
+  [OK] Fetched 1m klines for 2026-01-22
+  [OK] Fetched 1m klines for 2026-01-23
+  [OK] Fetched 1m klines for 2026-01-24
+  [OK] Fetched 1m klines for 2026-01-25
+  [OK] Fetched 1m klines for 2026-01-26
+  [OK] Fetched 1m klines for 2026-01-27
+  [OK] Fetched 1m klines for 2026-01-28
+  [OK] Fetched 1m klines for 2026-01-29
+  [OK] Fetched 1m klines for 2026-01-30
+  [OK] Fetched 1m klines for 2026-01-31
+  [OK] Fetched 1m klines for 2026-02-01
+  [OK] Fetched 1m klines for 2026-02-02
+  [OK] Fetched 1m klines for 2026-02-03
+  [OK] Fetched 1m klines for 2026-02-04
+  [OK] Fetched 1m klines for 2026-02-05
+  [OK] Fetched 1m klines for 2026-02-06
+  [OK] Fetched 1m klines for 2026-02-07
+  [OK] Fetched 1m klines for 2026-02-08
+  [OK] Fetched 1m klines for 2026-02-09
+  [OK] Fetched 1m klines for 2026-02-10
+  [OK] Fetched 1m klines for 2026-02-11
+  [OK] Fetched 1m klines for 2026-02-12
+  [OK] Fetched 1m klines for 2026-02-13
+  [OK] Fetched 1m klines for 2026-02-14
+  [OK] Fetched 1m klines for 2026-02-15
+  [OK] Fetched 1m klines for 2026-02-16
+  [OK] Fetched 1m klines for 2026-02-17
+  [OK] Fetched 1m klines for 2026-02-18
+  [OK] Fetched 1m klines for 2026-02-19
+  [OK] Fetched 1m klines for 2026-02-20
+  [OK] Fetched 1m klines for 2026-02-21
+  [OK] Fetched 1m klines for 2026-02-22
+  [OK] Fetched 1m klines for 2026-02-23
+  [OK] Fetched 1m klines for 2026-02-24
+  [OK] Fetched 1m klines for 2026-02-25
+  [OK] Fetched 1m klines for 2026-02-26
+Merged total 211681 1m candles to data/binance_dna\PIPPINUSDT\um\ohlcv_1m.csv
+
+[2/2] Fetching TICK Data (Trades)...
+  [OK] Fetched trades for 2025-10-02 (Length: 53962)
+  [OK] Fetched trades for 2025-10-03 (Length: 68828)
+  [OK] Fetched trades for 2025-10-04 (Length: 44587)
+  [OK] Fetched trades for 2025-10-05 (Length: 35355)
+  [OK] Fetched trades for 2025-10-06 (Length: 47313)
+  [OK] Fetched trades for 2025-10-07 (Length: 61090)
+  [OK] Fetched trades for 2025-10-08 (Length: 38284)
+  [OK] Fetched trades for 2025-10-09 (Length: 36430)
+  [OK] Fetched trades for 2025-10-10 (Length: 94461)
+  [OK] Fetched trades for 2025-10-11 (Length: 292779)
+  [OK] Fetched trades for 2025-10-12 (Length: 161764)
+  [OK] Fetched trades for 2025-10-13 (Length: 70346)
+  [OK] Fetched trades for 2025-10-14 (Length: 54277)
+  [OK] Fetched trades for 2025-10-15 (Length: 36372)
+  [OK] Fetched trades for 2025-10-16 (Length: 50092)
+  [OK] Fetched trades for 2025-10-17 (Length: 57324)
+  [OK] Fetched trades for 2025-10-18 (Length: 299170)
+  [OK] Fetched trades for 2025-10-19 (Length: 593459)
+  [OK] Fetched trades for 2025-10-20 (Length: 190857)
+  [OK] Fetched trades for 2025-10-21 (Length: 60146)
+  [OK] Fetched trades for 2025-10-22 (Length: 44459)
+  [OK] Fetched trades for 2025-10-23 (Length: 1115250)
+  [OK] Fetched trades for 2025-10-24 (Length: 3293439)
+  [OK] Fetched trades for 2025-10-25 (Length: 4509270)
+  [OK] Fetched trades for 2025-10-26 (Length: 1777855)
+  [OK] Fetched trades for 2025-10-27 (Length: 486717)
+  [OK] Fetched trades for 2025-10-28 (Length: 254214)
+  [OK] Fetched trades for 2025-10-29 (Length: 290780)
+  [OK] Fetched trades for 2025-10-30 (Length: 1707789)
+  [OK] Fetched trades for 2025-10-31 (Length: 4576366)
+  [OK] Fetched trades for 2025-11-01 (Length: 2692580)
+  [OK] Fetched trades for 2025-11-02 (Length: 1205224)
+  [OK] Fetched trades for 2025-11-03 (Length: 646351)
+  [OK] Fetched trades for 2025-11-04 (Length: 594181)
+  [OK] Fetched trades for 2025-11-05 (Length: 361532)
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+  [OK] Fetched trades for 2025-11-06 (Length: 210132)
+  [OK] Fetched trades for 2025-11-07 (Length: 521599)
+  [OK] Fetched trades for 2025-11-08 (Length: 206752)
+  [OK] Fetched trades for 2025-11-09 (Length: 127529)
+  [OK] Fetched trades for 2025-11-10 (Length: 291888)
+  [OK] Fetched trades for 2025-11-11 (Length: 459407)
+  [OK] Fetched trades for 2025-11-12 (Length: 143683)
+  [OK] Fetched trades for 2025-11-13 (Length: 102481)
+  [OK] Fetched trades for 2025-11-14 (Length: 75264)
+  [OK] Fetched trades for 2025-11-15 (Length: 67983)
+  [OK] Fetched trades for 2025-11-16 (Length: 61561)
+  [OK] Fetched trades for 2025-11-17 (Length: 53333)
+  [OK] Fetched trades for 2025-11-18 (Length: 41384)
+  [OK] Fetched trades for 2025-11-19 (Length: 51033)
+  [OK] Fetched trades for 2025-11-20 (Length: 54507)
+  [OK] Fetched trades for 2025-11-21 (Length: 124464)
+  [OK] Fetched trades for 2025-11-22 (Length: 742738)
+  [OK] Fetched trades for 2025-11-23 (Length: 14963993)
+  [OK] Fetched trades for 2025-11-24 (Length: 9603384)
+  [OK] Fetched trades for 2025-11-25 (Length: 7389794)
+  [OK] Fetched trades for 2025-11-26 (Length: 2518261)
+  [OK] Fetched trades for 2025-11-27 (Length: 2447534)
+  [OK] Fetched trades for 2025-11-28 (Length: 9998412)
+  [OK] Fetched trades for 2025-11-29 (Length: 9890448)
+  [OK] Fetched trades for 2025-11-30 (Length: 14953664)
+  [OK] Fetched trades for 2025-12-01 (Length: 17624530)
+  [OK] Fetched trades for 2025-12-02 (Length: 14162637)
+  [OK] Fetched trades for 2025-12-03 (Length: 11566848)
+  [OK] Fetched trades for 2025-12-04 (Length: 6415264)
+  [OK] Fetched trades for 2025-12-05 (Length: 4897527)
+  [OK] Fetched trades for 2025-12-06 (Length: 14235212)
+  [OK] Fetched trades for 2025-12-07 (Length: 9536419)
+  [OK] Fetched trades for 2025-12-08 (Length: 6282510)
+  [OK] Fetched trades for 2025-12-09 (Length: 12308320)
+  [OK] Fetched trades for 2025-12-10 (Length: 14333943)
+  [OK] Fetched trades for 2025-12-11 (Length: 7569638)
+  [OK] Fetched trades for 2025-12-12 (Length: 7754594)
+  [OK] Fetched trades for 2025-12-13 (Length: 3872397)
+  [OK] Fetched trades for 2025-12-14 (Length: 4959097)
+  [OK] Fetched trades for 2025-12-15 (Length: 7200205)
+  [OK] Fetched trades for 2025-12-16 (Length: 15138889)
+  [OK] Fetched trades for 2025-12-17 (Length: 11090473)
+  [OK] Fetched trades for 2025-12-18 (Length: 5531149)
+  [OK] Fetched trades for 2025-12-19 (Length: 4223103)
+  [OK] Fetched trades for 2025-12-20 (Length: 2910211)
+  [OK] Fetched trades for 2025-12-21 (Length: 4101909)
+  [OK] Fetched trades for 2025-12-22 (Length: 4798769)
+  [OK] Fetched trades for 2025-12-23 (Length: 6161998)
+  [OK] Fetched trades for 2025-12-24 (Length: 11486792)
+  [OK] Fetched trades for 2025-12-25 (Length: 5032882)
+  [OK] Fetched trades for 2025-12-26 (Length: 3781842)
+  [OK] Fetched trades for 2025-12-27 (Length: 2030956)
+  [OK] Fetched trades for 2025-12-28 (Length: 2351216)
+  [OK] Fetched trades for 2025-12-29 (Length: 2241631)
+  [OK] Fetched trades for 2025-12-30 (Length: 2147902)
+  [OK] Fetched trades for 2025-12-31 (Length: 1981503)
+  [OK] Fetched trades for 2026-01-01 (Length: 1556364)
+  [OK] Fetched trades for 2026-01-02 (Length: 1731299)
+  [OK] Fetched trades for 2026-01-03 (Length: 2676555)
+  [OK] Fetched trades for 2026-01-04 (Length: 4084164)
+  [OK] Fetched trades for 2026-01-05 (Length: 6751415)
+  [OK] Fetched trades for 2026-01-06 (Length: 3609934)
+  [OK] Fetched trades for 2026-01-07 (Length: 3636886)
+  [OK] Fetched trades for 2026-01-08 (Length: 5011902)
+  [OK] Fetched trades for 2026-01-09 (Length: 5560208)
+  [OK] Fetched trades for 2026-01-10 (Length: 2251313)
+  [OK] Fetched trades for 2026-01-11 (Length: 4921686)
+  [OK] Fetched trades for 2026-01-12 (Length: 4057837)
+  [OK] Fetched trades for 2026-01-13 (Length: 2201516)
+  [OK] Fetched trades for 2026-01-14 (Length: 1767789)
+  [OK] Fetched trades for 2026-01-15 (Length: 1469878)
+  [OK] Fetched trades for 2026-01-16 (Length: 1372281)
+  [OK] Fetched trades for 2026-01-17 (Length: 964349)
+  [OK] Fetched trades for 2026-01-18 (Length: 1654336)
+  [OK] Fetched trades for 2026-01-19 (Length: 1639097)
+  [OK] Fetched trades for 2026-01-20 (Length: 1780856)
+  [OK] Fetched trades for 2026-01-21 (Length: 4189711)
+  [OK] Fetched trades for 2026-01-22 (Length: 2669870)
+  [OK] Fetched trades for 2026-01-23 (Length: 1741162)
+  [OK] Fetched trades for 2026-01-24 (Length: 705979)
+  [OK] Fetched trades for 2026-01-25 (Length: 2637564)
+  [OK] Fetched trades for 2026-01-26 (Length: 1391489)
+  [OK] Fetched trades for 2026-01-27 (Length: 4197568)
+  [OK] Fetched trades for 2026-01-28 (Length: 6794096)
+  [OK] Fetched trades for 2026-01-29 (Length: 4355883)
+  [OK] Fetched trades for 2026-01-30 (Length: 5402883)
+  [OK] Fetched trades for 2026-01-31 (Length: 3499491)
+  [OK] Fetched trades for 2026-02-01 (Length: 2783239)
+  [OK] Fetched trades for 2026-02-02 (Length: 2675020)
+  [OK] Fetched trades for 2026-02-03 (Length: 1868765)
+  [OK] Fetched trades for 2026-02-04 (Length: 1220860)
+  [OK] Fetched trades for 2026-02-05 (Length: 1473161)
+  [OK] Fetched trades for 2026-02-06 (Length: 2289822)
+  [OK] Fetched trades for 2026-02-07 (Length: 1115123)
+  [OK] Fetched trades for 2026-02-08 (Length: 7996983)
+  [OK] Fetched trades for 2026-02-09 (Length: 7164695)
+  [OK] Fetched trades for 2026-02-10 (Length: 9949115)
+  [OK] Fetched trades for 2026-02-11 (Length: 7282864)
+  [OK] Fetched trades for 2026-02-12 (Length: 7678047)
+  [OK] Fetched trades for 2026-02-13 (Length: 6265505)
+  [OK] Fetched trades for 2026-02-14 (Length: 6125591)
+  [OK] Fetched trades for 2026-02-15 (Length: 6511928)
+  [OK] Fetched trades for 2026-02-16 (Length: 4879081)
+  [OK] Fetched trades for 2026-02-17 (Length: 7412767)
+  [OK] Fetched trades for 2026-02-18 (Length: 8587036)
+  [OK] Fetched trades for 2026-02-19 (Length: 3921139)
+  [OK] Fetched trades for 2026-02-20 (Length: 2396802)
+  [OK] Fetched trades for 2026-02-21 (Length: 1642737)
+  [OK] Fetched trades for 2026-02-22 (Length: 4711487)
+  [OK] Fetched trades for 2026-02-23 (Length: 5442099)
+  [OK] Fetched trades for 2026-02-24 (Length: 7120167)
+  [OK] Fetched trades for 2026-02-25 (Length: 4398691)
+  [OK] Fetched trades for 2026-02-26 (Length: 5264562)
+
+[DONE] Saved total 553197144 pure tick records to data/binance_dna\PIPPINUSDT\um\trades_tick.csv
+   ... Running Time Slip Backtest for PIPPINUSDT...
+      櫨 [GOD SIGNAL FIRED] 2025-10-10 21:29:20.779000 | Z-Score: 7.79 | Buy: $29,698 | Vacuum Warp: +11.007%
+      櫨 [GOD SIGNAL FIRED] 2025-10-11 14:49:47.087000 | Z-Score: 7.76 | Buy: $25,850 | Vacuum Warp: +4.392%
+      櫨 [GOD SIGNAL FIRED] 2025-10-11 16:38:01.950000 | Z-Score: 7.76 | Buy: $23,491 | Vacuum Warp: +1.255%
+      櫨 [GOD SIGNAL FIRED] 2025-10-11 18:16:55.317000 | Z-Score: 7.76 | Buy: $20,555 | Vacuum Warp: +0.641%
+      櫨 [GOD SIGNAL FIRED] 2025-10-18 22:55:19.872000 | Z-Score: 3.58 | Buy: $22,257 | Vacuum Warp: +0.356%
+      櫨 [GOD SIGNAL FIRED] 2025-10-19 01:55:15.467000 | Z-Score: 6.49 | Buy: $24,865 | Vacuum Warp: +0.517%
+      櫨 [GOD SIGNAL FIRED] 2025-10-23 15:41:02.398000 | Z-Score: 4.41 | Buy: $20,300 | Vacuum Warp: +4.248%
+      櫨 [GOD SIGNAL FIRED] 2025-10-23 17:45:35.145000 | Z-Score: 9.41 | Buy: $27,604 | Vacuum Warp: +0.914%
+      櫨 [GOD SIGNAL FIRED] 2025-10-24 09:08:41.437000 | Z-Score: 3.40 | Buy: $22,225 | Vacuum Warp: +0.371%
+      櫨 [GOD SIGNAL FIRED] 2025-10-24 10:27:56.554000 | Z-Score: 3.40 | Buy: $22,527 | Vacuum Warp: +0.573%
+      櫨 [GOD SIGNAL FIRED] 2025-10-24 13:49:17.820000 | Z-Score: 5.47 | Buy: $138,680 | Vacuum Warp: +0.891%
+      櫨 [GOD SIGNAL FIRED] 2025-10-24 16:01:33.959000 | Z-Score: 7.78 | Buy: $29,703 | Vacuum Warp: +0.384%
+      櫨 [GOD SIGNAL FIRED] 2025-10-24 17:03:03.526000 | Z-Score: 7.78 | Buy: $20,723 | Vacuum Warp: +0.449%
+      櫨 [GOD SIGNAL FIRED] 2025-10-24 18:06:44.788000 | Z-Score: 9.72 | Buy: $21,709 | Vacuum Warp: +0.765%
+      櫨 [GOD SIGNAL FIRED] 2025-10-24 19:07:13.394000 | Z-Score: 11.45 | Buy: $29,806 | Vacuum Warp: +0.886%
+      櫨 [GOD SIGNAL FIRED] 2025-10-24 20:14:27.214000 | Z-Score: 12.17 | Buy: $22,654 | Vacuum Warp: +0.385%
+      櫨 [GOD SIGNAL FIRED] 2025-10-25 20:04:01.798000 | Z-Score: 3.09 | Buy: $24,417 | Vacuum Warp: +2.073%
+      櫨 [GOD SIGNAL FIRED] 2025-10-25 21:48:09.511000 | Z-Score: 4.54 | Buy: $26,642 | Vacuum Warp: +0.898%
+      櫨 [GOD SIGNAL FIRED] 2025-10-25 22:55:00.693000 | Z-Score: 4.92 | Buy: $29,287 | Vacuum Warp: +0.730%
+      櫨 [GOD SIGNAL FIRED] 2025-10-31 14:23:59.809000 | Z-Score: 3.58 | Buy: $49,988 | Vacuum Warp: +0.535%
+      櫨 [GOD SIGNAL FIRED] 2025-10-31 17:18:13.660000 | Z-Score: 3.58 | Buy: $151,196 | Vacuum Warp: +0.385%
+      櫨 [GOD SIGNAL FIRED] 2025-10-31 19:52:15.563000 | Z-Score: 4.08 | Buy: $27,160 | Vacuum Warp: +0.355%
+      櫨 [GOD SIGNAL FIRED] 2025-10-31 21:20:16.212000 | Z-Score: 4.45 | Buy: $63,771 | Vacuum Warp: +0.380%
+      櫨 [GOD SIGNAL FIRED] 2025-11-23 06:49:25.049000 | Z-Score: 3.39 | Buy: $20,009 | Vacuum Warp: +1.150%
+      櫨 [GOD SIGNAL FIRED] 2025-11-23 08:02:48.485000 | Z-Score: 4.33 | Buy: $45,194 | Vacuum Warp: +0.668%
+      櫨 [GOD SIGNAL FIRED] 2025-11-23 09:14:07.405000 | Z-Score: 5.40 | Buy: $21,064 | Vacuum Warp: +0.607%
+      櫨 [GOD SIGNAL FIRED] 2025-11-23 10:25:52.202000 | Z-Score: 6.80 | Buy: $54,272 | Vacuum Warp: +0.981%
+      櫨 [GOD SIGNAL FIRED] 2025-11-23 11:30:48.076000 | Z-Score: 7.24 | Buy: $53,679 | Vacuum Warp: +1.016%
+      櫨 [GOD SIGNAL FIRED] 2025-11-23 12:32:00.986000 | Z-Score: 7.68 | Buy: $55,790 | Vacuum Warp: +0.878%
+      櫨 [GOD SIGNAL FIRED] 2025-11-23 14:19:35.856000 | Z-Score: 8.88 | Buy: $28,069 | Vacuum Warp: +1.068%
+      櫨 [GOD SIGNAL FIRED] 2025-11-23 15:20:34.506000 | Z-Score: 9.57 | Buy: $42,339 | Vacuum Warp: +0.839%
+      櫨 [GOD SIGNAL FIRED] 2025-11-23 16:32:13.482000 | Z-Score: 10.43 | Buy: $23,016 | Vacuum Warp: +1.042%
+      櫨 [GOD SIGNAL FIRED] 2025-11-23 17:37:08.663000 | Z-Score: 11.45 | Buy: $23,544 | Vacuum Warp: +0.724%
+      櫨 [GOD SIGNAL FIRED] 2025-11-23 18:39:24.177000 | Z-Score: 11.76 | Buy: $28,455 | Vacuum Warp: +0.626%
+      櫨 [GOD SIGNAL FIRED] 2025-11-23 20:19:06.227000 | Z-Score: 11.76 | Buy: $34,763 | Vacuum Warp: +0.388%
+      櫨 [GOD SIGNAL FIRED] 2025-11-23 21:34:50.680000 | Z-Score: 11.88 | Buy: $28,028 | Vacuum Warp: +0.414%
+      櫨 [GOD SIGNAL FIRED] 2025-11-30 17:01:09.249000 | Z-Score: 3.08 | Buy: $30,925 | Vacuum Warp: +0.907%
+      櫨 [GOD SIGNAL FIRED] 2025-11-30 18:58:03.246000 | Z-Score: 3.36 | Buy: $29,910 | Vacuum Warp: +0.525%
+      櫨 [GOD SIGNAL FIRED] 2025-11-30 20:13:46.703000 | Z-Score: 3.65 | Buy: $43,441 | Vacuum Warp: +0.520%
+      櫨 [GOD SIGNAL FIRED] 2025-11-30 23:30:14.572000 | Z-Score: 3.91 | Buy: $66,514 | Vacuum Warp: +0.488%
+      櫨 [GOD SIGNAL FIRED] 2026-02-08 23:20:13.955000 | Z-Score: 3.09 | Buy: $29,407 | Vacuum Warp: +0.523%
+      櫨 [GOD SIGNAL FIRED] 2026-02-10 15:40:38.926000 | Z-Score: 3.01 | Buy: $73,683 | Vacuum Warp: +0.549%
+      醇 --- Total Flawless 'God Signals' Detected: 42
+--- [Target] COAIUSDT | Gain: 102.62x
+   Range: 2025-10-01 to 2025-10-16
+   >>> Downloading UM Tick Data for COAIUSDT...
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+
+--- [START] Starting Binance Archive Dump for COAIUSDT (UM) ---
+
+[1/2] Fetching 1m Klines (OHLCV)...
+  [??] No klines for 2025-09-24 (Status: 404)
+  [OK] Fetched 1m klines for 2025-09-25
+  [OK] Fetched 1m klines for 2025-09-26
+  [OK] Fetched 1m klines for 2025-09-27
+  [OK] Fetched 1m klines for 2025-09-28
+  [OK] Fetched 1m klines for 2025-09-29
+  [OK] Fetched 1m klines for 2025-09-30
+  [OK] Fetched 1m klines for 2025-10-01
+  [OK] Fetched 1m klines for 2025-10-02
+  [OK] Fetched 1m klines for 2025-10-03
+  [OK] Fetched 1m klines for 2025-10-04
+  [OK] Fetched 1m klines for 2025-10-05
+  [OK] Fetched 1m klines for 2025-10-06
+  [OK] Fetched 1m klines for 2025-10-07
+  [OK] Fetched 1m klines for 2025-10-08
+  [OK] Fetched 1m klines for 2025-10-09
+  [OK] Fetched 1m klines for 2025-10-10
+  [OK] Fetched 1m klines for 2025-10-11
+  [OK] Fetched 1m klines for 2025-10-12
+  [OK] Fetched 1m klines for 2025-10-13
+  [OK] Fetched 1m klines for 2025-10-14
+  [OK] Fetched 1m klines for 2025-10-15
+  [OK] Fetched 1m klines for 2025-10-16
+Merged total 31231 1m candles to data/binance_dna\COAIUSDT\um\ohlcv_1m.csv
+
+[2/2] Fetching TICK Data (Trades)...
+  [??] No trades for 2025-09-23 (Status: 404)
+  [??] No trades for 2025-09-24 (Status: 404)
+  [OK] Fetched trades for 2025-09-25 (Length: 8268251)
+  [OK] Fetched trades for 2025-09-26 (Length: 3237841)
+  [OK] Fetched trades for 2025-09-27 (Length: 3425729)
+  [OK] Fetched trades for 2025-09-28 (Length: 2399400)
+  [OK] Fetched trades for 2025-09-29 (Length: 1514783)
+  [OK] Fetched trades for 2025-09-30 (Length: 2990632)
+  [OK] Fetched trades for 2025-10-01 (Length: 1653182)
+  [OK] Fetched trades for 2025-10-02 (Length: 13605859)
+  [OK] Fetched trades for 2025-10-03 (Length: 6638574)
+  [OK] Fetched trades for 2025-10-04 (Length: 9327082)
+  [OK] Fetched trades for 2025-10-05 (Length: 3541191)
+  [OK] Fetched trades for 2025-10-06 (Length: 19755068)
+  [OK] Fetched trades for 2025-10-07 (Length: 17171380)
+  [OK] Fetched trades for 2025-10-08 (Length: 17231784)
+  [OK] Fetched trades for 2025-10-09 (Length: 13378884)
+  [OK] Fetched trades for 2025-10-10 (Length: 8818984)
+  [OK] Fetched trades for 2025-10-11 (Length: 8843346)
+  [OK] Fetched trades for 2025-10-12 (Length: 13989344)
+  [OK] Fetched trades for 2025-10-13 (Length: 9030010)
+  [OK] Fetched trades for 2025-10-14 (Length: 7637715)
+  [OK] Fetched trades for 2025-10-15 (Length: 12545831)
+  [OK] Fetched trades for 2025-10-16 (Length: 9457243)
+
+[DONE] Saved total 194462113 pure tick records to data/binance_dna\COAIUSDT\um\trades_tick.csv
+   ... Running Time Slip Backtest for COAIUSDT...
+      櫨 [GOD SIGNAL FIRED] 2025-10-02 11:32:05.032000 | Z-Score: 3.02 | Buy: $26,580 | Vacuum Warp: +1.122%
+      櫨 [GOD SIGNAL FIRED] 2025-10-02 12:32:32.536000 | Z-Score: 3.63 | Buy: $24,732 | Vacuum Warp: +1.396%
+      櫨 [GOD SIGNAL FIRED] 2025-10-02 14:39:03.156000 | Z-Score: 4.34 | Buy: $39,484 | Vacuum Warp: +0.444%
+      櫨 [GOD SIGNAL FIRED] 2025-10-02 16:10:00.521000 | Z-Score: 4.58 | Buy: $30,523 | Vacuum Warp: +1.354%
+      櫨 [GOD SIGNAL FIRED] 2025-10-02 18:08:01.698000 | Z-Score: 5.03 | Buy: $29,348 | Vacuum Warp: +0.770%
+      櫨 [GOD SIGNAL FIRED] 2025-10-02 19:28:20.096000 | Z-Score: 5.24 | Buy: $60,973 | Vacuum Warp: +0.390%
+      櫨 [GOD SIGNAL FIRED] 2025-10-02 20:48:22.110000 | Z-Score: 5.24 | Buy: $79,888 | Vacuum Warp: +0.574%
+      櫨 [GOD SIGNAL FIRED] 2025-10-02 22:51:17.434000 | Z-Score: 5.44 | Buy: $55,732 | Vacuum Warp: +0.491%
+      櫨 [GOD SIGNAL FIRED] 2025-10-06 08:38:08.054000 | Z-Score: 3.09 | Buy: $29,999 | Vacuum Warp: +1.878%
+      櫨 [GOD SIGNAL FIRED] 2025-10-06 09:38:08.563000 | Z-Score: 4.64 | Buy: $49,311 | Vacuum Warp: +2.484%
+      櫨 [GOD SIGNAL FIRED] 2025-10-06 10:38:10.971000 | Z-Score: 6.62 | Buy: $22,389 | Vacuum Warp: +1.118%
+      櫨 [GOD SIGNAL FIRED] 2025-10-06 11:39:52.310000 | Z-Score: 7.51 | Buy: $40,320 | Vacuum Warp: +1.020%
+      櫨 [GOD SIGNAL FIRED] 2025-10-06 12:52:12.834000 | Z-Score: 8.32 | Buy: $24,997 | Vacuum Warp: +2.066%
+      櫨 [GOD SIGNAL FIRED] 2025-10-06 14:01:19.816000 | Z-Score: 9.56 | Buy: $26,805 | Vacuum Warp: +0.675%
+      櫨 [GOD SIGNAL FIRED] 2025-10-06 15:04:52.322000 | Z-Score: 9.91 | Buy: $23,535 | Vacuum Warp: +0.412%
+      櫨 [GOD SIGNAL FIRED] 2025-10-06 16:08:06 | Z-Score: 10.63 | Buy: $25,405 | Vacuum Warp: +0.333%
+      櫨 [GOD SIGNAL FIRED] 2025-10-06 17:11:56.116000 | Z-Score: 11.27 | Buy: $27,649 | Vacuum Warp: +0.617%
+      櫨 [GOD SIGNAL FIRED] 2025-10-06 18:22:26.579000 | Z-Score: 11.58 | Buy: $23,917 | Vacuum Warp: +1.182%
+      櫨 [GOD SIGNAL FIRED] 2025-10-06 19:36:20.524000 | Z-Score: 11.91 | Buy: $20,895 | Vacuum Warp: +0.362%
+      櫨 [GOD SIGNAL FIRED] 2025-10-06 20:38:06.964000 | Z-Score: 12.23 | Buy: $22,416 | Vacuum Warp: +0.303%
+      櫨 [GOD SIGNAL FIRED] 2025-10-06 21:41:24.400000 | Z-Score: 12.83 | Buy: $29,904 | Vacuum Warp: +0.360%
+      櫨 [GOD SIGNAL FIRED] 2025-10-06 22:50:24.311000 | Z-Score: 13.04 | Buy: $49,250 | Vacuum Warp: +0.576%
+      櫨 [GOD SIGNAL FIRED] 2025-10-06 23:50:41.161000 | Z-Score: 13.17 | Buy: $239,412 | Vacuum Warp: +0.522%
+      醇 --- Total Flawless 'God Signals' Detected: 23
+--- [Target] SIRENUSDT | Gain: 93.61x
+   Range: 2026-02-07 to 2026-03-22
+   >>> Downloading UM Tick Data for SIRENUSDT...
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+
+--- [START] Starting Binance Archive Dump for SIRENUSDT (UM) ---
+
+[1/2] Fetching 1m Klines (OHLCV)...
+  [OK] Fetched 1m klines for 2026-01-31
+  [OK] Fetched 1m klines for 2026-02-01
+  [OK] Fetched 1m klines for 2026-02-02
+  [OK] Fetched 1m klines for 2026-02-03
+  [OK] Fetched 1m klines for 2026-02-04
+  [OK] Fetched 1m klines for 2026-02-05
+  [OK] Fetched 1m klines for 2026-02-06
+  [OK] Fetched 1m klines for 2026-02-07
+  [OK] Fetched 1m klines for 2026-02-08
+  [OK] Fetched 1m klines for 2026-02-09
+  [OK] Fetched 1m klines for 2026-02-10
+  [OK] Fetched 1m klines for 2026-02-11
+  [OK] Fetched 1m klines for 2026-02-12
+  [OK] Fetched 1m klines for 2026-02-13
+  [OK] Fetched 1m klines for 2026-02-14
+  [OK] Fetched 1m klines for 2026-02-15
+  [OK] Fetched 1m klines for 2026-02-16
+  [OK] Fetched 1m klines for 2026-02-17
+  [OK] Fetched 1m klines for 2026-02-18
+  [OK] Fetched 1m klines for 2026-02-19
+  [OK] Fetched 1m klines for 2026-02-20
+  [OK] Fetched 1m klines for 2026-02-21
+  [OK] Fetched 1m klines for 2026-02-22
+  [OK] Fetched 1m klines for 2026-02-23
+  [OK] Fetched 1m klines for 2026-02-24
+  [OK] Fetched 1m klines for 2026-02-25
+  [OK] Fetched 1m klines for 2026-02-26
+  [OK] Fetched 1m klines for 2026-02-27
+  [OK] Fetched 1m klines for 2026-02-28
+  [OK] Fetched 1m klines for 2026-03-01
+  [OK] Fetched 1m klines for 2026-03-02
+  [OK] Fetched 1m klines for 2026-03-03
+  [OK] Fetched 1m klines for 2026-03-04
+  [OK] Fetched 1m klines for 2026-03-05
+  [OK] Fetched 1m klines for 2026-03-06
+  [OK] Fetched 1m klines for 2026-03-07
+  [OK] Fetched 1m klines for 2026-03-08
+  [OK] Fetched 1m klines for 2026-03-09
+  [OK] Fetched 1m klines for 2026-03-10
+  [OK] Fetched 1m klines for 2026-03-11
+  [OK] Fetched 1m klines for 2026-03-12
+  [OK] Fetched 1m klines for 2026-03-13
+  [OK] Fetched 1m klines for 2026-03-14
+  [OK] Fetched 1m klines for 2026-03-15
+  [OK] Fetched 1m klines for 2026-03-16
+  [OK] Fetched 1m klines for 2026-03-17
+  [OK] Fetched 1m klines for 2026-03-18
+  [OK] Fetched 1m klines for 2026-03-19
+  [OK] Fetched 1m klines for 2026-03-20
+  [OK] Fetched 1m klines for 2026-03-21
+  [OK] Fetched 1m klines for 2026-03-22
+Merged total 73441 1m candles to data/binance_dna\SIRENUSDT\um\ohlcv_1m.csv
+
+[2/2] Fetching TICK Data (Trades)...
+  [OK] Fetched trades for 2026-01-30 (Length: 35746)
+  [OK] Fetched trades for 2026-01-31 (Length: 53319)
+  [OK] Fetched trades for 2026-02-01 (Length: 19833)
+  [OK] Fetched trades for 2026-02-02 (Length: 25242)
+  [OK] Fetched trades for 2026-02-03 (Length: 133631)
+  [OK] Fetched trades for 2026-02-04 (Length: 85769)
+  [OK] Fetched trades for 2026-02-05 (Length: 60974)
+  [OK] Fetched trades for 2026-02-06 (Length: 84684)
+  [OK] Fetched trades for 2026-02-07 (Length: 9028061)
+  [OK] Fetched trades for 2026-02-08 (Length: 9105984)
+  [OK] Fetched trades for 2026-02-09 (Length: 5079873)
+  [OK] Fetched trades for 2026-02-10 (Length: 1548623)
+  [OK] Fetched trades for 2026-02-11 (Length: 1322814)
+  [OK] Fetched trades for 2026-02-12 (Length: 2201511)
+  [OK] Fetched trades for 2026-02-13 (Length: 1185039)
+  [OK] Fetched trades for 2026-02-14 (Length: 2165922)
+  [OK] Fetched trades for 2026-02-15 (Length: 1124910)
+  [OK] Fetched trades for 2026-02-16 (Length: 6519168)
+  [OK] Fetched trades for 2026-02-17 (Length: 3395346)
+  [OK] Fetched trades for 2026-02-18 (Length: 2066987)
+  [OK] Fetched trades for 2026-02-19 (Length: 1844735)
+  [OK] Fetched trades for 2026-02-20 (Length: 830609)
+  [OK] Fetched trades for 2026-02-21 (Length: 3052263)
+  [OK] Fetched trades for 2026-02-22 (Length: 3083485)
+  [OK] Fetched trades for 2026-02-23 (Length: 2184933)
+  [OK] Fetched trades for 2026-02-24 (Length: 3602561)
+  [OK] Fetched trades for 2026-02-25 (Length: 3771176)
+  [OK] Fetched trades for 2026-02-26 (Length: 8129286)
+  [OK] Fetched trades for 2026-02-27 (Length: 4023882)
+  [OK] Fetched trades for 2026-02-28 (Length: 3014248)
+  [OK] Fetched trades for 2026-03-01 (Length: 2483162)
+  [OK] Fetched trades for 2026-03-02 (Length: 6448476)
+  [OK] Fetched trades for 2026-03-03 (Length: 5524431)
+  [OK] Fetched trades for 2026-03-04 (Length: 4814028)
+  [OK] Fetched trades for 2026-03-05 (Length: 5580960)
+  [OK] Fetched trades for 2026-03-06 (Length: 2256630)
+  [OK] Fetched trades for 2026-03-07 (Length: 2001183)
+  [OK] Fetched trades for 2026-03-08 (Length: 2085626)
+  [OK] Fetched trades for 2026-03-09 (Length: 2188810)
+  [OK] Fetched trades for 2026-03-10 (Length: 1413647)
+  [OK] Fetched trades for 2026-03-11 (Length: 1626161)
+  [OK] Fetched trades for 2026-03-12 (Length: 2159416)
+  [OK] Fetched trades for 2026-03-13 (Length: 2474813)
+  [OK] Fetched trades for 2026-03-14 (Length: 1708094)
+  [OK] Fetched trades for 2026-03-15 (Length: 1810433)
+  [OK] Fetched trades for 2026-03-16 (Length: 5302015)
+  [OK] Fetched trades for 2026-03-17 (Length: 6468235)
+  [OK] Fetched trades for 2026-03-18 (Length: 6761460)
+  [OK] Fetched trades for 2026-03-19 (Length: 6013914)
+  [OK] Fetched trades for 2026-03-20 (Length: 3870404)
+  [OK] Fetched trades for 2026-03-21 (Length: 2906954)
+  [OK] Fetched trades for 2026-03-22 (Length: 24403170)
+
+[DONE] Saved total 179082636 pure tick records to data/binance_dna\SIRENUSDT\um\trades_tick.csv
+   ... Running Time Slip Backtest for SIRENUSDT...
+      櫨 [GOD SIGNAL FIRED] 2026-02-07 13:04:51.248000 | Z-Score: 17.95 | Buy: $21,367 | Vacuum Warp: +0.391%
+      櫨 [GOD SIGNAL FIRED] 2026-02-07 15:13:00.671000 | Z-Score: 17.95 | Buy: $42,240 | Vacuum Warp: +1.830%
+      櫨 [GOD SIGNAL FIRED] 2026-02-07 18:22:31.750000 | Z-Score: 75.28 | Buy: $21,957 | Vacuum Warp: +2.961%
+      櫨 [GOD SIGNAL FIRED] 2026-02-07 19:25:10.527000 | Z-Score: 166.67 | Buy: $20,436 | Vacuum Warp: +2.400%
+      櫨 [GOD SIGNAL FIRED] 2026-02-07 20:26:35.690000 | Z-Score: 265.04 | Buy: $23,016 | Vacuum Warp: +0.917%
+      櫨 [GOD SIGNAL FIRED] 2026-02-07 21:30:19.447000 | Z-Score: 339.98 | Buy: $20,432 | Vacuum Warp: +0.476%
+      櫨 [GOD SIGNAL FIRED] 2026-02-07 22:40:29.199000 | Z-Score: 391.13 | Buy: $21,625 | Vacuum Warp: +0.824%
+      櫨 [GOD SIGNAL FIRED] 2026-02-07 23:46:36.872000 | Z-Score: 411.98 | Buy: $23,685 | Vacuum Warp: +1.100%
+      櫨 [GOD SIGNAL FIRED] 2026-02-08 22:55:19.578000 | Z-Score: 3.01 | Buy: $41,096 | Vacuum Warp: +0.430%
+      櫨 [GOD SIGNAL FIRED] 2026-03-18 20:13:05.021000 | Z-Score: 3.36 | Buy: $22,475 | Vacuum Warp: +0.339%
+      櫨 [GOD SIGNAL FIRED] 2026-03-18 23:22:38.541000 | Z-Score: 3.36 | Buy: $180,000 | Vacuum Warp: +0.423%
+      櫨 [GOD SIGNAL FIRED] 2026-03-22 09:47:29.886000 | Z-Score: 3.06 | Buy: $23,253 | Vacuum Warp: +1.656%
+      櫨 [GOD SIGNAL FIRED] 2026-03-22 10:50:53.640000 | Z-Score: 3.41 | Buy: $48,127 | Vacuum Warp: +0.478%
+      櫨 [GOD SIGNAL FIRED] 2026-03-22 11:54:58.254000 | Z-Score: 4.53 | Buy: $247,819 | Vacuum Warp: +3.334%
+      櫨 [GOD SIGNAL FIRED] 2026-03-22 12:55:56.093000 | Z-Score: 5.76 | Buy: $20,027 | Vacuum Warp: +0.402%
+      櫨 [GOD SIGNAL FIRED] 2026-03-22 14:08:35.280000 | Z-Score: 6.92 | Buy: $29,740 | Vacuum Warp: +0.624%
+      櫨 [GOD SIGNAL FIRED] 2026-03-22 15:09:12.102000 | Z-Score: 7.32 | Buy: $26,250 | Vacuum Warp: +0.426%
+      櫨 [GOD SIGNAL FIRED] 2026-03-22 16:20:36.366000 | Z-Score: 8.66 | Buy: $34,738 | Vacuum Warp: +0.847%
+      櫨 [GOD SIGNAL FIRED] 2026-03-22 17:20:50.923000 | Z-Score: 10.71 | Buy: $20,992 | Vacuum Warp: +1.024%
+      櫨 [GOD SIGNAL FIRED] 2026-03-22 18:25:57.965000 | Z-Score: 15.25 | Buy: $42,314 | Vacuum Warp: +0.400%
+      櫨 [GOD SIGNAL FIRED] 2026-03-22 19:26:43.157000 | Z-Score: 16.78 | Buy: $26,970 | Vacuum Warp: +1.463%
+      櫨 [GOD SIGNAL FIRED] 2026-03-22 20:28:50.745000 | Z-Score: 17.76 | Buy: $20,444 | Vacuum Warp: +0.469%
+      櫨 [GOD SIGNAL FIRED] 2026-03-22 22:14:31.799000 | Z-Score: 18.59 | Buy: $28,659 | Vacuum Warp: +0.544%
+      櫨 [GOD SIGNAL FIRED] 2026-03-22 23:15:59.610000 | Z-Score: 18.85 | Buy: $24,170 | Vacuum Warp: +1.856%
+      醇 --- Total Flawless 'God Signals' Detected: 24
+--- [Target] BASUSDT | Gain: 68.29x
+   Range: 2025-10-02 to 2025-10-17
+   >>> Downloading UM Tick Data for BASUSDT...
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+
+--- [START] Starting Binance Archive Dump for BASUSDT (UM) ---
+
+[1/2] Fetching 1m Klines (OHLCV)...
+  [OK] Fetched 1m klines for 2025-09-25
+  [OK] Fetched 1m klines for 2025-09-26
+  [OK] Fetched 1m klines for 2025-09-27
+  [OK] Fetched 1m klines for 2025-09-28
+  [OK] Fetched 1m klines for 2025-09-29
+  [OK] Fetched 1m klines for 2025-09-30
+  [OK] Fetched 1m klines for 2025-10-01
+  [OK] Fetched 1m klines for 2025-10-02
+  [OK] Fetched 1m klines for 2025-10-03
+  [OK] Fetched 1m klines for 2025-10-04
+  [OK] Fetched 1m klines for 2025-10-05
+  [OK] Fetched 1m klines for 2025-10-06
+  [OK] Fetched 1m klines for 2025-10-07
+  [OK] Fetched 1m klines for 2025-10-08
+  [OK] Fetched 1m klines for 2025-10-09
+  [OK] Fetched 1m klines for 2025-10-10
+  [OK] Fetched 1m klines for 2025-10-11
+  [OK] Fetched 1m klines for 2025-10-12
+  [OK] Fetched 1m klines for 2025-10-13
+  [OK] Fetched 1m klines for 2025-10-14
+  [OK] Fetched 1m klines for 2025-10-15
+  [OK] Fetched 1m klines for 2025-10-16
+  [OK] Fetched 1m klines for 2025-10-17
+Merged total 33121 1m candles to data/binance_dna\BASUSDT\um\ohlcv_1m.csv
+
+[2/2] Fetching TICK Data (Trades)...
+  [OK] Fetched trades for 2025-09-24 (Length: 135964)
+  [OK] Fetched trades for 2025-09-25 (Length: 189884)
+  [OK] Fetched trades for 2025-09-26 (Length: 376915)
+  [OK] Fetched trades for 2025-09-27 (Length: 454043)
+  [OK] Fetched trades for 2025-09-28 (Length: 290429)
+  [OK] Fetched trades for 2025-09-29 (Length: 134257)
+  [OK] Fetched trades for 2025-09-30 (Length: 183550)
+  [OK] Fetched trades for 2025-10-01 (Length: 116121)
+  [OK] Fetched trades for 2025-10-02 (Length: 361197)
+  [OK] Fetched trades for 2025-10-03 (Length: 212298)
+  [OK] Fetched trades for 2025-10-04 (Length: 72460)
+  [OK] Fetched trades for 2025-10-05 (Length: 265434)
+  [OK] Fetched trades for 2025-10-06 (Length: 204541)
+  [OK] Fetched trades for 2025-10-07 (Length: 356788)
+  [OK] Fetched trades for 2025-10-08 (Length: 169474)
+  [OK] Fetched trades for 2025-10-09 (Length: 345018)
+  [OK] Fetched trades for 2025-10-10 (Length: 448462)
+  [OK] Fetched trades for 2025-10-11 (Length: 325781)
+  [OK] Fetched trades for 2025-10-12 (Length: 134088)
+  [OK] Fetched trades for 2025-10-13 (Length: 7719988)
+  [OK] Fetched trades for 2025-10-14 (Length: 4068331)
+  [OK] Fetched trades for 2025-10-15 (Length: 5053189)
+  [OK] Fetched trades for 2025-10-16 (Length: 4276526)
+  [OK] Fetched trades for 2025-10-17 (Length: 4379449)
+
+[DONE] Saved total 30274187 pure tick records to data/binance_dna\BASUSDT\um\trades_tick.csv
+   ... Running Time Slip Backtest for BASUSDT...
+      櫨 [GOD SIGNAL FIRED] 2025-10-10 12:58:43.679000 | Z-Score: 3.73 | Buy: $24,406 | Vacuum Warp: +0.348%
+      櫨 [GOD SIGNAL FIRED] 2025-10-10 22:02:36.282000 | Z-Score: 3.73 | Buy: $21,312 | Vacuum Warp: +0.493%
+      櫨 [GOD SIGNAL FIRED] 2025-10-13 08:29:21.656000 | Z-Score: 8.15 | Buy: $21,908 | Vacuum Warp: +0.702%
+      櫨 [GOD SIGNAL FIRED] 2025-10-13 09:57:22.087000 | Z-Score: 17.41 | Buy: $23,581 | Vacuum Warp: +0.538%
+      櫨 [GOD SIGNAL FIRED] 2025-10-13 10:59:13.854000 | Z-Score: 27.02 | Buy: $24,000 | Vacuum Warp: +0.773%
+      櫨 [GOD SIGNAL FIRED] 2025-10-13 11:59:15.693000 | Z-Score: 36.20 | Buy: $30,031 | Vacuum Warp: +0.782%
+      櫨 [GOD SIGNAL FIRED] 2025-10-13 13:00:02.817000 | Z-Score: 55.72 | Buy: $29,431 | Vacuum Warp: +0.337%
+      櫨 [GOD SIGNAL FIRED] 2025-10-13 14:01:35.394000 | Z-Score: 75.63 | Buy: $22,649 | Vacuum Warp: +1.995%
+      櫨 [GOD SIGNAL FIRED] 2025-10-13 15:04:17.637000 | Z-Score: 86.06 | Buy: $24,967 | Vacuum Warp: +0.313%
+      櫨 [GOD SIGNAL FIRED] 2025-10-13 16:07:52.485000 | Z-Score: 96.42 | Buy: $29,988 | Vacuum Warp: +0.599%
+      櫨 [GOD SIGNAL FIRED] 2025-10-13 17:09:07.532000 | Z-Score: 106.23 | Buy: $25,684 | Vacuum Warp: +0.619%
+      櫨 [GOD SIGNAL FIRED] 2025-10-13 18:09:50.229000 | Z-Score: 125.69 | Buy: $24,745 | Vacuum Warp: +0.601%
+      櫨 [GOD SIGNAL FIRED] 2025-10-13 19:32:01.018000 | Z-Score: 132.86 | Buy: $24,964 | Vacuum Warp: +0.828%
+      櫨 [GOD SIGNAL FIRED] 2025-10-13 21:24:28.741000 | Z-Score: 138.87 | Buy: $21,282 | Vacuum Warp: +0.483%
+      櫨 [GOD SIGNAL FIRED] 2025-10-13 22:27:30.030000 | Z-Score: 138.87 | Buy: $39,722 | Vacuum Warp: +0.433%
+      醇 --- Total Flawless 'God Signals' Detected: 15
+--- [Target] RIVERUSDT | Gain: 53.22x
+   Range: 2025-12-17 to 2026-01-26
+   >>> Downloading UM Tick Data for RIVERUSDT...
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+C:\Users\rkawa\OneDrive\デスクトップ\bot\bot kai\scripts\binance_archive_downloader.py:93: DtypeWarning: Columns (0: id, 1: price, 2: qty, 3: quote_qty, 4: time, 5: is_buyer_maker) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+
+--- [START] Starting Binance Archive Dump for RIVERUSDT (UM) ---
+
+[1/2] Fetching 1m Klines (OHLCV)...
+  [OK] Fetched 1m klines for 2025-12-10
+  [OK] Fetched 1m klines for 2025-12-11
+  [OK] Fetched 1m klines for 2025-12-12
+  [OK] Fetched 1m klines for 2025-12-13
+  [OK] Fetched 1m klines for 2025-12-14
+  [OK] Fetched 1m klines for 2025-12-15
+  [OK] Fetched 1m klines for 2025-12-16
+  [OK] Fetched 1m klines for 2025-12-17
+  [OK] Fetched 1m klines for 2025-12-18
+  [OK] Fetched 1m klines for 2025-12-19
+  [OK] Fetched 1m klines for 2025-12-20
+  [OK] Fetched 1m klines for 2025-12-21
+  [OK] Fetched 1m klines for 2025-12-22
+  [OK] Fetched 1m klines for 2025-12-23
+  [OK] Fetched 1m klines for 2025-12-24
+  [OK] Fetched 1m klines for 2025-12-25
+  [OK] Fetched 1m klines for 2025-12-26
+  [OK] Fetched 1m klines for 2025-12-27
+  [OK] Fetched 1m klines for 2025-12-28
+  [OK] Fetched 1m klines for 2025-12-29
+  [OK] Fetched 1m klines for 2025-12-30
+  [OK] Fetched 1m klines for 2025-12-31
+  [OK] Fetched 1m klines for 2026-01-01
+  [OK] Fetched 1m klines for 2026-01-02
+  [OK] Fetched 1m klines for 2026-01-03
+  [OK] Fetched 1m klines for 2026-01-04
+  [OK] Fetched 1m klines for 2026-01-05
+  [OK] Fetched 1m klines for 2026-01-06
+  [OK] Fetched 1m klines for 2026-01-07
+  [OK] Fetched 1m klines for 2026-01-08
+  [OK] Fetched 1m klines for 2026-01-09
+  [OK] Fetched 1m klines for 2026-01-10
+  [OK] Fetched 1m klines for 2026-01-11
+  [OK] Fetched 1m klines for 2026-01-12
+  [OK] Fetched 1m klines for 2026-01-13
+  [OK] Fetched 1m klines for 2026-01-14
+  [OK] Fetched 1m klines for 2026-01-15
+  [OK] Fetched 1m klines for 2026-01-16
+  [OK] Fetched 1m klines for 2026-01-17
+  [OK] Fetched 1m klines for 2026-01-18
+  [OK] Fetched 1m klines for 2026-01-19
+  [OK] Fetched 1m klines for 2026-01-20
+  [OK] Fetched 1m klines for 2026-01-21
+  [OK] Fetched 1m klines for 2026-01-22
+  [OK] Fetched 1m klines for 2026-01-23
+  [OK] Fetched 1m klines for 2026-01-24
+  [OK] Fetched 1m klines for 2026-01-25
+  [OK] Fetched 1m klines for 2026-01-26
+Merged total 69121 1m candles to data/binance_dna\RIVERUSDT\um\ohlcv_1m.csv
+
+[2/2] Fetching TICK Data (Trades)...
+  [OK] Fetched trades for 2025-12-09 (Length: 694916)
+  [OK] Fetched trades for 2025-12-10 (Length: 803817)
+  [OK] Fetched trades for 2025-12-11 (Length: 571810)
+  [OK] Fetched trades for 2025-12-12 (Length: 1239237)
+  [OK] Fetched trades for 2025-12-13 (Length: 628590)
+  [OK] Fetched trades for 2025-12-14 (Length: 1531412)
+  [OK] Fetched trades for 2025-12-15 (Length: 836236)
+  [OK] Fetched trades for 2025-12-16 (Length: 817698)
+  [OK] Fetched trades for 2025-12-17 (Length: 2606270)
+  [OK] Fetched trades for 2025-12-18 (Length: 2755112)
+  [OK] Fetched trades for 2025-12-19 (Length: 1440225)
+  [OK] Fetched trades for 2025-12-20 (Length: 1315612)
+  [OK] Fetched trades for 2025-12-21 (Length: 996543)
+  [OK] Fetched trades for 2025-12-22 (Length: 2451216)
+  [OK] Fetched trades for 2025-12-23 (Length: 1236381)
+  [OK] Fetched trades for 2025-12-24 (Length: 1340079)
+  [OK] Fetched trades for 2025-12-25 (Length: 1484142)
+  [OK] Fetched trades for 2025-12-26 (Length: 1379555)
+  [OK] Fetched trades for 2025-12-27 (Length: 393271)
+  [OK] Fetched trades for 2025-12-28 (Length: 920904)
+  [OK] Fetched trades for 2025-12-29 (Length: 1344219)
+  [OK] Fetched trades for 2025-12-30 (Length: 1691130)
+  [OK] Fetched trades for 2025-12-31 (Length: 9315453)
+  [OK] Fetched trades for 2026-01-01 (Length: 15370491)
+  [OK] Fetched trades for 2026-01-02 (Length: 14030587)
+  [OK] Fetched trades for 2026-01-03 (Length: 9196757)
+  [OK] Fetched trades for 2026-01-04 (Length: 8932363)
+  [OK] Fetched trades for 2026-01-05 (Length: 13228827)
+  [OK] Fetched trades for 2026-01-06 (Length: 13938696)
+  [OK] Fetched trades for 2026-01-07 (Length: 6713506)
+  [OK] Fetched trades for 2026-01-08 (Length: 3507552)
+  [OK] Fetched trades for 2026-01-09 (Length: 6077213)
+  [OK] Fetched trades for 2026-01-10 (Length: 4368003)
+  [OK] Fetched trades for 2026-01-11 (Length: 5292794)
+  [OK] Fetched trades for 2026-01-12 (Length: 6166393)
+  [OK] Fetched trades for 2026-01-13 (Length: 6442672)
+  [OK] Fetched trades for 2026-01-14 (Length: 13121315)
+  [OK] Fetched trades for 2026-01-15 (Length: 10431306)
+  [OK] Fetched trades for 2026-01-16 (Length: 15642481)
+  [OK] Fetched trades for 2026-01-17 (Length: 11115575)
+  [OK] Fetched trades for 2026-01-18 (Length: 10014964)
+  [OK] Fetched trades for 2026-01-19 (Length: 9866927)
+  [OK] Fetched trades for 2026-01-20 (Length: 8954591)
+  [OK] Fetched trades for 2026-01-21 (Length: 11736910)
+  [OK] Fetched trades for 2026-01-22 (Length: 16725703)
+  [OK] Fetched trades for 2026-01-23 (Length: 16998411)
+  [OK] Fetched trades for 2026-01-24 (Length: 9694585)
+  [OK] Fetched trades for 2026-01-25 (Length: 9745750)
+  [OK] Fetched trades for 2026-01-26 (Length: 13200539)
+
+[DONE] Saved total 308308739 pure tick records to data/binance_dna\RIVERUSDT\um\trades_tick.csv
+   ... Running Time Slip Backtest for RIVERUSDT...
+      櫨 [GOD SIGNAL FIRED] 2025-12-17 14:40:05.526000 | Z-Score: 4.52 | Buy: $46,882 | Vacuum Warp: +1.386%
+      櫨 [GOD SIGNAL FIRED] 2025-12-17 17:17:00.607000 | Z-Score: 6.02 | Buy: $20,142 | Vacuum Warp: +1.180%
+      櫨 [GOD SIGNAL FIRED] 2025-12-31 12:42:43.099000 | Z-Score: 4.52 | Buy: $40,662 | Vacuum Warp: +0.674%
+      櫨 [GOD SIGNAL FIRED] 2025-12-31 14:00:05.115000 | Z-Score: 5.67 | Buy: $81,374 | Vacuum Warp: +0.693%
+      櫨 [GOD SIGNAL FIRED] 2025-12-31 15:00:31.402000 | Z-Score: 7.77 | Buy: $43,987 | Vacuum Warp: +0.615%
+      櫨 [GOD SIGNAL FIRED] 2025-12-31 16:37:59.243000 | Z-Score: 10.10 | Buy: $21,546 | Vacuum Warp: +0.357%
+      櫨 [GOD SIGNAL FIRED] 2025-12-31 17:39:01.511000 | Z-Score: 11.20 | Buy: $31,836 | Vacuum Warp: +0.416%
+      櫨 [GOD SIGNAL FIRED] 2025-12-31 18:48:59.034000 | Z-Score: 12.47 | Buy: $27,762 | Vacuum Warp: +1.475%
+      櫨 [GOD SIGNAL FIRED] 2025-12-31 20:09:01.386000 | Z-Score: 14.36 | Buy: $121,491 | Vacuum Warp: +4.756%
+      櫨 [GOD SIGNAL FIRED] 2025-12-31 21:16:15.794000 | Z-Score: 15.25 | Buy: $22,074 | Vacuum Warp: +2.090%
+      櫨 [GOD SIGNAL FIRED] 2025-12-31 22:22:17.869000 | Z-Score: 17.03 | Buy: $36,714 | Vacuum Warp: +0.334%
+      櫨 [GOD SIGNAL FIRED] 2025-12-31 23:28:38.846000 | Z-Score: 17.51 | Buy: $100,790 | Vacuum Warp: +0.510%
+      櫨 [GOD SIGNAL FIRED] 2026-01-01 12:17:23.686000 | Z-Score: 3.22 | Buy: $23,047 | Vacuum Warp: +1.202%
+      櫨 [GOD SIGNAL FIRED] 2026-01-01 15:47:20.373000 | Z-Score: 3.94 | Buy: $31,400 | Vacuum Warp: +0.339%
+      櫨 [GOD SIGNAL FIRED] 2026-01-01 17:48:04.048000 | Z-Score: 4.46 | Buy: $37,172 | Vacuum Warp: +3.623%
+      櫨 [GOD SIGNAL FIRED] 2026-01-01 20:15:46.414000 | Z-Score: 5.47 | Buy: $36,197 | Vacuum Warp: +1.429%
+      櫨 [GOD SIGNAL FIRED] 2026-01-01 21:46:00.739000 | Z-Score: 6.18 | Buy: $20,200 | Vacuum Warp: +1.312%
+      櫨 [GOD SIGNAL FIRED] 2026-01-01 23:14:23.717000 | Z-Score: 6.66 | Buy: $118,539 | Vacuum Warp: +0.346%
+      櫨 [GOD SIGNAL FIRED] 2026-01-02 16:32:47.622000 | Z-Score: 3.02 | Buy: $48,088 | Vacuum Warp: +0.690%
+      櫨 [GOD SIGNAL FIRED] 2026-01-02 18:22:24.039000 | Z-Score: 3.48 | Buy: $39,510 | Vacuum Warp: +1.596%
+      櫨 [GOD SIGNAL FIRED] 2026-01-02 22:44:10.034000 | Z-Score: 4.33 | Buy: $32,545 | Vacuum Warp: +0.783%
+      櫨 [GOD SIGNAL FIRED] 2026-01-05 21:02:45.559000 | Z-Score: 3.05 | Buy: $165,615 | Vacuum Warp: +0.455%
+      櫨 [GOD SIGNAL FIRED] 2026-01-05 22:07:47.386000 | Z-Score: 3.05 | Buy: $46,001 | Vacuum Warp: +0.683%
+      櫨 [GOD SIGNAL FIRED] 2026-01-05 23:33:36.390000 | Z-Score: 3.31 | Buy: $26,378 | Vacuum Warp: +0.308%
+      醇 --- Total Flawless 'God Signals' Detected: 24
+
+============================================================
+搭 BATCH VALIDATION SUMMARY REPORT
+============================================================
+    symbol  signals       gain  status
+PIPPINUSDT       42 405.398230 SUCCESS
+  COAIUSDT       23 102.619218 SUCCESS
+ SIRENUSDT       24  93.610625 SUCCESS
+   BASUSDT       15  68.290735 SUCCESS
+ RIVERUSDT       24  53.217822 SUCCESS
+
+笨・Logic Hit Rate: 100.0% across all pump symbols.
+============================================================
+
