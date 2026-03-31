@@ -105,12 +105,24 @@ def global_1month_validator():
         
         print(f"📊 Progress: {i+1}/{len(all_symbols)} processed.")
 
+    # Final Summary & Notification
+    from core.notifier import IzanagiNotifier
+    notifier = IzanagiNotifier()
+    
+    total_signals = sum(res.get('signals', 0) for res in results if res['status'] == 'SUCCESS')
+    summary_msg = f"🛡️ 1-MONTH GLOBAL VALIDATION COMPLETE\n\n- Total Symbols: {len(all_symbols)}\n- Signals Found: {total_signals}\n- Period: {start_date} to {end_date}"
+    
     print("\n" + "="*60)
-    print("🛡️ 1-MONTH GLOBAL VALIDATION COMPLETE")
-    print("="*60)
-    print(f"Total Symbols Tested: {len(all_symbols)}")
+    print(summary_msg)
     print(f"Report saved to {report_file}")
     print("="*60 + "\n")
+    
+    # Send Notification
+    notifier.notify(1, "GLOBAL BACKTEST", summary_msg, {
+        "Total Targets": len(all_symbols),
+        "Total Signals": total_signals,
+        "Mode": "Sequential (Disk Safe)"
+    })
 
 if __name__ == "__main__":
     global_1month_validator()
