@@ -28,6 +28,7 @@ class MexcCollector:
         self.db = db_manager or DatabaseManager()
         self.logger = DataLogger(self.db)
         self.detector = PumpDetector()
+        self.exchange = ccxt.mexc({'options': {'defaultType': 'swap'}}) # [FIXED] Initialize exchange for discovery
         
         self.trade_buffers: Dict[str, List[Dict]] = {}
         self.last_chunk_time: Dict[str, float] = {}
@@ -49,7 +50,11 @@ class MexcCollector:
                 async with session.get("https://contract.mexc.com/api/v1/contract/ticker") as t_resp:
                     t_data = await t_resp.json()
                     tickers = t_data.get('data', [])
-                    vol_map = {t['symbol']: float(t['lastPrice']) * float(t['volume24h']) for t in tickers}
+                    # [FIXED] Using .get() defensively to avoid KeyError: 'volume24h'
+                    vol_map = {}
+                    for t in tickers:
+                        vol = float(t.get('lastPrice', 0)) * float(t.get('volume24h', 0))
+                        vol_map[t.get('symbol')] = vol
                 
                 # 2. Get contract details for metadata
                 async with session.get("https://contract.mexc.com/api/v1/contract/detail") as c_resp:

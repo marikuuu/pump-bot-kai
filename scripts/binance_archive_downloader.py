@@ -90,7 +90,7 @@ def get_binance_vision_data(symbol, start_date_str, end_date_str, output_dir, ma
                     for filename in z.namelist():
                         if filename.endswith(".csv"):
                             with z.open(filename) as f:
-                                df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'])
+                                df = pd.read_csv(f, names=['id', 'price', 'qty', 'quote_qty', 'time', 'is_buyer_maker'], low_memory=False)
                                 df['time'] = pd.to_numeric(df['time'], errors='coerce')
                                 df.to_csv(out_csv, mode='a', header=not header_written, index=False)
                                 header_written = True
